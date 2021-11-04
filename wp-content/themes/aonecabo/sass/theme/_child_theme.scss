@@ -1,0 +1,647 @@
+/*
+ * Fonts
+ */
+@font-face {
+    font-family: 'madraslight';
+    src: url('../fonts/madraslight-webfont.woff2') format('woff2'),
+         url('../fonts/madraslight-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'madrasblack_italic';
+    src: url('../fonts/madrasblackitalic-webfont.woff2') format('woff2'),
+         url('../fonts/madrasblackitalic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'madrasextra_bold';
+    src: url('../fonts/madrasextrabold-webfont.woff2') format('woff2'),
+         url('../fonts/madrasextrabold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'madrashairline';
+    src: url('../fonts/madrashairline-webfont.woff2') format('woff2'),
+         url('../fonts/madrashairline-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'madras_regularregular';
+    src: url('../fonts/madrasregular-webfont.woff2') format('woff2'),
+         url('../fonts/madrasregular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*
+ * Redefine Styles
+ */
+body {
+    overflow-x: hidden;
+    background: #ffffff;
+    font-family: 'madraslight';
+    font-size: 18px;
+    color: #605f65;
+    overflow-x: hidden;
+}
+.bg-dark {
+    background-color: transparent !important;
+}
+.navbar-collapse {
+    @media (min-width: 50em) {
+        flex-basis: auto;
+        ul {
+            margin-right: 200px;
+        }
+    }
+}
+.wpcf7 {
+    max-width: 100%;
+    width: 100%;
+}
+#full-width-page-wrapper {
+    padding: 0;
+}
+.form-control {
+    border-radius: 0 !important;
+}
+.form-control.error {
+    border: 1px solid #00599d;
+}
+label.error {
+    color: #00599d;
+}
+/*
+ * Header
+ */
+#wrapper-navbar {
+    nav.navbar.bg-dark {
+        padding: 0;
+        z-index: 5;
+        position: relative;
+        left: 0;
+        right: 0;
+        margin: auto;
+        @media (min-width: 800px) {
+            position: absolute;
+            background-image: url("../images/header_background.png");
+            background-position: center top;
+            height: 180px;
+            background-size: 100% 85%;
+            background-repeat: no-repeat;
+        }
+        .navbar-toggler {
+            border-color: #00599d;
+            background: #00599d;
+            margin-right: 20px;
+        }
+        .navbar-brand {
+            img {
+                width: 150px;
+                margin-left: 50px;
+                @media (min-width: 350px) {
+                    width: 200px;
+                }
+                @media (min-width: 760px) {
+                    width: 124px;
+                    margin-left: 0;
+                }
+            }
+            @media (min-width: 50em) {
+                width: 140px;
+                height: 140px;
+                margin-left: 100px;
+                margin-top: -30px;
+                padding: 0;
+            }
+        }
+        div.container {
+            height: 100%;
+            .topbar {
+                position: relative;
+                z-index: 5;
+                top: 0;
+                left: 0;
+                right: 0;
+                width: 550px;
+                background: url("../images/topbar.png");
+                background-size: 100% auto;
+                background-repeat: no-repeat;
+                height: 70px;
+                margin: auto;
+                padding-left: 55px;
+                padding-top: 4px;
+                display: none;
+                @media (min-width: 800px) {
+                    display: block;
+                    position: absolute;
+                }
+                a {
+                    color: #fff;
+                    font-size: 15px;
+                    font-family: 'madras_regularregular';
+                    margin-right: 15px;
+                }
+            }
+        }
+        #main-menu {
+            li {
+                a {
+                    padding: 0 20px;
+                    font-size: 18px;
+                    font-family: 'madraslight';
+                    color: #98979C;
+                    text-transform: uppercase;
+                }
+            }
+            li.active {
+                a {
+                    color: #ffffff;
+                    background: #5b5a5f;
+                }
+            }
+        }
+    }
+}
+
+/*
+ * Footer
+ */
+#wrapper-footer {
+    padding: 0;
+    min-height: 290px;
+    color: #ffffff;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-color: #000;
+    font-family: 'madras_regularregular';
+    @media (min-width: 50em) {
+        background-color: #fff;
+        background-size: 100% 100%;
+        background-image: url("../images/footer_background.png");
+    }
+    .container {
+        .site-footer {
+            margin-top: 80px;
+            small {
+                font-size: 10px;
+                a {
+                    color: #87858a;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+    address {
+        font-family: 'madrasextra_bold';
+        color: #00b1d9;
+    }
+    ul {
+        list-style: none;
+        padding: 0;
+        li {
+            display: inline-block;
+            padding: 0 20px;
+            align-items: center;
+            a {
+                text-transform: uppercase;
+                color: #ffffff;
+                &:hover {
+                    font-weight: 800;
+                }
+            }
+        }
+    }
+}
+
+/*
+ * Home
+ */
+#post-4 {
+    .wpb_column.vc_column_container.vc_col-sm-12,
+    .vc_row.wpb_row.vc_row-fluid {
+        position: initial;
+    }
+}
+
+#booking-home {
+    position: relative;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.6);
+    margin-bottom: 50px !important;
+    margin-top: 50px;
+    @media (min-width: 1050px) {
+        width: 450px;
+        position: absolute;
+        top: 195px;
+        margin-bottom: 0;
+        margin-top: 0;
+        right: 10px;
+    }
+    @media (min-width: 1400px) {
+        top: 300px;
+    }
+    .items {
+        padding: 20px;
+    }
+    input[type=text], input[type=number], select {
+        border-radius: 0;
+        padding-left: 20px;
+        display: block;
+    }
+    legend {
+        background: #000000;
+        color: #0098D8;
+        width: 100%;
+        border-bottom-left-radius: 100px;
+        line-height: auto;
+        padding-left: 40px;
+        font-family: 'madrasextra_bold';
+    }
+    .btn-booking {
+        background-color: #0098D8;
+        color: #fff;
+        border: none;
+        font-size: 22px;
+        font-weight: bold;
+        letter-spacing: 2px;
+        line-height: 40px;
+    }
+    #start_location {
+        width: 49%;
+        float: left;
+    }
+    #end_location {
+        float: right;
+        width: 49%;
+    }
+    #arrival_date{
+        float: left;
+        width: 49%;
+        display: inline-block;
+    }
+    #departure_date {
+        float: right;
+        width: 49%;
+        display: inline-block;
+    }
+    .form-group {
+        width: 100%;
+        display: inline-block;
+    }
+}
+
+.cta-home {
+    background-color: #fff;
+    background-size: 100% 100%;
+    background-image: url("../images/cta_home.png");
+    background-position: bottom center;
+    padding: 40px 0 20px 0;
+    margin-bottom: 50px;
+    @media (min-width: 1000px) {
+        background-size: 100% auto;
+    }
+    h1 {
+        font-family: 'madras_regularregular';
+        color: #09A5CE;
+    }
+    p {
+        color: #09A5CE;
+        font-size: 20px;
+        font-family: 'madraslight';
+        text-align: justify;
+        letter-spacing: 0;
+    }
+}
+
+.cta-vehicle {
+    .vc_column-inner {
+        background-size: 100% 100%;
+        background-image: url("../images/vehicle_box.png");
+        background-position: top center;
+        font-family: 'madraslight';
+        text-align: justify;
+        letter-spacing: 0;
+        color: #ffffff;
+    }
+}
+.ult-carousel-wrapper {
+    margin-bottom: 0;
+    padding-bottom: 20px;
+}
+
+.testimonial-header {
+    color: #009bdf;
+    background-color: #1d120e;
+    padding: 5px 20px;
+    margin-left: 60px;
+    margin-right: 60px;
+    font-family: 'madrasextra_bold';
+    font-size: 20px;
+}
+.testimonials-container {
+    background-size: 100% 100%;
+    background-image: url("../images/testimonial.png");
+    background-position: 3px top;
+    background-repeat: no-repeat;
+    font-family: 'madras_regularregular';
+    color: #ffffff;
+    position: relative;
+    .ult-carousel-wrapper {
+        margin-bottom: 0;
+    }
+    .wpb_wrapper {
+        p {
+            /* padding-top: 60px; */
+        }
+        h6 {
+            padding-bottom: 10px;
+            padding-right: 20px;
+            strong {
+                color: #ffffff;
+            }
+        }
+    }
+}
+
+.vehicles-carousel {
+    padding-top: 30px;
+    top: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    background-color: #eaebed;
+    background-size: 100% 100%;
+    background-position: center top;
+    background-repeat: no-repeat;
+    position: relative;
+    z-index: 5;
+    @media (min-width: 768px) {
+        background-color: initial;
+        background-image: url("../images/vehicles_cta.png");
+        top: -212px;
+    }
+    h2 {
+        padding: 10px 0 0 10px;
+        background-size: 100% 100%;
+        background-image: url("../images/vehicle_title.png");
+        background-position: center top;
+        background-repeat: no-repeat;
+        position: relative;
+        color: #ffffff;
+        z-index: 10;
+        padding-bottom: 15px;
+        font-family: 'madrasextra_bold';
+    }
+    h5 {
+        color: #727176;
+        font-size: 18px;
+        padding-bottom: 0;
+        font-family: 'madras_regularregular';
+    }
+    .desc {
+        font-size: 18px;
+        color: #727176;
+        font-family: 'madraslight';
+        text-align: justify;
+        padding-top: 0;
+        @media (min-width: 768px) {
+            padding-top: 100px;
+        }
+    }
+}
+
+.our-vehicles {
+    position: relative;
+    margin-top: 0;
+    color: #0098D8;
+    text-align: justify;
+    @media (min-width: 768px) {
+        margin-top: -150px;
+    }
+    h1 {
+        font-family: 'madras_regularregular';
+    }
+    p {
+        font-size: 20px;
+        text-align: justify;
+        font-family: 'madraslight';
+        font-weight: 500;
+        line-height: 1.3rem;
+    }
+}
+
+.services-container {
+    background-image: url("../images/services_header.png");
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+    margin-top: -50px;
+    h1 {
+        font-family: 'madras_regularregular';
+        text-transform: uppercase;
+        color: #0098D8;
+        padding: 30px 20px 20px 20px;
+        @media (min-width: 50em) {
+            padding: 0;
+        }
+    }
+}
+
+.services-desc {
+    color: #727176;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 20px !important;
+    h2 {
+        margin-top: 30px;
+        font-family: 'madras_regularregular';
+        font-size: 22px;
+    }
+     p {
+        font-size: 18px;
+        text-align: justify;
+        font-family: 'madraslight';
+        font-weight: 500;
+        line-height: 1.3rem;
+    }
+}
+
+.contact-desc {
+    color: #727176;
+    @media (max-width: 50em) {
+        padding: 20px !important;
+    }
+    p {
+        font-size: 18px;
+        text-align: justify;
+        font-family: 'madraslight';
+        font-weight: 500;
+        line-height: 1.3rem;
+    }
+    h4 {
+        color: #09A5CE;
+        margin-top: 0;
+        font-weight: bold;
+        font-family: 'madrasextra_bold';
+    }
+    input[type=text], input[type=email], input[type=tel], textarea {
+        background-color: #EAEBED;
+        border-radius: 0;
+        border: none;
+    }
+    input[type=submit] {
+        color: #fff;
+        background-color: #5B5B5F;
+        background-image: none;
+        border-color: #5B5B5F;
+        border-radius: 0;
+        font-size: 20px;
+        &:hover {
+            color: #fff;
+            background-color: #09A5CE;
+            border: none;
+        }
+    }
+}
+
+.rates-header {
+    @media (min-width: 50em) {
+        padding-top: 200px;
+        padding-bottom: 100px;
+    }
+    .rev_slider li.tp-revslider-slidesli {
+        border: 6px solid #fff;
+    }
+}
+
+#accordion {
+    .card {
+        border: none;
+        border-radius: 0;
+        background-color: #ebecf0;
+        -webkit-box-shadow: 0px 7px 11px -5px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 7px 11px -5px rgba(0,0,0,0.75);
+        box-shadow: 0px 7px 11px -5px rgba(0,0,0,0.75);
+        margin-bottom: 15px;
+        .card-header {
+            background-color: transparent;
+            border: none;
+            border-radius: 0;
+        }
+    }
+    #sjd {
+        background-image: url("../images/sjd.jpg");
+    }
+    #corridor {
+        background-image: url("../images/corridor.jpg");
+    }
+    #csl {
+        background-image: url("../images/csl.jpg");
+    }
+    #lpz {
+        background-image: url("../images/lapaz.jpg");
+    }
+    .card-header {
+        background-position: center top;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+    b {
+        font-weight: normal;
+        padding-top: 10px;
+        font-size: 24px;
+    }
+    h2 {
+        font-size: 34px;
+        font-weight: 800;
+    }
+    h5 {
+        a {
+            text-align: center;
+            display: block;
+            line-height: 70px;
+            font-family: 'madrasextra_bold';
+            color: #ffffff;
+            font-size: 34px;
+            text-decoration: none;
+            line-height: 90px;
+        }
+    }
+    strong {
+        color: #ffffff;
+        background-color: #000;
+        display: block;
+        padding: 0 32px;
+        font-size: 50px;
+    }
+    span.starting {
+        font-size: 24px;
+        display: block;
+    }
+}
+
+.reserve-form-container {
+    ul.nav.nav-pills {
+        .nav-item {
+            margin-right: 20px;
+            &:last-child {
+                margin-right: 0;
+            }
+            .nav-link {
+                text-align: center;
+                small {
+                    display: block;
+                }
+            }
+        }
+    }
+    .tab-content {
+        margin-top: 30px;
+        font-size: 16px;
+        label {
+            font-family: 'madrasextra_bold';
+        }
+    }
+    .trip_locations {
+        margin: 10px 0;
+    }
+    #departure_flight_details {
+        display: none;
+    }
+    span.from, span.to {
+        font-weight: bold;
+    }
+    .departure_block {
+        display: none;
+    }
+}
+
+.reserve-form-container .nav-pills .nav-link.active, .show>.nav-pills .nav-link {
+    background: #00599d;
+}
+.reserve-form-container a {
+    color: #00599d;
+}
+.reserve-form-container .nav-pills .nav-link.active {
+    color: #fff;
+}
+.vc_custom_heading.vc_gitem-post-data.vc_gitem-post-data-source-post_date {
+    display: none;
+}
+.fleet-content {
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+
+#summary-details {
+    label.pay {
+        margin-right: 30px;
+    }
+}
