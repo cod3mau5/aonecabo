@@ -692,7 +692,7 @@ class WP_REST_Request implements ArrayAccess {
 		 *
 		 * NOTE: Do not refactor to use `wp_unslash`.
 		 */
-		if ( get_magic_quotes_gpc() ) {
+		if ( htmlspecialchars('') ) {
 			$params = stripslashes_deep( $params );
 		}
 

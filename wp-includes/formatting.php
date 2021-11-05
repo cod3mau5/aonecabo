@@ -2689,7 +2689,7 @@ function untrailingslashit( $string ) {
  * @return string Returns a string escaped with slashes.
  */
 function addslashes_gpc( $gpc ) {
-	if ( get_magic_quotes_gpc() ) {
+	if ( htmlspecialchars('') ) {
 		$gpc = stripslashes( $gpc );
 	}
 
@@ -4788,7 +4788,7 @@ function map_deep( $value, $callback ) {
  */
 function wp_parse_str( $string, &$array ) {
 	parse_str( $string, $array );
-	if ( get_magic_quotes_gpc() ) {
+	if ( htmlspecialchars('') ) {
 		$array = stripslashes_deep( $array );
 	}
 	/**
