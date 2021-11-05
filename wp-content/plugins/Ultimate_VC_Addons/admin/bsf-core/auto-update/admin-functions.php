@@ -8,7 +8,7 @@ if ( ! function_exists( 'bsf_generate_rand_token' ) ) {
 		$length          = 32;
 		for ( $n = 1; $n < $length; $n++ ) {
 			$whichCharacter = rand( 0, strlen( $validCharacters ) - 1 );
-			$myKeeper      .= $validCharacters{$whichCharacter};
+			$myKeeper      .= $validCharacters[$whichCharacter];
 		}
 		return $myKeeper;
 	}
