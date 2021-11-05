@@ -445,13 +445,13 @@ function wp_list_authors( $args = '' ) {
 		$author = get_userdata( $author_id );
 
 		if ( $args['exclude_admin'] && 'admin' == $author->display_name ) {
-			continue;
+			break;
 		}
 
 		$posts = isset( $author_count[ $author->ID ] ) ? $author_count[ $author->ID ] : 0;
 
 		if ( ! $posts && $args['hide_empty'] ) {
-			continue;
+			break;
 		}
 
 		if ( $args['show_fullname'] && $author->first_name && $author->last_name ) {
@@ -463,7 +463,7 @@ function wp_list_authors( $args = '' ) {
 		if ( ! $args['html'] ) {
 			$return .= $name . ', ';
 
-			continue; // No need to go further to process HTML.
+			break; // No need to go further to process HTML.
 		}
 
 		if ( 'list' == $args['style'] ) {

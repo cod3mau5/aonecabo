@@ -351,7 +351,7 @@ class wp_xmlrpc_server extends IXR_Server {
 		foreach ( (array) has_meta( $post_id ) as $meta ) {
 			// Don't expose protected fields.
 			if ( ! current_user_can( 'edit_post_meta', $post_id, $meta['meta_key'] ) ) {
-				continue;
+				break;
 			}
 
 			$custom_fields[] = array(
@@ -381,13 +381,13 @@ class wp_xmlrpc_server extends IXR_Server {
 				$pmeta      = get_metadata_by_mid( 'post', $meta['id'] );
 
 				if ( ! $pmeta || $pmeta->post_id != $post_id ) {
-					continue;
+					break;
 				}
 
 				if ( isset( $meta['key'] ) ) {
 					$meta['key'] = wp_unslash( $meta['key'] );
 					if ( $meta['key'] !== $pmeta->meta_key ) {
-						continue;
+						break;
 					}
 					$meta['value'] = wp_unslash( $meta['value'] );
 					if ( current_user_can( 'edit_post_meta', $post_id, $meta['key'] ) ) {
@@ -418,7 +418,7 @@ class wp_xmlrpc_server extends IXR_Server {
 		foreach ( (array) has_term_meta( $term_id ) as $meta ) {
 
 			if ( ! current_user_can( 'edit_term_meta', $term_id ) ) {
-				continue;
+				break;
 			}
 
 			$custom_fields[] = array(
@@ -449,7 +449,7 @@ class wp_xmlrpc_server extends IXR_Server {
 				if ( isset( $meta['key'] ) ) {
 					$meta['key'] = wp_unslash( $meta['key'] );
 					if ( $meta['key'] !== $pmeta->meta_key ) {
-						continue;
+						break;
 					}
 					$meta['value'] = wp_unslash( $meta['value'] );
 					if ( current_user_can( 'edit_term_meta', $term_id ) ) {
@@ -696,7 +696,7 @@ class wp_xmlrpc_server extends IXR_Server {
 		foreach ( $blogs as $blog ) {
 			// Don't include blogs that aren't hosted at this site.
 			if ( $blog->site_id != get_current_network_id() ) {
-				continue;
+				break;
 			}
 
 			$blog_id = $blog->userblog_id;
@@ -1962,7 +1962,7 @@ class wp_xmlrpc_server extends IXR_Server {
 
 		foreach ( $posts_list as $post ) {
 			if ( ! current_user_can( 'edit_post', $post['ID'] ) ) {
-				continue;
+				break;
 			}
 
 			$struct[] = $this->_prepare_post( $post, $fields );
@@ -2539,7 +2539,7 @@ class wp_xmlrpc_server extends IXR_Server {
 		foreach ( $taxonomies as $taxonomy ) {
 			// capability check for post_types
 			if ( ! current_user_can( $taxonomy->cap->assign_terms ) ) {
-				continue;
+				break;
 			}
 
 			$struct[] = $this->_prepare_taxonomy( $taxonomy, $fields );
@@ -4193,11 +4193,11 @@ class wp_xmlrpc_server extends IXR_Server {
 		foreach ( $options as $o_name => $o_value ) {
 			$option_names[] = $o_name;
 			if ( ! array_key_exists( $o_name, $this->blog_options ) ) {
-				continue;
+				break;
 			}
 
 			if ( $this->blog_options[ $o_name ]['readonly'] == true ) {
-				continue;
+				break;
 			}
 
 			update_option( $this->blog_options[ $o_name ]['option'], wp_unslash( $o_value ) );
@@ -4496,7 +4496,7 @@ class wp_xmlrpc_server extends IXR_Server {
 
 		foreach ( $post_types as $post_type ) {
 			if ( ! current_user_can( $post_type->cap->edit_posts ) ) {
-				continue;
+				break;
 			}
 
 			$struct[ $post_type->name ] = $this->_prepare_post_type( $post_type, $fields );
@@ -4582,12 +4582,12 @@ class wp_xmlrpc_server extends IXR_Server {
 
 		foreach ( $revisions as $revision ) {
 			if ( ! current_user_can( 'read_post', $revision->ID ) ) {
-				continue;
+				break;
 			}
 
 			// Skip autosaves
 			if ( wp_is_post_autosave( $revision ) ) {
-				continue;
+				break;
 			}
 
 			$struct[] = $this->_prepare_post( get_object_vars( $revision ), $fields );
@@ -4898,7 +4898,7 @@ class wp_xmlrpc_server extends IXR_Server {
 		$recent_posts = array();
 		foreach ( $posts_list as $entry ) {
 			if ( ! current_user_can( 'edit_post', $entry['ID'] ) ) {
-				continue;
+				break;
 			}
 
 			$post_date  = $this->_convert_date( $entry['post_date'] );
@@ -6074,7 +6074,7 @@ class wp_xmlrpc_server extends IXR_Server {
 		$recent_posts = array();
 		foreach ( $posts_list as $entry ) {
 			if ( ! current_user_can( 'edit_post', $entry['ID'] ) ) {
-				continue;
+				break;
 			}
 
 			$post_date         = $this->_convert_date( $entry['post_date'] );
@@ -6364,7 +6364,7 @@ class wp_xmlrpc_server extends IXR_Server {
 
 		foreach ( $posts_list as $entry ) {
 			if ( ! current_user_can( 'edit_post', $entry['ID'] ) ) {
-				continue;
+				break;
 			}
 
 			$post_date     = $this->_convert_date( $entry['post_date'] );
@@ -6823,7 +6823,7 @@ class wp_xmlrpc_server extends IXR_Server {
 
 				// If the URL isn't in a link context, keep looking
 				if ( empty( $context ) ) {
-					continue;
+					break;
 				}
 
 				// We're going to use this fake tag to mark the context in a bit

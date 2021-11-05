@@ -531,38 +531,38 @@ class Vc_WXR_Parser_Regex {
 				if ( false !== strpos( $importline, '<wp:base_site_url>' ) ) {
 					preg_match( '|<wp:base_site_url>(.*?)</wp:base_site_url>|is', $importline, $url );
 					$this->base_url = $url[1];
-					continue;
+					break;
 				}
 				if ( false !== strpos( $importline, '<wp:category>' ) ) {
 					preg_match( '|<wp:category>(.*?)</wp:category>|is', $importline, $category );
 					$this->categories[] = $this->process_category( $category[1] );
-					continue;
+					break;
 				}
 				if ( false !== strpos( $importline, '<wp:tag>' ) ) {
 					preg_match( '|<wp:tag>(.*?)</wp:tag>|is', $importline, $tag );
 					$this->tags[] = $this->process_tag( $tag[1] );
-					continue;
+					break;
 				}
 				if ( false !== strpos( $importline, '<wp:term>' ) ) {
 					preg_match( '|<wp:term>(.*?)</wp:term>|is', $importline, $term );
 					$this->terms[] = $this->process_term( $term[1] );
-					continue;
+					break;
 				}
 				if ( false !== strpos( $importline, '<wp:author>' ) ) {
 					preg_match( '|<wp:author>(.*?)</wp:author>|is', $importline, $author );
 					$a = $this->process_author( $author[1] );
 					$this->authors[ $a['author_login'] ] = $a;
-					continue;
+					break;
 				}
 				if ( false !== strpos( $importline, '<item>' ) ) {
 					$post = '';
 					$in_post = true;
-					continue;
+					break;
 				}
 				if ( false !== strpos( $importline, '</item>' ) ) {
 					$in_post = false;
 					$this->posts[] = $this->process_post( $post );
-					continue;
+					break;
 				}
 				if ( $in_post ) {
 					$post .= $importline . "\n";

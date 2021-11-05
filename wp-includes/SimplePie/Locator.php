@@ -183,7 +183,7 @@ class SimplePie_Locator
 				$base = $this->registry->call('Misc', 'absolutize_url', array(trim($element->getAttribute('href')), $this->http_base));
 				if ($base === false)
 				{
-					continue;
+					break;
 				}
 				$this->base = $base;
 				$this->base_location = method_exists($element, 'getLineNo') ? $element->getLineNo() : 0;
@@ -239,7 +239,7 @@ class SimplePie_Locator
 				}
 				if ($href === false)
 				{
-					continue;
+					break;
 				}
 
 				if (!in_array($href, $done) && in_array('feed', $rel) || (in_array('alternate', $rel) && !in_array('stylesheet', $rel) && $link->hasAttribute('type') && in_array(strtolower($this->registry->call('Misc', 'parse_mime', array($link->getAttribute('type')))), array('application/rss+xml', 'application/atom+xml'))) && !isset($feeds[$href]))
@@ -287,7 +287,7 @@ class SimplePie_Locator
 					}
 					if ($href === false)
 					{
-						continue;
+						break;
 					}
 
 					$current = $this->registry->call('Misc', 'parse_url', array($this->file->url));

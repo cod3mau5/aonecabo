@@ -42,7 +42,7 @@ while ( $my_query->have_posts() ) {
 	$my_query->the_post(); // Get post from query
 	$post = new stdClass(); // Creating post object.
 	if ( in_array( get_the_ID(), $vc_posts_grid_exclude_id ) ) {
-		continue;
+		break;
 	}
 	$post->id = get_the_ID();
 	$post->link = get_permalink( $post->id );

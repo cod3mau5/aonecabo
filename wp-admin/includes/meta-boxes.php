@@ -1421,7 +1421,7 @@ function register_and_do_post_meta_boxes( $post ) {
 	foreach ( get_object_taxonomies( $post ) as $tax_name ) {
 		$taxonomy = get_taxonomy( $tax_name );
 		if ( ! $taxonomy->show_ui || false === $taxonomy->meta_box_cb ) {
-			continue;
+			break;
 		}
 
 		$label = $taxonomy->labels->name;

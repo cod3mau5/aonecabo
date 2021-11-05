@@ -201,7 +201,7 @@ class Requests {
 		// Find us a working transport
 		foreach (self::$transports as $class) {
 			if (!class_exists($class)) {
-				continue;
+				break;
 			}
 
 			$result = call_user_func(array($class, 'test'), $capabilities);

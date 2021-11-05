@@ -1067,7 +1067,7 @@ function _wp_auto_add_pages_to_menu( $new_status, $old_status, $post ) {
 	foreach ( $auto_add as $menu_id ) {
 		$items = wp_get_nav_menu_items( $menu_id, array( 'post_status' => 'publish,draft' ) );
 		if ( ! is_array( $items ) ) {
-			continue;
+			break;
 		}
 		foreach ( $items as $item ) {
 			if ( $post->ID == $item->object_id ) {
@@ -1100,7 +1100,7 @@ function _wp_delete_customize_changeset_dependent_auto_drafts( $post_id ) {
 	remove_action( 'delete_post', '_wp_delete_customize_changeset_dependent_auto_drafts' );
 	foreach ( $data['nav_menus_created_posts']['value'] as $stub_post_id ) {
 		if ( empty( $stub_post_id ) ) {
-			continue;
+			break;
 		}
 		if ( 'auto-draft' === get_post_status( $stub_post_id ) ) {
 			wp_delete_post( $stub_post_id, true );
@@ -1187,9 +1187,9 @@ function wp_map_nav_menu_locations( $new_nav_menu_locations, $old_nav_menu_locat
 
 				// ...actually match!
 				if ( is_string( $new_location ) && false === stripos( $new_location, $slug ) && false === stripos( $slug, $new_location ) ) {
-					continue;
+					break;
 				} elseif ( is_numeric( $new_location ) && $new_location !== $slug ) {
-					continue;
+					break;
 				}
 
 				// Then see if any of the old locations...
@@ -1200,9 +1200,9 @@ function wp_map_nav_menu_locations( $new_nav_menu_locations, $old_nav_menu_locat
 
 						// ... have a match as well.
 						if ( is_string( $location ) && false === stripos( $location, $slug ) && false === stripos( $slug, $location ) ) {
-							continue;
+							break;
 						} elseif ( is_numeric( $location ) && $location !== $slug ) {
-							continue;
+							break;
 						}
 
 						// Make sure this location wasn't mapped and removed previously.

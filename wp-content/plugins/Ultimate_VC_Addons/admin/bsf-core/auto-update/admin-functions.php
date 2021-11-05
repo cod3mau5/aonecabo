@@ -187,7 +187,7 @@ if ( ! function_exists( 'bsf_deregister_product_callback' ) ) {
 			if ( ! empty( $bsf_products_array ) ) :
 				foreach ( $bsf_products_array as $key => $bsf_product ) {
 					if ( ! isset( $bsf_product['template'] ) ) {
-						continue;
+						break;
 					}
 					$bsf_template = $bsf_product['template'];
 					if ( $product == $bsf_template ) {
@@ -390,13 +390,13 @@ if ( ! function_exists( 'bsf_update_all_product_version' ) ) {
 
 			foreach ( $bsf_product_plugins as $key => $plugin ) {
 				if ( ! isset( $plugin['id'] ) || empty( $plugin['id'] ) ) {
-					continue;
+					break;
 				}
 				if ( ! isset( $plugin['template'] ) || empty( $plugin['template'] ) ) {
-					continue;
+					break;
 				}
 				if ( ! isset( $plugin['type'] ) || empty( $plugin['type'] ) ) {
-					continue;
+					break;
 				}
 				$version         = ( isset( $plugin['version'] ) ) ? $plugin['version'] : '';
 				$current_version = bsf_get_current_version( $plugin['template'], $plugin['type'] );
@@ -417,13 +417,13 @@ if ( ! function_exists( 'bsf_update_all_product_version' ) ) {
 
 			foreach ( $bsf_product_themes as $key => $theme ) {
 				if ( ! isset( $theme['id'] ) || empty( $theme['id'] ) ) {
-					continue;
+					break;
 				}
 				if ( ! isset( $theme['template'] ) || empty( $theme['template'] ) ) {
-					continue;
+					break;
 				}
 				if ( ! isset( $theme['type'] ) || empty( $theme['type'] ) ) {
-					continue;
+					break;
 				}
 				$version         = ( isset( $theme['version'] ) ) ? $theme['version'] : '';
 				$current_version = bsf_get_current_version( $theme['template'], $theme['type'] );
@@ -447,7 +447,7 @@ if ( ! function_exists( 'bsf_update_all_product_version' ) ) {
 				if ( strlen( $keys ) > 1 ) {
 					foreach ( $bps as $key => $bp ) {
 						if ( ! isset( $bp->id ) || $bp->id === '' ) {
-							continue;
+							break;
 						}
 						$version         = $bp->version;
 						$current_version = bsf_get_current_version( $bp->init, $bp->type );
@@ -466,7 +466,7 @@ if ( ! function_exists( 'bsf_update_all_product_version' ) ) {
 					}
 				} else {
 					if ( ! isset( $bps->id ) || $bps->id === '' ) {
-						continue;
+						break;
 					}
 					$version         = $bps->version;
 					$current_version = bsf_get_current_version( $bps->init, $bps->type );
@@ -572,15 +572,15 @@ if ( ! function_exists( 'bsf_notices' ) ) {
 
 			foreach ( $mix as $product ) :
 				if ( ! isset( $product['id'] ) ) {
-					continue;
+					break;
 				}
 
 				if ( false == apply_filters( "bsf_display_product_activation_notice_{$product['id']}", true ) ) {
-					continue;
+					break;
 				}
 
 				if ( isset( $product['is_product_free'] ) && ( $product['is_product_free'] === 'true' || $product['is_product_free'] === true ) ) {
-					continue;
+					break;
 				}
 
 				$constant        = strtoupper( str_replace( '-', '_', $product['id'] ) );
@@ -588,34 +588,34 @@ if ( ! function_exists( 'bsf_notices' ) ) {
 				$constant_notice = 'BSF_' . $constant . '_NOTICES';
 
 				if ( defined( $constant_nag ) && ( constant( $constant_nag ) === 'false' || constant( $constant_nag ) === false ) ) {
-					continue;
+					break;
 				}
 				if ( defined( $constant_notice ) && ( constant( $constant_notice ) === 'false' || constant( $constant_notice ) === false ) ) {
-					continue;
+					break;
 				}
 
 				$status = ( isset( $product['status'] ) ) ? $product['status'] : false;
 				$type   = ( isset( $product['type'] ) ) ? $product['type'] : false;
 
 				if ( ! $type ) {
-					continue;
+					break;
 				}
 
 				if ( $type === 'plugin' ) {
 					if ( ! is_plugin_active( $product['template'] ) ) {
-						continue;
+						break;
 					}
 				} elseif ( $type === 'theme' ) {
 					$theme = wp_get_theme();
 					if ( $product['template'] !== $theme->template ) {
-						continue;
+						break;
 					}
 				} else {
-					continue;
+					break;
 				}
 
 				if ( BSF_Update_Manager::bsf_is_product_bundled( $product['id'] ) ) {
-					continue;
+					break;
 				}
 
 				if ( $status !== 'registered' ) :

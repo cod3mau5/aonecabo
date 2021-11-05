@@ -149,7 +149,7 @@ function date_i18n( $dateformatstring, $timestamp_with_offset = false, $gmt = fa
 			$offset = get_option( 'gmt_offset' );
 			foreach ( $timezone_formats as $timezone_format ) {
 				if ( 'I' === $timezone_format ) {
-					continue;
+					break;
 				}
 
 				if ( false !== strpos( $dateformatstring, $timezone_format ) ) {
@@ -703,7 +703,7 @@ function do_enclose( $content, $post_ID ) {
 		if ( ! in_array( $link_test, $pung ) ) { // If we haven't pung it already
 			$test = @parse_url( $link_test );
 			if ( false === $test ) {
-				continue;
+				break;
 			}
 			if ( isset( $test['query'] ) ) {
 				$post_links[] = $link_test;
@@ -855,7 +855,7 @@ function _http_build_query( $data, $prefix = null, $sep = null, $key = '', $urle
 			$k = $key . '%5B' . $k . '%5D';
 		}
 		if ( $v === null ) {
-			continue;
+			break;
 		} elseif ( $v === false ) {
 			$v = '0';
 		}
@@ -1560,10 +1560,10 @@ function is_blog_installed() {
 	foreach ( $wp_tables as $table ) {
 		// The existence of custom user tables shouldn't suggest an insane state or prevent a clean installation.
 		if ( defined( 'CUSTOM_USER_TABLE' ) && CUSTOM_USER_TABLE == $table ) {
-			continue;
+			break;
 		}
 		if ( defined( 'CUSTOM_USER_META_TABLE' ) && CUSTOM_USER_META_TABLE == $table ) {
-			continue;
+			break;
 		}
 
 		$described_table = $wpdb->get_results( "DESCRIBE $table;" );
@@ -1571,7 +1571,7 @@ function is_blog_installed() {
 			( ! $described_table && empty( $wpdb->last_error ) ) ||
 			( is_array( $described_table ) && 0 === count( $described_table ) )
 		) {
-			continue;
+			break;
 		}
 
 		// One or more tables exist. We are insane.
@@ -5215,7 +5215,7 @@ function wp_timezone_choice( $selected_zone, $locale = null ) {
 	foreach ( timezone_identifiers_list() as $zone ) {
 		$zone = explode( '/', $zone );
 		if ( ! in_array( $zone[0], $continents ) ) {
-			continue;
+			break;
 		}
 
 		// This determines what gets set and translated - we don't translate Etc/* strings here, they are done later
@@ -5414,7 +5414,7 @@ function wp_scheduled_delete() {
 	foreach ( (array) $posts_to_delete as $post ) {
 		$post_id = (int) $post['post_id'];
 		if ( ! $post_id ) {
-			continue;
+			break;
 		}
 
 		$del_post = get_post( $post_id );
@@ -5432,7 +5432,7 @@ function wp_scheduled_delete() {
 	foreach ( (array) $comments_to_delete as $comment ) {
 		$comment_id = (int) $comment['comment_id'];
 		if ( ! $comment_id ) {
-			continue;
+			break;
 		}
 
 		$del_comment = get_comment( $comment_id );
@@ -5794,7 +5794,7 @@ function wp_debug_backtrace_summary( $ignore_class = null, $skip_frames = 0, $pr
 			$skip_frames--;
 		} elseif ( isset( $call['class'] ) ) {
 			if ( $check_class && $ignore_class == $call['class'] ) {
-				continue; // Filter out calls
+				break; // Filter out calls
 			}
 
 			$caller[] = "{$call['class']}{$call['type']}{$call['function']}";

@@ -237,7 +237,7 @@ do_action( 'customize_controls_print_scripts' );
 					<?php foreach ( (array) $previewable_devices as $device => $settings ) : ?>
 						<?php
 						if ( empty( $settings['label'] ) ) {
-							continue;
+							break;
 						}
 						$active = ! empty( $settings['default'] );
 						$class  = 'preview-' . $device;

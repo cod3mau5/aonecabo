@@ -346,7 +346,7 @@ if ( ! class_exists( 'PO', false ) ) :
 					}
 				}
 				if ( $line == "\n" ) {
-					continue;
+					break;
 				}
 				$line = trim( $line );
 				if ( preg_match( '/^#/', $line, $m ) ) {

@@ -30,7 +30,7 @@ function wpcf7_convert_to_cpt( $new_ver, $old_ver ) {
 			. $wpdb->prepare( " AND meta_value = %d", $row->cf7_unit_id );
 
 		if ( $wpdb->get_var( $q ) ) {
-			continue;
+			break;
 		}
 
 		$postarr = array(
@@ -75,7 +75,7 @@ function wpcf7_prepend_underscore( $new_ver, $old_ver ) {
 
 		foreach ( $props as $prop => $value ) {
 			if ( metadata_exists( 'post', $post->id(), '_' . $prop ) ) {
-				continue;
+				break;
 			}
 
 			update_post_meta( $post->id(), '_' . $prop, $value );

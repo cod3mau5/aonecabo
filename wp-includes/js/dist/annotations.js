@@ -755,7 +755,7 @@ module.exports = function memize( fn, options ) {
 			// Check whether node arguments match arguments length
 			if ( node.args.length !== arguments.length ) {
 				node = node.next;
-				continue;
+				break;
 			}
 
 			// Check whether node arguments match arguments values
@@ -905,7 +905,7 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 
   for (i = 0; i < sourceKeys.length; i++) {
     key = sourceKeys[i];
-    if (excluded.indexOf(key) >= 0) continue;
+    if (excluded.indexOf(key) >= 0) break;
     target[key] = source[key];
   }
 
@@ -923,8 +923,8 @@ function _objectWithoutProperties(source, excluded) {
 
     for (i = 0; i < sourceSymbolKeys.length; i++) {
       key = sourceSymbolKeys[i];
-      if (excluded.indexOf(key) >= 0) continue;
-      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+      if (excluded.indexOf(key) >= 0) break;
+      if (!Object.prototype.propertyIsEnumerable.call(source, key)) break;
       target[key] = source[key];
     }
   }
@@ -1245,7 +1245,7 @@ function isShallowEqual( a, b, fromIndex ) {
 			// Check whether node arguments match arguments
 			if ( ! isShallowEqual( node.args, args, 1 ) ) {
 				node = node.next;
-				continue;
+				break;
 			}
 
 			// At this point we can assume we've found a match

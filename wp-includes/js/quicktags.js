@@ -268,12 +268,12 @@ window.edToolbar = function(){};
 
 			for ( i in edButtons ) {
 				if ( ! edButtons[i] ) {
-					continue;
+					break;
 				}
 
 				id = edButtons[i].id;
 				if ( use && defaults.indexOf( ',' + id + ',' ) !== -1 && use.indexOf( ',' + id + ',' ) === -1 ) {
-					continue;
+					break;
 				}
 
 				if ( ! edButtons[i].instance || edButtons[i].instance === instanceId ) {

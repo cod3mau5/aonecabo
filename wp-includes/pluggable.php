@@ -245,7 +245,7 @@ if ( ! function_exists( 'wp_mail' ) ) :
 							$parts    = preg_split( '/boundary=/i', trim( $header ) );
 							$boundary = trim( str_replace( array( "'", '"' ), '', $parts[1] ) );
 						}
-						continue;
+						break;
 					}
 					// Explode them out
 					list( $name, $content ) = explode( ':', trim( $header ), 2 );
@@ -377,7 +377,7 @@ if ( ! function_exists( 'wp_mail' ) ) :
 
 		foreach ( $address_headers as $address_header => $addresses ) {
 			if ( empty( $addresses ) ) {
-				continue;
+				break;
 			}
 
 			foreach ( (array) $addresses as $address ) {
@@ -407,7 +407,7 @@ if ( ! function_exists( 'wp_mail' ) ) :
 							break;
 					}
 				} catch ( phpmailerException $e ) {
-					continue;
+					break;
 				}
 			}
 		}
@@ -469,7 +469,7 @@ if ( ! function_exists( 'wp_mail' ) ) :
 				try {
 					$phpmailer->addAttachment( $attachment );
 				} catch ( phpmailerException $e ) {
-					continue;
+					break;
 				}
 			}
 		}
@@ -2203,7 +2203,7 @@ if ( ! function_exists( 'wp_salt' ) ) :
 			foreach ( array( 'AUTH', 'SECURE_AUTH', 'LOGGED_IN', 'NONCE', 'SECRET' ) as $first ) {
 				foreach ( array( 'KEY', 'SALT' ) as $second ) {
 					if ( ! defined( "{$first}_{$second}" ) ) {
-						continue;
+						break;
 					}
 					$value                     = constant( "{$first}_{$second}" );
 					$duplicated_keys[ $value ] = isset( $duplicated_keys[ $value ] );

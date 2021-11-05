@@ -145,7 +145,7 @@ class Requests_Cookie_Jar implements ArrayAccess, IteratorAggregate {
 
 				// Skip expired cookies
 				if ($cookie->is_expired()) {
-					continue;
+					break;
 				}
 
 				if ($cookie->domain_matches($url->host)) {

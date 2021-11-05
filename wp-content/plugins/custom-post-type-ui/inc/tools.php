@@ -388,7 +388,7 @@ function cptui_get_single_post_type_registery( $post_type = array() ) {
 			// We'll handle YARPP separately.
 			if ( in_array( $part, array( 'YARPP', 'yarpp' ) ) ) {
 				$yarpp = true;
-				continue;
+				break;
 			}
 			$post_type['supports'][] = $part;
 		}

@@ -375,7 +375,7 @@ class Core_Upgrader extends WP_Upgrader {
 		foreach ( $checksums as $file => $checksum ) {
 			// Skip files which get updated
 			if ( 'wp-content' == substr( $file, 0, 10 ) ) {
-				continue;
+				break;
 			}
 			if ( ! file_exists( ABSPATH . $file ) || md5_file( ABSPATH . $file ) !== $checksum ) {
 				return false;

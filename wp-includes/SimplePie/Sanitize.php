@@ -486,7 +486,7 @@ class SimplePie_Sanitize
 							elseif (empty($value) && ($type & SIMPLEPIE_CONSTRUCT_HTML))
 							{
 								$attrs[] = $name;
-								continue;
+								break;
 							}
 
 							// Standard attribute text

@@ -197,7 +197,7 @@ class WP_Locale_Switcher {
 
 		foreach ( $domains as $domain ) {
 			if ( 'default' === $domain ) {
-				continue;
+				break;
 			}
 
 			unload_textdomain( $domain );

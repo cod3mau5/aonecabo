@@ -24,7 +24,7 @@ if ( ! function_exists( 'spl_autoload_register' ) ) {
 		foreach ( $_wp_spl_autoloaders as $autoloader ) {
 			if ( ! is_callable( $autoloader ) ) {
 				// Avoid the extra warning if the autoloader isn't callable.
-				continue;
+				break;
 			}
 
 			call_user_func( $autoloader, $classname );

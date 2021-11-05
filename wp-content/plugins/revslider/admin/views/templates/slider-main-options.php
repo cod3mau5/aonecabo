@@ -933,7 +933,7 @@ if(!isset($linksEditSlides)) $linksEditSlides = '';
 											
 										}
 
-										if(entry.length == 0) continue;
+										if(entry.length == 0) break;
 
 										switch(entry.prop('tagName').toLowerCase()){
 											case 'input':
@@ -5398,7 +5398,7 @@ if(!isset($linksEditSlides)) $linksEditSlides = '';
 							if($nav['handle'] == $ph_arr_type){ //check for settings, placeholders
 								if(isset($nav['settings']) && isset($nav['settings']['placeholders'])){
 									foreach($nav['settings']['placeholders'] as $placeholder){
-										if(empty($placeholder)) continue;
+										if(empty($placeholder)) break;
 										
 										$ph_vals = array();
 										$ph_vals_def = array();
@@ -5502,7 +5502,7 @@ if(!isset($linksEditSlides)) $linksEditSlides = '';
 
 						if(m['default'] == undefined) m['default'] = {};
 						
-						if(jQuery.isEmptyObject(m)) continue;
+						if(jQuery.isEmptyObject(m)) break;
 						
 						var deftype = (m["type"] == 'font-family') ? 'font_family' : m["type"];
 						
@@ -5525,7 +5525,7 @@ if(!isset($linksEditSlides)) $linksEditSlides = '';
 								<?php
 								$font_families = $operations->getArrFontFamilys();
 								foreach($font_families as $handle => $name){
-									if($name['label'] == 'Dont Show Me') continue;
+									if($name['label'] == 'Dont Show Me') break;
 									?>
 									ph_html+= '<option value="<?php echo esc_attr($name['label']); ?>"';
 									if(m['data']['font_family'] == '<?php echo esc_attr($name['label']); ?>'){

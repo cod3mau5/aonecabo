@@ -236,18 +236,18 @@ abstract class WP_REST_Controller {
 
 		foreach ( $data as $key => $value ) {
 			if ( empty( $schema['properties'][ $key ] ) || empty( $schema['properties'][ $key ]['context'] ) ) {
-				continue;
+				break;
 			}
 
 			if ( ! in_array( $context, $schema['properties'][ $key ]['context'], true ) ) {
 				unset( $data[ $key ] );
-				continue;
+				break;
 			}
 
 			if ( 'object' === $schema['properties'][ $key ]['type'] && ! empty( $schema['properties'][ $key ]['properties'] ) ) {
 				foreach ( $schema['properties'][ $key ]['properties'] as $attribute => $details ) {
 					if ( empty( $details['context'] ) ) {
-						continue;
+						break;
 					}
 
 					if ( ! in_array( $context, $details['context'], true ) ) {
@@ -385,11 +385,11 @@ abstract class WP_REST_Controller {
 		foreach ( $additional_fields as $field_name => $field_options ) {
 
 			if ( ! $field_options['get_callback'] ) {
-				continue;
+				break;
 			}
 
 			if ( ! in_array( $field_name, $requested_fields, true ) ) {
-				continue;
+				break;
 			}
 
 			$object[ $field_name ] = call_user_func( $field_options['get_callback'], $object, $field_name, $request, $this->get_object_type() );
@@ -412,12 +412,12 @@ abstract class WP_REST_Controller {
 
 		foreach ( $additional_fields as $field_name => $field_options ) {
 			if ( ! $field_options['update_callback'] ) {
-				continue;
+				break;
 			}
 
 			// Don't run the update callbacks if the data wasn't passed in the request.
 			if ( ! isset( $request[ $field_name ] ) ) {
-				continue;
+				break;
 			}
 
 			$result = call_user_func( $field_options['update_callback'], $request[ $field_name ], $object, $field_name, $request, $this->get_object_type() );
@@ -452,7 +452,7 @@ abstract class WP_REST_Controller {
 
 		foreach ( $additional_fields as $field_name => $field_options ) {
 			if ( ! $field_options['schema'] ) {
-				continue;
+				break;
 			}
 
 			$schema['properties'][ $field_name ] = $field_options['schema'];
@@ -565,7 +565,7 @@ abstract class WP_REST_Controller {
 
 			// Arguments specified as `readonly` are not allowed to be set.
 			if ( ! empty( $params['readonly'] ) ) {
-				continue;
+				break;
 			}
 
 			$endpoint_args[ $field_id ] = array(

@@ -619,7 +619,7 @@ function wp_get_translation_updates() {
 	foreach ( $transients as $transient => $type ) {
 		$transient = get_site_transient( $transient );
 		if ( empty( $transient->translations ) ) {
-			continue;
+			break;
 		}
 
 		foreach ( $transient->translations as $translation ) {

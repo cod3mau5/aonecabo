@@ -128,7 +128,7 @@ class Vc_Hooks_Vc_Grid implements Vc_Vendor_Interface {
 			if ( isset( $found[3] ) && is_array( $found[3] ) ) {
 				foreach ( $found[3] as $key => $shortcode_atts ) {
 					if ( false !== strpos( $shortcode_atts, 'vc_gid:' ) ) {
-						continue;
+						break;
 					}
 					$atts = shortcode_parse_atts( $shortcode_atts );
 					$data = array(

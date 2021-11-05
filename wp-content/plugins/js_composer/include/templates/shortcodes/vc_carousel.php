@@ -46,7 +46,7 @@ $teaser_blocks = vc_sorted_list_parse_value( $layout );
 while ( $my_query->have_posts() ) {
 	$my_query->the_post(); // Get post from query
 	if ( in_array( get_the_ID(), $vc_posts_grid_exclude_id ) ) {
-		continue;
+		break;
 	}
 	$post = new stdClass(); // Creating post object.
 	$post->id = get_the_ID();

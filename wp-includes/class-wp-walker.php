@@ -324,7 +324,7 @@ class Walker {
 			foreach ( $elements as $e ) {
 				$count++;
 				if ( $count < $start ) {
-					continue;
+					break;
 				}
 				if ( $count >= $end ) {
 					break;
@@ -377,7 +377,7 @@ class Walker {
 			}
 
 			if ( $count < $start ) {
-				continue;
+				break;
 			}
 
 			if ( $count >= $end ) {

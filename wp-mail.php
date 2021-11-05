@@ -228,7 +228,7 @@ for ( $i = 1; $i <= $count; $i++ ) {
 
 	// We couldn't post, for whatever reason. Better move forward to the next email.
 	if ( empty( $post_ID ) ) {
-		continue;
+		break;
 	}
 
 	/**

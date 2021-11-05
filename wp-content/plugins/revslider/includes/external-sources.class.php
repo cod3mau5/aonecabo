@@ -824,7 +824,7 @@ class RevSliderInstagram {
         $cookie_params = explode('; ', $header_value);
 
         if (empty($cookie_params[0])) {
-          continue;
+          break;
         }
 
         list ($cookie_name, $cookie_value) = explode('=', $cookie_params[0]);
@@ -893,7 +893,7 @@ class RevSliderInstagram {
     foreach ($arrays as $k => $arr) {
       if ($k === 0) {
         $mixed = $arr;
-        continue;
+        break;
       }
   
       $mixed = array_combine(

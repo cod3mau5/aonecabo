@@ -63,7 +63,7 @@ foreach ( $menu as $menu_page ) {
 	if ( isset( $compat[ $hook_name ] ) ) {
 		$hook_name = $compat[ $hook_name ];
 	} elseif ( ! $hook_name ) {
-		continue;
+		break;
 	}
 
 	$admin_page_hooks[ $menu_page[2] ] = $hook_name;
@@ -95,7 +95,7 @@ unset( $sub, $parent );
  */
 foreach ( $menu as $id => $data ) {
 	if ( empty( $submenu[ $data[2] ] ) ) {
-		continue;
+		break;
 	}
 	$subs       = $submenu[ $data[2] ];
 	$first_sub  = reset( $subs );
@@ -209,14 +209,14 @@ function add_menu_classes( $menu ) {
 		if ( 0 == $order ) { // dashboard is always shown/single
 			$menu[0][4] = add_cssclass( 'menu-top-first', $top[4] );
 			$lastorder  = 0;
-			continue;
+			break;
 		}
 
 		if ( 0 === strpos( $top[2], 'separator' ) && false !== $lastorder ) { // if separator
 			$first                 = true;
 			$c                     = $menu[ $lastorder ][4];
 			$menu[ $lastorder ][4] = add_cssclass( 'menu-top-last', $c );
-			continue;
+			break;
 		}
 
 		if ( $first ) {

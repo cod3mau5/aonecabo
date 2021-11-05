@@ -124,7 +124,7 @@
 							// Node type 3 is a TEXT_NODE.
 							if ( node.nodeType === 3 ) {
 								if ( ! node.parentNode ) {
-									continue;
+									break;
 								}
 
 								if ( ie11 ) {
@@ -153,7 +153,7 @@
 							if ( ! node || node.nodeType !== 1 ||
 								( node.className && typeof node.className === 'string' && node.className.indexOf( 'wp-exclude-emoji' ) !== -1 ) ) {
 
-								continue;
+								break;
 							}
 
 							if ( test( node.textContent ) ) {

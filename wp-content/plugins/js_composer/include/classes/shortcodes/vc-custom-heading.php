@@ -110,7 +110,7 @@ class WPBakeryShortCode_VC_Custom_heading extends WPBakeryShortCode {
 			foreach ( $font_container_data['values'] as $key => $value ) {
 				if ( 'tag' !== $key && strlen( $value ) ) {
 					if ( preg_match( '/description/', $key ) ) {
-						continue;
+						break;
 					}
 					if ( 'font_size' === $key || 'line_height' === $key ) {
 						$value = preg_replace( '/\s+/', '', $value );

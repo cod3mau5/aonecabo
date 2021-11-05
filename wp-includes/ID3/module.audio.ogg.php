@@ -689,7 +689,7 @@ $this->warning('Ogg Theora (v3) not fully supported in this version of getID3 ['
 					$imageinfo = getid3_lib::GetDataImageSize($data);
 					if ($imageinfo === false || !isset($imageinfo['mime'])) {
 						$this->warning('COVERART vorbiscomment tag contains invalid image');
-						continue;
+						break;
 					}
 
 					$ogg = new self($this->getid3);

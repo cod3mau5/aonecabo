@@ -278,7 +278,7 @@ class RevSliderTemplate {
 			if(!empty($templates['slider']) && is_array($templates['slider'])){
 				foreach($templates['slider'] as $key => $temp){
 					
-					if($connection > 3) continue; //cant connect to server
+					if($connection > 3) break; //cant connect to server
 						
 					// Check folder permission and define file location
 					if( wp_mkdir_p( $upload_dir['basedir'].$this->templates_path ) ) {
@@ -342,7 +342,7 @@ class RevSliderTemplate {
 				foreach($templates['slides'] as $key => $temp){
 					foreach($temp as $k => $tvalues){
 						
-						if($connection > 3) continue; //cant connect to server
+						if($connection > 3) break; //cant connect to server
 						
 						// Check folder permission and define file location
 						if( wp_mkdir_p( $upload_dir['basedir'].$this->templates_path ) ) {
@@ -1233,7 +1233,7 @@ class RevSliderTemplate {
 		if(!empty($tp_template_slider)){
 			foreach($tp_template_slider as $m_slider){
 				
-				if($m_slider['cat'] != 'Revolution Base' && $m_slider['cat'] != 'Premium') continue;
+				if($m_slider['cat'] != 'Revolution Base' && $m_slider['cat'] != 'Premium') break;
 				
 				if(!empty($m_slider['filter']) && is_array($m_slider['filter'])){
 					foreach($m_slider['filter'] as $f => $v){
@@ -1491,7 +1491,7 @@ class RevSliderTemplate {
 		
 		if(!empty($tp_template_slider)){
 			foreach($tp_template_slider as $isd => $m_slider){
-				if($m_slider['cat'] != 'Revolution Base' && $m_slider['cat'] != 'Premium') continue;				
+				if($m_slider['cat'] != 'Revolution Base' && $m_slider['cat'] != 'Premium') break;				
 				
 				if(!empty($m_slider['filter']) && is_array($m_slider['filter'])){
 					foreach($m_slider['filter'] as $f => $v){
@@ -1698,7 +1698,7 @@ class RevSliderTemplate {
 			$tuids = array();
 			foreach($sliders as $slider){
 				if(isset($slider['package']) && $slider['package'] == $package){
-					if(isset($slider['package_parent']) && $slider['package_parent'] == 'true') continue; //dont install parent package
+					if(isset($slider['package_parent']) && $slider['package_parent'] == 'true') break; //dont install parent package
 					
 					if(isset($slider['installed'])){ //add an invalid slider id as we have not yet installed it
 						$i--;

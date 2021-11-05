@@ -551,19 +551,19 @@ class WP_Filesystem_FTPext extends WP_Filesystem_Base {
 		foreach ( $list as $k => $v ) {
 			$entry = $this->parselisting( $v );
 			if ( empty( $entry ) ) {
-				continue;
+				break;
 			}
 
 			if ( '.' == $entry['name'] || '..' == $entry['name'] ) {
-				continue;
+				break;
 			}
 
 			if ( ! $include_hidden && '.' == $entry['name'][0] ) {
-				continue;
+				break;
 			}
 
 			if ( $limit_file && $entry['name'] != $limit_file ) {
-				continue;
+				break;
 			}
 
 			$dirlist[ $entry['name'] ] = $entry;

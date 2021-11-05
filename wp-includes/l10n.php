@@ -1312,16 +1312,16 @@ function wp_get_installed_translations( $type ) {
 
 	foreach ( $files as $file ) {
 		if ( '.' === $file[0] || is_dir( WP_LANG_DIR . "$dir/$file" ) ) {
-			continue;
+			break;
 		}
 		if ( substr( $file, -3 ) !== '.po' ) {
-			continue;
+			break;
 		}
 		if ( ! preg_match( '/(?:(.+)-)?([a-z]{2,3}(?:_[A-Z]{2})?(?:_[a-z0-9]+)?).po/', $file, $match ) ) {
-			continue;
+			break;
 		}
 		if ( ! in_array( substr( $file, 0, -3 ) . '.mo', $files ) ) {
-			continue;
+			break;
 		}
 
 		list( , $textdomain, $language ) = $match;

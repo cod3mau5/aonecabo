@@ -663,14 +663,14 @@ function get_blogs_of_user( $user_id, $all = false ) {
 
 	foreach ( $keys as $key ) {
 		if ( 'capabilities' !== substr( $key, -12 ) ) {
-			continue;
+			break;
 		}
 		if ( $wpdb->base_prefix && 0 !== strpos( $key, $wpdb->base_prefix ) ) {
-			continue;
+			break;
 		}
 		$site_id = str_replace( array( $wpdb->base_prefix, '_capabilities' ), '', $key );
 		if ( ! is_numeric( $site_id ) ) {
-			continue;
+			break;
 		}
 
 		$site_ids[] = (int) $site_id;
@@ -966,7 +966,7 @@ function count_users( $strategy = 'time', $site_id = null ) {
 		foreach ( $users_of_blog as $caps_meta ) {
 			$b_roles = maybe_unserialize( $caps_meta );
 			if ( ! is_array( $b_roles ) ) {
-				continue;
+				break;
 			}
 			if ( empty( $b_roles ) ) {
 				$avail_roles['none']++;

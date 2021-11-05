@@ -675,7 +675,7 @@ function dynamic_sidebar( $index = 1 ) {
 	foreach ( (array) $sidebars_widgets[ $index ] as $id ) {
 
 		if ( ! isset( $wp_registered_widgets[ $id ] ) ) {
-			continue;
+			break;
 		}
 
 		$params = array_merge(
@@ -836,7 +836,7 @@ function is_active_widget( $callback = false, $widget_id = false, $id_base = fal
 	if ( is_array( $sidebars_widgets ) ) {
 		foreach ( $sidebars_widgets as $sidebar => $widgets ) {
 			if ( $skip_inactive && ( 'wp_inactive_widgets' === $sidebar || 'orphaned_widgets' === substr( $sidebar, 0, 16 ) ) ) {
-				continue;
+				break;
 			}
 
 			if ( is_array( $widgets ) ) {
@@ -1027,7 +1027,7 @@ function wp_convert_widget_settings( $base_name, $option_name, $settings ) {
 	} else {
 		foreach ( array_keys( $settings ) as $number ) {
 			if ( 'number' == $number ) {
-				continue;
+				break;
 			}
 			if ( ! is_numeric( $number ) ) {
 				$single = true;
@@ -1300,7 +1300,7 @@ function wp_map_sidebars_widgets( $existing_sidebars_widgets ) {
 
 					// ...actually match!
 					if ( false === stripos( $new_sidebar, $slug ) && false === stripos( $slug, $new_sidebar ) ) {
-						continue;
+						break;
 					}
 
 					// Then see if any of the existing sidebars...
@@ -1311,7 +1311,7 @@ function wp_map_sidebars_widgets( $existing_sidebars_widgets ) {
 
 							// ... have a match as well.
 							if ( false === stripos( $sidebar, $slug ) && false === stripos( $slug, $sidebar ) ) {
-								continue;
+								break;
 							}
 
 							// Make sure this sidebar wasn't mapped and removed previously.

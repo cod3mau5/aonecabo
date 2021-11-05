@@ -483,7 +483,7 @@ module.exports = function memize( fn, options ) {
 			// Check whether node arguments match arguments length
 			if ( node.args.length !== arguments.length ) {
 				node = node.next;
-				continue;
+				break;
 			}
 
 			// Check whether node arguments match arguments values

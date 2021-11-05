@@ -733,7 +733,7 @@ class ftp_base {
 
 		foreach($list as $el) {
 			if ( empty($el) )
-				continue;
+				break;
 
 			if($el["type"]=="d") {
 				if(!$this->mdel($remote."/".$el["name"], $continious)) {
@@ -834,10 +834,10 @@ class ftp_base {
 		foreach($list as $k=>$v) {
 			$entry=$this->parselisting($v);
 			if ( empty($entry) )
-				continue;
+				break;
 
 			if($entry["name"]=="." or $entry["name"]=="..")
-				continue;
+				break;
 
 			$dirlist[$entry['name']] = $entry;
 		}

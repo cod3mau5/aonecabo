@@ -42,7 +42,7 @@ function vc_pointer_load() {
 
 		// Sanity check
 		if ( in_array( $pointer_id, $dismissed ) || empty( $pointer ) || empty( $pointer_id ) || empty( $pointer['name'] ) ) {
-			continue;
+			break;
 		}
 
 		$pointer['pointer_id'] = $pointer_id;

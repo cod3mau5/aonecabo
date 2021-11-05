@@ -194,7 +194,7 @@ function wpcf7_captcha_ajax_refill( $items ) {
 		$options = $tag->options;
 
 		if ( empty( $name ) ) {
-			continue;
+			break;
 		}
 
 		$op = wpcf7_captchac_options( $options );
@@ -544,7 +544,7 @@ function wpcf7_cleanup_captcha_files() {
 	if ( $handle = opendir( $dir ) ) {
 		while ( false !== ( $file = readdir( $handle ) ) ) {
 			if ( ! preg_match( '/^[0-9]+\.(php|txt|png|gif|jpeg)$/', $file ) ) {
-				continue;
+				break;
 			}
 
 			$stat = stat( path_join( $dir, $file ) );

@@ -112,7 +112,7 @@ class WP_REST_Post_Statuses_Controller extends WP_REST_Controller {
 			$ret = $this->check_read_permission( $obj );
 
 			if ( ! $ret ) {
-				continue;
+				break;
 			}
 
 			$status             = $this->prepare_item_for_response( $obj, $request );

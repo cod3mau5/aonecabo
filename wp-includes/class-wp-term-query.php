@@ -754,7 +754,7 @@ class WP_Term_Query {
 			$_tt_ids = $_terms = array();
 			foreach ( $terms as $term ) {
 				if ( isset( $_tt_ids[ $term->term_id ] ) ) {
-					continue;
+					break;
 				}
 
 				$_tt_ids[ $term->term_id ] = 1;

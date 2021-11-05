@@ -106,7 +106,7 @@ class WP_REST_Post_Types_Controller extends WP_REST_Controller {
 
 		foreach ( get_post_types( array(), 'object' ) as $obj ) {
 			if ( empty( $obj->show_in_rest ) || ( 'edit' === $request['context'] && ! current_user_can( $obj->cap->edit_posts ) ) ) {
-				continue;
+				break;
 			}
 
 			$post_type          = $this->prepare_item_for_response( $obj, $request );

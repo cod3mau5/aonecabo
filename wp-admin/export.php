@@ -156,7 +156,7 @@ function export_date_options( $post_type = 'post' ) {
 
 	foreach ( $months as $date ) {
 		if ( 0 == $date->year ) {
-			continue;
+			break;
 		}
 
 		$month = zeroise( $date->month, 2 );

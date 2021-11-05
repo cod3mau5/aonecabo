@@ -52,13 +52,13 @@ class RevSliderCssParser{
 		foreach($lines as $key=>$line){
 			$line = trim($line);
 			if(strpos($line, "{") === false)
-				continue;
+				break;
 			//skip unnessasary links
 			if(strpos($line, ".caption a") !== false)
-				continue;
+				break;
 				
 			if(strpos($line, ".tp-caption a") !== false)
-				continue;
+				break;
 				
 			//get style out of the line
 			$class = str_replace("{", "", $line);
@@ -67,7 +67,7 @@ class RevSliderCssParser{
 			//skip captions like this: .tp-caption.imageclass img
 			if(strpos($class," ") !== false){
 				if(!$explodeonspace){
-					continue;
+					break;
 				}else{
 					$class = explode(',', $class);
 					$class = $class[0];
@@ -75,7 +75,7 @@ class RevSliderCssParser{
 			}
 			//skip captions like this: .tp-caption.imageclass:hover, :before, :after
 			if(strpos($class,":") !== false)
-				continue;
+				break;
 			
 			$class = str_replace(".caption.", ".", $class);
 			$class = str_replace(".tp-caption.", ".", $class);
@@ -169,7 +169,7 @@ class RevSliderCssParser{
 					foreach($styles as $name => $style){
 						
 						if(in_array($name, $deformations)) {
-							if($name !== 'css_cursor' && $name !== 'pointer_events') continue;
+							if($name !== 'css_cursor' && $name !== 'pointer_events') break;
 						}
 						
 						if(!is_array($name) && isset($transparency[$name])){ //the style can have transparency!
@@ -183,8 +183,8 @@ class RevSliderCssParser{
 						if(is_array($style) || is_object($style)) $style = implode(' ', $style);
 						
 						$ret = self::check_for_modifications($name, $style);
-						if($ret['name'] == 'cursor' && $ret['style'] == 'auto') continue;
-						if($ret['name'] == 'pointer-events' && $ret['style'] == 'auto') continue;
+						if($ret['name'] == 'cursor' && $ret['style'] == 'auto') break;
+						if($ret['name'] == 'pointer-events' && $ret['style'] == 'auto') break;
 						
 						$css.= $ret['name'].':'.$ret['style'].";".$nl;
 					}
@@ -193,13 +193,13 @@ class RevSliderCssParser{
 					foreach($styles_adv as $name => $style){
 						
 						if(in_array($name, $deformations)) {
-							if($name !== 'css_cursor' && $name !== 'pointer_events') continue;
+							if($name !== 'css_cursor' && $name !== 'pointer_events') break;
 						}
 						
 						if(is_array($style) || is_object($style)) $style = implode(' ', $style);
 						$ret = self::check_for_modifications($name, $style);
-						if($ret['name'] == 'cursor' && $ret['style'] == 'auto') continue;
-						if($ret['name'] == 'pointer-events' && $ret['style'] == 'auto') continue;
+						if($ret['name'] == 'cursor' && $ret['style'] == 'auto') break;
+						if($ret['name'] == 'pointer-events' && $ret['style'] == 'auto') break;
 						$css.= $ret['name'].':'.$ret['style'].";".$nl;
 					}
 				}
@@ -220,7 +220,7 @@ class RevSliderCssParser{
 						foreach($hover as $name => $style){
 							
 							if(in_array($name, $deformations)) {
-								if($name !== 'css_cursor' && $name !== 'pointer_events') continue;
+								if($name !== 'css_cursor' && $name !== 'pointer_events') break;
 							}
 							
 							if(!is_array($name) && isset($transparency[$name])){ //the style can have transparency!
@@ -234,8 +234,8 @@ class RevSliderCssParser{
 							if(is_array($style)|| is_object($style)) $style = implode(' ', $style);
 							
 							$ret = self::check_for_modifications($name, $style);
-							if($ret['name'] == 'cursor' && $ret['style'] == 'auto') continue;
-							if($ret['name'] == 'pointer-events' && $ret['style'] == 'auto') continue;
+							if($ret['name'] == 'cursor' && $ret['style'] == 'auto') break;
+							if($ret['name'] == 'pointer-events' && $ret['style'] == 'auto') break;
 								
 							$css.= $ret['name'].':'.$ret['style'].";".$nl;
 						}
@@ -244,12 +244,12 @@ class RevSliderCssParser{
 						foreach($hover_adv as $name => $style){
 							
 							if(in_array($name, $deformations)) {
-								if($name !== 'css_cursor' && $name !== 'pointer_events') continue;
+								if($name !== 'css_cursor' && $name !== 'pointer_events') break;
 							}
 							
 							if(is_array($style)|| is_object($style)) $style = implode(' ', $style);
 							$ret = self::check_for_modifications($name, $style);
-							if($ret['name'] == 'cursor' && $ret['style'] == 'auto') continue;
+							if($ret['name'] == 'cursor' && $ret['style'] == 'auto') break;
 							$css.= $ret['name'].':'.$ret['style'].";".$nl;
 						}
 					}
@@ -308,7 +308,7 @@ class RevSliderCssParser{
 				foreach($styles as $name => $style){
 					
 					if(in_array($name, $deformations)) {
-						if($name !== 'css_cursor' && $name !== 'pointer_events') continue;
+						if($name !== 'css_cursor' && $name !== 'pointer_events') break;
 					}
 					
 					if($name == 'background-color' && strpos($style, 'rgba') !== false){ //rgb && rgba

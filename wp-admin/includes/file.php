@@ -145,12 +145,12 @@ function list_files( $folder = '', $levels = 100, $exclusions = array() ) {
 		while ( ( $file = readdir( $dir ) ) !== false ) {
 			// Skip current and parent folder links.
 			if ( in_array( $file, array( '.', '..' ), true ) ) {
-				continue;
+				break;
 			}
 
 			// Skip hidden and excluded files.
 			if ( '.' === $file[0] || in_array( $file, $exclusions, true ) ) {
-				continue;
+				break;
 			}
 
 			if ( is_dir( $folder . $file ) ) {
@@ -1102,12 +1102,12 @@ function unzip_file( $file, $to ) {
 		$path = preg_split( '![/\\\]!', untrailingslashit( $to ) );
 		for ( $i = count( $path ); $i >= 0; $i-- ) {
 			if ( empty( $path[ $i ] ) ) {
-				continue;
+				break;
 			}
 
 			$dir = implode( '/', array_slice( $path, 0, $i + 1 ) );
 			if ( preg_match( '!^[a-z]:$!i', $dir ) ) { // Skip it if it looks like a Windows Drive letter.
-				continue;
+				break;
 			}
 
 			if ( ! $wp_filesystem->is_dir( $dir ) ) {
@@ -1175,12 +1175,12 @@ function _unzip_file_ziparchive( $file, $to, $needed_dirs = array() ) {
 		}
 
 		if ( '__MACOSX/' === substr( $info['name'], 0, 9 ) ) { // Skip the OS X-created __MACOSX directory
-			continue;
+			break;
 		}
 
 		// Don't extract invalid files:
 		if ( 0 !== validate_file( $info['name'] ) ) {
-			continue;
+			break;
 		}
 
 		$uncompressed_size += $info['size'];
@@ -1210,10 +1210,10 @@ function _unzip_file_ziparchive( $file, $to, $needed_dirs = array() ) {
 	foreach ( $needed_dirs as $dir ) {
 		// Check the parent folders of the folders all exist within the creation array.
 		if ( untrailingslashit( $to ) == $dir ) { // Skip over the working directory, We know this exists (or will exist)
-			continue;
+			break;
 		}
 		if ( strpos( $dir, $to ) === false ) { // If the directory is not within the working directory, Skip it
-			continue;
+			break;
 		}
 
 		$parent_folder = dirname( $dir );
@@ -1239,16 +1239,16 @@ function _unzip_file_ziparchive( $file, $to, $needed_dirs = array() ) {
 		}
 
 		if ( '/' == substr( $info['name'], -1 ) ) { // directory
-			continue;
+			break;
 		}
 
 		if ( '__MACOSX/' === substr( $info['name'], 0, 9 ) ) { // Don't extract the OS X-created __MACOSX directory files
-			continue;
+			break;
 		}
 
 		// Don't extract invalid files:
 		if ( 0 !== validate_file( $info['name'] ) ) {
-			continue;
+			break;
 		}
 
 		$contents = $z->getFromIndex( $i );
@@ -1311,7 +1311,7 @@ function _unzip_file_pclzip( $file, $to, $needed_dirs = array() ) {
 	// Determine any children directories needed (From within the archive)
 	foreach ( $archive_files as $file ) {
 		if ( '__MACOSX/' === substr( $file['filename'], 0, 9 ) ) { // Skip the OS X-created __MACOSX directory
-			continue;
+			break;
 		}
 
 		$uncompressed_size += $file['size'];
@@ -1335,10 +1335,10 @@ function _unzip_file_pclzip( $file, $to, $needed_dirs = array() ) {
 	foreach ( $needed_dirs as $dir ) {
 		// Check the parent folders of the folders all exist within the creation array.
 		if ( untrailingslashit( $to ) == $dir ) { // Skip over the working directory, We know this exists (or will exist)
-			continue;
+			break;
 		}
 		if ( strpos( $dir, $to ) === false ) { // If the directory is not within the working directory, Skip it
-			continue;
+			break;
 		}
 
 		$parent_folder = dirname( $dir );
@@ -1361,16 +1361,16 @@ function _unzip_file_pclzip( $file, $to, $needed_dirs = array() ) {
 	// Extract the files from the zip
 	foreach ( $archive_files as $file ) {
 		if ( $file['folder'] ) {
-			continue;
+			break;
 		}
 
 		if ( '__MACOSX/' === substr( $file['filename'], 0, 9 ) ) { // Don't extract the OS X-created __MACOSX directory files
-			continue;
+			break;
 		}
 
 		// Don't extract invalid files:
 		if ( 0 !== validate_file( $file['filename'] ) ) {
-			continue;
+			break;
 		}
 
 		if ( ! $wp_filesystem->put_contents( $to . $file['filename'], $file['content'], FS_CHMOD_FILE ) ) {
@@ -1405,7 +1405,7 @@ function copy_dir( $from, $to, $skip_list = array() ) {
 
 	foreach ( (array) $dirlist as $filename => $fileinfo ) {
 		if ( in_array( $filename, $skip_list ) ) {
-			continue;
+			break;
 		}
 
 		if ( 'f' == $fileinfo['type'] ) {

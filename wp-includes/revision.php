@@ -207,7 +207,7 @@ function wp_save_post_revision( $post_id ) {
 
 	for ( $i = 0; isset( $revisions[ $i ] ); $i++ ) {
 		if ( false !== strpos( $revisions[ $i ]->post_name, 'autosave' ) ) {
-			continue;
+			break;
 		}
 
 		wp_delete_post_revision( $revisions[ $i ]->ID );
@@ -235,7 +235,7 @@ function wp_get_post_autosave( $post_id, $user_id = 0 ) {
 	foreach ( $revisions as $revision ) {
 		if ( false !== strpos( $revision->post_name, "{$post_id}-autosave" ) ) {
 			if ( $user_id && $user_id != $revision->post_author ) {
-				continue;
+				break;
 			}
 
 			return $revision;
@@ -725,14 +725,14 @@ function _wp_upgrade_revisions_of_post( $post, $revisions ) {
 
 		// Something terrible happened
 		if ( false === $this_revision_version ) {
-			continue;
+			break;
 		}
 
 		// 1 is the latest revision version, so we're already up to date.
 		// No need to add a copy of the post as latest revision.
 		if ( 0 < $this_revision_version ) {
 			$add_last = false;
-			continue;
+			break;
 		}
 
 		// Always update the revision version

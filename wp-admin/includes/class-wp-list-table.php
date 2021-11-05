@@ -599,7 +599,7 @@ class WP_List_Table {
 		<?php
 		foreach ( $months as $arc_row ) {
 			if ( 0 == $arc_row->year ) {
-				continue;
+				break;
 			}
 
 			$month = zeroise( $arc_row->month, 2 );
@@ -943,7 +943,7 @@ class WP_List_Table {
 		// so let's fall back to the first non-checkbox column.
 		foreach ( $columns as $col => $column_name ) {
 			if ( 'cb' === $col ) {
-				continue;
+				break;
 			}
 
 			$column = $col;
@@ -1037,7 +1037,7 @@ class WP_List_Table {
 		$sortable = array();
 		foreach ( $_sortable as $id => $data ) {
 			if ( empty( $data ) ) {
-				continue;
+				break;
 			}
 
 			$data = (array) $data;

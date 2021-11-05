@@ -563,7 +563,7 @@ class WP_Comment_Query {
 			$found_orderby_comment_id = false;
 			foreach ( $ordersby as $_key => $_value ) {
 				if ( ! $_value ) {
-					continue;
+					break;
 				}
 
 				if ( is_int( $_key ) ) {
@@ -581,12 +581,12 @@ class WP_Comment_Query {
 				$parsed = $this->parse_orderby( $_orderby );
 
 				if ( ! $parsed ) {
-					continue;
+					break;
 				}
 
 				if ( 'comment__in' === $_orderby ) {
 					$orderby_array[] = $parsed;
-					continue;
+					break;
 				}
 
 				$orderby_array[] = $parsed . ' ' . $this->parse_order( $_order );
@@ -791,7 +791,7 @@ class WP_Comment_Query {
 
 				// 'any' will cause the query var to be ignored.
 				if ( in_array( 'any', $q_values, true ) || empty( $q_values ) ) {
-					continue;
+					break;
 				}
 
 				$join_posts_table = true;

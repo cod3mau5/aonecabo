@@ -528,7 +528,7 @@ class WP_Http {
 
 			// Check to see if this transport is a possibility, calls the transport statically.
 			if ( ! call_user_func( array( $class, 'test' ), $args, $url ) ) {
-				continue;
+				break;
 			}
 
 			return $class;
@@ -694,14 +694,14 @@ class WP_Http {
 		$newheaders = array();
 		foreach ( (array) $headers as $tempheader ) {
 			if ( empty( $tempheader ) ) {
-				continue;
+				break;
 			}
 
 			if ( false === strpos( $tempheader, ':' ) ) {
 				$stack   = explode( ' ', $tempheader, 3 );
 				$stack[] = '';
 				list( , $response['code'], $response['message']) = $stack;
-				continue;
+				break;
 			}
 
 			list($key, $value) = explode( ':', $tempheader, 2 );

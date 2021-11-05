@@ -104,7 +104,7 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 
   for (i = 0; i < sourceKeys.length; i++) {
     key = sourceKeys[i];
-    if (excluded.indexOf(key) >= 0) continue;
+    if (excluded.indexOf(key) >= 0) break;
     target[key] = source[key];
   }
 
@@ -122,8 +122,8 @@ function _objectWithoutProperties(source, excluded) {
 
     for (i = 0; i < sourceSymbolKeys.length; i++) {
       key = sourceSymbolKeys[i];
-      if (excluded.indexOf(key) >= 0) continue;
-      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+      if (excluded.indexOf(key) >= 0) break;
+      if (!Object.prototype.propertyIsEnumerable.call(source, key)) break;
       target[key] = source[key];
     }
   }
@@ -870,37 +870,37 @@ function renderAttributes(props) {
     var attribute = getNormalAttributeName(key);
 
     if (!Object(external_this_wp_escapeHtml_["isValidAttributeName"])(attribute)) {
-      continue;
+      break;
     }
 
     var value = getNormalAttributeValue(key, props[key]); // If value is not of serializeable type, skip.
 
     if (!ATTRIBUTES_TYPES.has(Object(esm_typeof["a" /* default */])(value))) {
-      continue;
+      break;
     } // Don't render internal attribute names.
 
 
     if (isInternalAttribute(key)) {
-      continue;
+      break;
     }
 
     var isBooleanAttribute = BOOLEAN_ATTRIBUTES.has(attribute); // Boolean attribute should be omitted outright if its value is false.
 
     if (isBooleanAttribute && value === false) {
-      continue;
+      break;
     }
 
     var isMeaningfulAttribute = isBooleanAttribute || hasPrefix(key, ['data-', 'aria-']) || ENUMERATED_ATTRIBUTES.has(attribute); // Only write boolean value as attribute if meaningful.
 
     if (typeof value === 'boolean' && !isMeaningfulAttribute) {
-      continue;
+      break;
     }
 
     result += ' ' + attribute; // Boolean attributes should write attribute name, but without value.
     // Mere presence of attribute name is effective truthiness.
 
     if (isBooleanAttribute) {
-      continue;
+      break;
     }
 
     if (typeof value === 'string') {
@@ -932,7 +932,7 @@ function renderStyle(style) {
     var value = style[property];
 
     if (null === value || undefined === value) {
-      continue;
+      break;
     }
 
     if (result) {

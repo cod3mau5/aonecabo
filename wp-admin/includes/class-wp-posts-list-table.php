@@ -343,7 +343,7 @@ class WP_Posts_List_Table extends WP_List_Table {
 			$status_name = $status->name;
 
 			if ( ! in_array( $status_name, $avail_post_stati ) || empty( $num_posts->$status_name ) ) {
-				continue;
+				break;
 			}
 
 			if ( isset( $_REQUEST['post_status'] ) && $status_name === $_REQUEST['post_status'] ) {
@@ -1410,7 +1410,7 @@ class WP_Posts_List_Table extends WP_List_Table {
 			 * @param string $post_type          Post type of current Quick Edit post.
 			 */
 			if ( ! apply_filters( 'quick_edit_show_taxonomy', $show_in_quick_edit, $taxonomy_name, $screen->post_type ) ) {
-				continue;
+				break;
 			}
 
 			if ( $taxonomy->hierarchical ) {
@@ -1787,7 +1787,7 @@ class WP_Posts_List_Table extends WP_List_Table {
 
 			foreach ( $columns as $column_name => $column_display_name ) {
 				if ( isset( $core_columns[ $column_name ] ) ) {
-					continue;
+					break;
 				}
 
 				if ( $bulk ) {

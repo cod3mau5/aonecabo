@@ -183,8 +183,8 @@ class RevSliderAdmin extends RevSliderBaseAdmin{
         foreach($plugins as $plugin_id => $plugin){
             
             $slug = dirname($plugin_id);
-            if(empty($slug)) continue;
-			if($slug !== 'revslider') continue;
+            if(empty($slug)) break;
+			if($slug !== 'revslider') break;
             
 			//check version, latest updates and if registered or not
 			$validated = get_option('revslider-valid', 'false');
@@ -573,7 +573,7 @@ class RevSliderAdmin extends RevSliderBaseAdmin{
 				
 				$screen = get_current_screen();
 				foreach($notices as $notice){
-					if($notice->is_global !== true && !in_array($screen->id, $revslider_screens)) continue; //check if global or just on plugin related pages
+					if($notice->is_global !== true && !in_array($screen->id, $revslider_screens)) break; //check if global or just on plugin related pages
 						
 					if(!in_array($notice->code, $notices_discarded) && version_compare($notice->version, GlobalsRevSlider::SLIDER_REVISION, '>=')){
 						$text = '<div style="text-align:right;vertical-align:middle;display:table-cell; min-width:225px;border-left:1px solid #ddd; padding-left:15px;"><a href="javascript:void(0);"  class="rs-notices-button rs-notice-'. esc_attr($notice->code) .'">'. __('Close & don\'t show again<b>X</b>','revslider') .'</a></div>';

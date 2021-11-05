@@ -1335,7 +1335,7 @@ function upgrade_230() {
 		}
 		$tt_id = $tt_ids[ $term_id ][ $taxonomy ];
 		if ( empty( $tt_id ) ) {
-			continue;
+			break;
 		}
 
 		$wpdb->insert(
@@ -1396,15 +1396,15 @@ function upgrade_230() {
 		if ( ! empty( $links ) ) {
 			foreach ( $links as $link ) {
 				if ( 0 == $link->link_category ) {
-					continue;
+					break;
 				}
 				if ( ! isset( $link_cat_id_map[ $link->link_category ] ) ) {
-					continue;
+					break;
 				}
 				$term_id = $link_cat_id_map[ $link->link_category ];
 				$tt_id   = $tt_ids[ $term_id ];
 				if ( empty( $tt_id ) ) {
-					continue;
+					break;
 				}
 
 				$wpdb->insert(
@@ -1427,7 +1427,7 @@ function upgrade_230() {
 			$taxonomy = 'link_category';
 			$tt_id    = $tt_ids[ $term_id ][ $taxonomy ];
 			if ( empty( $tt_id ) ) {
-				continue;
+				break;
 			}
 			$wpdb->insert(
 				$wpdb->term_relationships,
@@ -1715,12 +1715,12 @@ function upgrade_330() {
 						$id = strtolower( $name );
 						if ( isset( $wp_registered_widgets[ $id ] ) ) {
 							$_sidebars_widgets[ $index ][ $i ] = $id;
-							continue;
+							break;
 						}
 						$id = sanitize_title( $name );
 						if ( isset( $wp_registered_widgets[ $id ] ) ) {
 							$_sidebars_widgets[ $index ][ $i ] = $id;
-							continue;
+							break;
 						}
 
 						$found = false;
@@ -1738,7 +1738,7 @@ function upgrade_330() {
 						}
 
 						if ( $found ) {
-							continue;
+							break;
 						}
 
 						unset( $_sidebars_widgets[ $index ][ $i ] );
@@ -2594,7 +2594,7 @@ function dbDelta( $queries = '', $execute = true ) {
 		// Upgrade global tables only for the main site. Don't upgrade at all if conditions are not optimal.
 		if ( in_array( $table, $global_tables ) && ! wp_should_upgrade_global_tables() ) {
 			unset( $cqueries[ $table ], $for_update[ $table ] );
-			continue;
+			break;
 		}
 
 		// Fetch the table column structure from the database
@@ -2603,7 +2603,7 @@ function dbDelta( $queries = '', $execute = true ) {
 		$wpdb->suppress_errors( $suppress );
 
 		if ( ! $tablefields ) {
-			continue;
+			break;
 		}
 
 		// Clear the field and index arrays.
@@ -2964,7 +2964,7 @@ function make_site_theme_from_oldschool( $theme_name, $template ) {
 				}
 
 				// Don't copy anything.
-				continue;
+				break;
 			}
 		}
 
@@ -3033,7 +3033,7 @@ function make_site_theme_from_default( $theme_name, $template ) {
 	if ( $theme_dir ) {
 		while ( ( $theme_file = readdir( $theme_dir ) ) !== false ) {
 			if ( is_dir( "$default_dir/$theme_file" ) ) {
-				continue;
+				break;
 			}
 			if ( ! @copy( "$default_dir/$theme_file", "$site_dir/$theme_file" ) ) {
 				return;
@@ -3075,7 +3075,7 @@ function make_site_theme_from_default( $theme_name, $template ) {
 	if ( $images_dir ) {
 		while ( ( $image = readdir( $images_dir ) ) !== false ) {
 			if ( is_dir( "$default_dir/images/$image" ) ) {
-				continue;
+				break;
 			}
 			if ( ! @copy( "$default_dir/images/$image", "$site_dir/images/$image" ) ) {
 				return;

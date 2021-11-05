@@ -417,7 +417,7 @@ class WP_Plugins_List_Table extends WP_List_Table {
 		$status_links = array();
 		foreach ( $totals as $type => $count ) {
 			if ( ! $count ) {
-				continue;
+				break;
 			}
 
 			switch ( $type ) {

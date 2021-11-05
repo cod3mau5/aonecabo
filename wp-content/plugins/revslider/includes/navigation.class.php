@@ -84,7 +84,7 @@ class RevSliderNavigation {
 							if(!isset($def[$key]['settings'])) $def[$key]['settings'] = array();
 							if(!isset($def[$key]['settings']['presets'])) $def[$key]['settings']['presets'] = array();
 							foreach($default_presets as $id => $v){
-								if($id !== $def[$key]['id']) continue;
+								if($id !== $def[$key]['id']) break;
 								
 								foreach($v as $values){
 									$def[$key]['settings']['presets'][] = $values;
@@ -115,12 +115,12 @@ class RevSliderNavigation {
 			foreach($data as $vals){
 				$found = false;
 				
-				if(!isset($vals['markup']) || !isset($vals['css'])) continue;
-				if(isset($vals['default']) && $vals['default'] == true) continue; //defaults can't be deleted
+				if(!isset($vals['markup']) || !isset($vals['css'])) break;
+				if(isset($vals['default']) && $vals['default'] == true) break; //defaults can't be deleted
 				
 				if(isset($vals['id'])){ //new will be added temporary to navs to tell here that they are new
 					
-					if(intval($vals['id']) === 0) continue; //0
+					if(intval($vals['id']) === 0) break; //0
 					
 					foreach($navigations as $nav){
 						if($vals['id'] == $nav['id']){
@@ -425,8 +425,8 @@ class RevSliderNavigation {
 				break;
 				case 'custom': //do all the modifications
 					foreach($settings['placeholders'] as $ph){
-						if(empty($ph)) continue;
-						if($ph['nav-type'] !== $type) continue;
+						if(empty($ph)) break;
+						if($ph['nav-type'] !== $type) break;
 						
 						foreach($ph['data'] as $k => $d){
 							$def = $slider->getParam('ph-'.$handle.'-'.$type.'-'.$ph['handle'].'-'.$k.'-def', 'off');
@@ -441,12 +441,12 @@ class RevSliderNavigation {
 				default: //we have a selected preset, check for availability and do all of the checked in preset
 					if(isset($settings['presets']) && !empty($settings['presets'])){
 						foreach($settings['presets'] as $spreset){
-							if($preset !== $spreset['handle']) continue;
-							if($spreset['type'] !== $type) continue;
+							if($preset !== $spreset['handle']) break;
+							if($spreset['type'] !== $type) break;
 							
 							foreach($settings['placeholders'] as $ph){
-								if(empty($ph)) continue;
-								if($ph['nav-type'] !== $type) continue;
+								if(empty($ph)) break;
+								if($ph['nav-type'] !== $type) break;
 								
 								foreach($ph['data'] as $k => $d){
 									if(isset($spreset['values']['ph-'.$handle.'-'.$type.'-'.$ph['handle'].'-'.$k])){
@@ -464,8 +464,8 @@ class RevSliderNavigation {
 			
 			
 			foreach($settings['placeholders'] as $ph){ //for 'default' and default: //which is a preset (as a preset does not need to have all replaced, so we do the rest that is not selected
-				if(empty($ph)) continue;
-				if($ph['nav-type'] !== $type) continue;
+				if(empty($ph)) break;
+				if($ph['nav-type'] !== $type) break;
 				
 				foreach($ph['data'] as $k => $d){
 					
@@ -634,8 +634,8 @@ class RevSliderNavigation {
 		
 		if(!empty($c)){
 			foreach($settings['placeholders'] as $ph){
-				if(empty($ph)) continue;
-				if($ph['nav-type'] !== $type) continue;
+				if(empty($ph)) break;
+				if($ph['nav-type'] !== $type) break;
 				
 				foreach($ph['data'] as $k => $d){
 					$get_from = $slide->getParam('ph-'.$handle.'-'.$type.'-'.$ph['handle'].'-'.$k.'-slide', 'off');

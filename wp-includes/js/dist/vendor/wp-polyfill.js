@@ -6491,7 +6491,7 @@ module.exports = _dereq_(30);
         if (delegate) {
           var delegateResult = maybeInvokeDelegate(delegate, context);
           if (delegateResult) {
-            if (delegateResult === ContinueSentinel) continue;
+            if (delegateResult === ContinueSentinel) break;
             return delegateResult;
           }
         }
@@ -6524,7 +6524,7 @@ module.exports = _dereq_(30);
             : GenStateSuspendedYield;
 
           if (record.arg === ContinueSentinel) {
-            continue;
+            break;
           }
 
           return {

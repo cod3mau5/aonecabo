@@ -412,7 +412,7 @@ class WP_Community_Events {
 				 */
 				if ( 'wordcamp' === $event['type'] ) {
 					$wordcamps[] = $event;
-					continue;
+					break;
 				}
 
 				$event_timestamp = strtotime( $event['date'] );

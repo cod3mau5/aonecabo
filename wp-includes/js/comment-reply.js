@@ -340,7 +340,7 @@ window.addComment = ( function( window ) {
 
 				// Skip form elements that are hidden or disabled.
 				if ( 'hidden' === element.type || element.disabled || cssHidden ) {
-					continue;
+					break;
 				}
 
 				element.focus();

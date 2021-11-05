@@ -656,14 +656,14 @@ class WPCF7_ContactForm {
 			$type = $tag->basetype;
 
 			if ( empty( $type ) ) {
-				continue;
+				break;
 			} elseif ( ! empty( $args['include'] ) ) {
 				if ( ! in_array( $type, $args['include'] ) ) {
-					continue;
+					break;
 				}
 			} elseif ( ! empty( $args['exclude'] ) ) {
 				if ( in_array( $type, $args['exclude'] ) ) {
-					continue;
+					break;
 				}
 			}
 
@@ -778,7 +778,7 @@ class WPCF7_ContactForm {
 		foreach ( $settings as $setting ) {
 			if ( preg_match( $pattern, $setting, $matches ) ) {
 				if ( $matches[1] != $name ) {
-					continue;
+					break;
 				}
 
 				if ( ! $max or $count < (int) $max ) {

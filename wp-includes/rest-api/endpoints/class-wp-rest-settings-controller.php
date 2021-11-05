@@ -147,7 +147,7 @@ class WP_REST_Settings_Controller extends WP_REST_Controller {
 
 		foreach ( $options as $name => $args ) {
 			if ( ! array_key_exists( $name, $params ) ) {
-				continue;
+				break;
 			}
 
 			/**
@@ -167,7 +167,7 @@ class WP_REST_Settings_Controller extends WP_REST_Controller {
 			$updated = apply_filters( 'rest_pre_update_setting', false, $name, $request[ $name ], $args );
 
 			if ( $updated ) {
-				continue;
+				break;
 			}
 
 			/*
@@ -216,7 +216,7 @@ class WP_REST_Settings_Controller extends WP_REST_Controller {
 
 		foreach ( get_registered_settings() as $name => $args ) {
 			if ( empty( $args['show_in_rest'] ) ) {
-				continue;
+				break;
 			}
 
 			$rest_args = array();
@@ -243,7 +243,7 @@ class WP_REST_Settings_Controller extends WP_REST_Controller {
 
 			// Skip over settings that don't have a defined type in the schema.
 			if ( empty( $rest_args['schema']['type'] ) ) {
-				continue;
+				break;
 			}
 
 			/*
@@ -251,7 +251,7 @@ class WP_REST_Settings_Controller extends WP_REST_Controller {
 			 * to be updated with arbitrary values that we can't do decent sanitizing for.
 			 */
 			if ( ! in_array( $rest_args['schema']['type'], array( 'number', 'integer', 'string', 'boolean', 'array', 'object' ), true ) ) {
-				continue;
+				break;
 			}
 
 			$rest_args['schema'] = $this->set_additional_properties_to_false( $rest_args['schema'] );

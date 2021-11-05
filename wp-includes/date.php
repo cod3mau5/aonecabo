@@ -210,7 +210,7 @@ class WP_Date_Query {
 		// Each query should have a value for each default key. Inherit from the parent when possible.
 		foreach ( $defaults as $dkey => $dvalue ) {
 			if ( isset( $queries[ $dkey ] ) ) {
-				continue;
+				break;
 			}
 
 			if ( isset( $parent_query[ $dkey ] ) ) {
@@ -391,7 +391,7 @@ class WP_Date_Query {
 		// Concatenate and throw a notice for each invalid value.
 		foreach ( $min_max_checks as $key => $check ) {
 			if ( ! array_key_exists( $key, $date_query ) ) {
-				continue;
+				break;
 			}
 
 			// Throw a notice for each failing value.

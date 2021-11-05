@@ -1113,7 +1113,7 @@
 			el = els[i];
 			n = el.name;
 			if (!n || el.disabled) {
-				continue;
+				break;
 			}
 
 			if (semantic && form.clk && el.type === 'image') {
@@ -1122,7 +1122,7 @@
 					a.push({name: n, value: $(el).val(), type: el.type});
 					a.push({name: n + '.x', value: form.clk_x}, {name: n + '.y', value: form.clk_y});
 				}
-				continue;
+				break;
 			}
 
 			v = $.fieldValue(el, true);
@@ -1256,7 +1256,7 @@
 			var v = $.fieldValue(el, successful);
 
 			if (v === null || typeof v === 'undefined' || (v.constructor === Array && !v.length)) {
-				continue;
+				break;
 			}
 
 			if (v.constructor === Array) {

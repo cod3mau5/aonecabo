@@ -212,7 +212,7 @@ function wpcf7_checkbox_posted_data( $posted_data ) {
 
 	foreach ( $tags as $tag ) {
 		if ( ! isset( $posted_data[$tag->name] ) ) {
-			continue;
+			break;
 		}
 
 		$posted_items = (array) $posted_data[$tag->name];

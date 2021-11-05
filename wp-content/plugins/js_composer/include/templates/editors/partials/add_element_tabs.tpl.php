@@ -20,7 +20,7 @@ foreach ( $categories as $key => $name ) {
 			'filter' => '.js-category-' . $key,
 			'active' => false,
 		);
-		continue;
+		break;
 	}
 
 	if ( 'deprecated' === $name ) {

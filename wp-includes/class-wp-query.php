@@ -865,7 +865,7 @@ class WP_Query {
 
 			foreach ( $this->tax_query->queries as $tax_query ) {
 				if ( ! is_array( $tax_query ) ) {
-					continue;
+					break;
 				}
 
 				if ( isset( $tax_query['operator'] ) && 'NOT IN' != $tax_query['operator'] ) {
@@ -1071,7 +1071,7 @@ class WP_Query {
 
 		foreach ( get_taxonomies( array(), 'objects' ) as $taxonomy => $t ) {
 			if ( 'post_tag' == $taxonomy ) {
-				continue;   // Handled further down in the $q['tag'] block
+				break;   // Handled further down in the $q['tag'] block
 			}
 
 			if ( $t->query_var && ! empty( $q[ $t->query_var ] ) ) {
@@ -1395,11 +1395,11 @@ class WP_Query {
 
 			// Avoid single A-Z and single dashes.
 			if ( ! $term || ( 1 === strlen( $term ) && preg_match( '/^[a-z\-]$/i', $term ) ) ) {
-				continue;
+				break;
 			}
 
 			if ( in_array( call_user_func( $strtolower, $term ), $stopwords, true ) ) {
-				continue;
+				break;
 			}
 
 			$checked[] = $term;
@@ -1951,7 +1951,7 @@ class WP_Query {
 			foreach ( (array) $q['post_type'] as $_post_type ) {
 				$ptype_obj = get_post_type_object( $_post_type );
 				if ( ! $ptype_obj || ! $ptype_obj->query_var || empty( $q[ $ptype_obj->query_var ] ) ) {
-					continue;
+					break;
 				}
 
 				if ( ! $ptype_obj->hierarchical ) {
@@ -1985,7 +1985,7 @@ class WP_Query {
 					foreach ( (array) $q['post_type'] as $_post_type ) {
 						$ptype_obj = get_post_type_object( $_post_type );
 						if ( ! $ptype_obj || ! $ptype_obj->hierarchical ) {
-							continue;
+							break;
 						}
 
 						$reqpage = get_page_by_path( $q['pagename'], OBJECT, $_post_type );
@@ -2123,7 +2123,7 @@ class WP_Query {
 			if ( ! isset( $q['taxonomy'] ) ) {
 				foreach ( $this->tax_query->queried_terms as $queried_taxonomy => $queried_items ) {
 					if ( empty( $queried_items['terms'][0] ) ) {
-						continue;
+						break;
 					}
 
 					if ( ! in_array( $queried_taxonomy, array( 'category', 'post_tag' ) ) ) {
@@ -2144,7 +2144,7 @@ class WP_Query {
 			// 'cat', 'category_name', 'tag_id'
 			foreach ( $this->tax_query->queried_terms as $queried_taxonomy => $queried_items ) {
 				if ( empty( $queried_items['terms'][0] ) ) {
-					continue;
+					break;
 				}
 
 				if ( 'category' === $queried_taxonomy ) {
@@ -2283,7 +2283,7 @@ class WP_Query {
 					$parsed  = $this->parse_orderby( $orderby );
 
 					if ( ! $parsed ) {
-						continue;
+						break;
 					}
 
 					$orderby_array[] = $parsed . ' ' . $this->parse_order( $order );
@@ -2298,7 +2298,7 @@ class WP_Query {
 					$parsed = $this->parse_orderby( $orderby );
 					// Only allow certain values for safety.
 					if ( ! $parsed ) {
-						continue;
+						break;
 					}
 
 					$orderby_array[] = $parsed;
@@ -2469,7 +2469,7 @@ class WP_Query {
 			$public_states = get_post_stati( array( 'public' => true ) );
 			foreach ( (array) $public_states as $state ) {
 				if ( 'publish' == $state ) { // Publish is hard-coded above.
-					continue;
+					break;
 				}
 				$where .= " OR {$wpdb->posts}.post_status = '$state'";
 			}
@@ -3919,7 +3919,7 @@ class WP_Query {
 		} else {
 			foreach ( $page as $pagepath ) {
 				if ( ! strpos( $pagepath, '/' ) ) {
-					continue;
+					break;
 				}
 				$pagepath_obj = get_page_by_path( $pagepath );
 
@@ -4014,7 +4014,7 @@ class WP_Query {
 		} else {
 			foreach ( $post as $postpath ) {
 				if ( ! strpos( $postpath, '/' ) ) {
-					continue;
+					break;
 				}
 				$postpath_obj = get_page_by_path( $postpath, OBJECT, $post_obj->post_type );
 

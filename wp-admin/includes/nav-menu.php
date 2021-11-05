@@ -901,7 +901,7 @@ function wp_save_nav_menu_items( $menu_id = 0, $menu_data = array() ) {
 				)
 			) {
 				// Then this potential menu item is not getting added to this menu.
-				continue;
+				break;
 			}
 
 			// If this possible menu item doesn't actually have a menu database ID yet.
@@ -1143,7 +1143,7 @@ function wp_nav_menu_update_menu_items( $nav_menu_selected_id, $nav_menu_selecte
 
 			// Menu item title can't be blank
 			if ( ! isset( $_POST['menu-item-title'][ $_key ] ) || '' == $_POST['menu-item-title'][ $_key ] ) {
-				continue;
+				break;
 			}
 
 			$args = array();

@@ -1248,7 +1248,7 @@ class getid3_mp3 extends getid3_handler
 						continue 2;
 					}
 				}
-				continue;
+				break;
 			}
 			if (!isset($MPEGaudioHeaderDecodeCache[$head4])) {
 				$MPEGaudioHeaderDecodeCache[$head4] = self::MPEGaudioHeaderDecode($head4);
@@ -1300,7 +1300,7 @@ class getid3_mp3 extends getid3_handler
 								}
 								break;
 							}
-							continue;
+							break;
 						}
 					}
 					unset($next4);
@@ -1553,7 +1553,7 @@ class getid3_mp3 extends getid3_handler
 							$this->warning('too many MPEG audio frames to scan, only scanned '.$frames_scanned.' frames in '.$max_scan_segments.' segments ('.number_format($pct_data_scanned * 100, 1).'% of file) and extrapolated distribution, playtime and bitrate may be incorrect.');
 							foreach ($info['mpeg']['audio'] as $key1 => $value1) {
 								if (!preg_match('#_distribution$#i', $key1)) {
-									continue;
+									break;
 								}
 								foreach ($value1 as $key2 => $value2) {
 									$info['mpeg']['audio'][$key1][$key2] = round($value2 / $pct_data_scanned);

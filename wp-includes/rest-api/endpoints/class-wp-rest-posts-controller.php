@@ -347,7 +347,7 @@ class WP_REST_Posts_Controller extends WP_REST_Controller {
 
 		foreach ( $query_result as $post ) {
 			if ( ! $this->check_read_permission( $post ) ) {
-				continue;
+				break;
 			}
 
 			$data    = $this->prepare_item_for_response( $post, $request );
@@ -1304,7 +1304,7 @@ class WP_REST_Posts_Controller extends WP_REST_Controller {
 			$base = ! empty( $taxonomy->rest_base ) ? $taxonomy->rest_base : $taxonomy->name;
 
 			if ( ! isset( $request[ $base ] ) ) {
-				continue;
+				break;
 			}
 
 			$result = wp_set_object_terms( $post_id, $request[ $base ], $taxonomy->name );
@@ -1329,13 +1329,13 @@ class WP_REST_Posts_Controller extends WP_REST_Controller {
 			$base = ! empty( $taxonomy->rest_base ) ? $taxonomy->rest_base : $taxonomy->name;
 
 			if ( ! isset( $request[ $base ] ) ) {
-				continue;
+				break;
 			}
 
 			foreach ( $request[ $base ] as $term_id ) {
 				// Invalid terms will be rejected later.
 				if ( ! get_term( $term_id, $taxonomy->name ) ) {
-					continue;
+					break;
 				}
 
 				if ( ! current_user_can( 'assign_term', (int) $term_id ) ) {
@@ -1822,7 +1822,7 @@ class WP_REST_Posts_Controller extends WP_REST_Controller {
 
 				// Skip taxonomies that are not public.
 				if ( empty( $taxonomy_obj->show_in_rest ) ) {
-					continue;
+					break;
 				}
 
 				$tax_base = ! empty( $taxonomy_obj->rest_base ) ? $taxonomy_obj->rest_base : $tax;
@@ -2074,9 +2074,9 @@ class WP_REST_Posts_Controller extends WP_REST_Controller {
 		);
 		foreach ( $post_type_attributes as $attribute ) {
 			if ( isset( $fixed_schemas[ $this->post_type ] ) && ! in_array( $attribute, $fixed_schemas[ $this->post_type ], true ) ) {
-				continue;
+				break;
 			} elseif ( ! isset( $fixed_schemas[ $this->post_type ] ) && ! post_type_supports( $this->post_type, $attribute ) ) {
-				continue;
+				break;
 			}
 
 			switch ( $attribute ) {
@@ -2612,7 +2612,7 @@ class WP_REST_Posts_Controller extends WP_REST_Controller {
 
 		foreach ( $statuses as $status ) {
 			if ( $status === $default_status ) {
-				continue;
+				break;
 			}
 
 			$post_type_obj = get_post_type_object( $this->post_type );

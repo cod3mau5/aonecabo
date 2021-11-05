@@ -515,7 +515,7 @@ function get_post_class( $class = '', $post_id = null ) {
 		if ( is_object_in_taxonomy( $post->post_type, $taxonomy ) ) {
 			foreach ( (array) get_the_terms( $post->ID, $taxonomy ) as $term ) {
 				if ( empty( $term->slug ) ) {
-					continue;
+					break;
 				}
 
 				$term_class = sanitize_html_class( $term->slug, $term->term_id );
@@ -1055,7 +1055,7 @@ function the_meta() {
 		foreach ( (array) $keys as $key ) {
 			$keyt = trim( $key );
 			if ( is_protected_meta( $keyt, 'post' ) ) {
-				continue;
+				break;
 			}
 
 			$values = array_map( 'trim', get_post_custom_values( $key ) );
@@ -1882,12 +1882,12 @@ function wp_list_post_revisions( $post_id = 0, $type = 'all' ) {
 	$rows = '';
 	foreach ( $revisions as $revision ) {
 		if ( ! current_user_can( 'read_post', $revision->ID ) ) {
-			continue;
+			break;
 		}
 
 		$is_autosave = wp_is_post_autosave( $revision );
 		if ( ( 'revision' === $type && $is_autosave ) || ( 'autosave' === $type && ! $is_autosave ) ) {
-			continue;
+			break;
 		}
 
 		$rows .= "\t<li>" . wp_post_revision_title_expanded( $revision ) . "</li>\n";

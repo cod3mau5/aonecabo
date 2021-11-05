@@ -1141,7 +1141,7 @@ final class WP_Theme implements ArrayAccess {
 
 			foreach ( $files as $file => $full_path ) {
 				if ( ! preg_match( '|Template Name:(.*)$|mi', file_get_contents( $full_path ), $header ) ) {
-					continue;
+					break;
 				}
 
 				$types = array( 'page' );
@@ -1270,11 +1270,11 @@ final class WP_Theme implements ArrayAccess {
 
 		foreach ( $results as $result ) {
 			if ( '.' == $result[0] || in_array( $result, $exclusions, true ) ) {
-				continue;
+				break;
 			}
 			if ( is_dir( $path . '/' . $result ) ) {
 				if ( ! $depth ) {
-					continue;
+					break;
 				}
 				$found = self::scandir( $path . '/' . $result, $extensions, $depth - 1, $relative_path . $result );
 				$files = array_merge_recursive( $files, $found );

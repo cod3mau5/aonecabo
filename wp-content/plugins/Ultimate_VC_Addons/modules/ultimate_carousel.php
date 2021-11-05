@@ -810,7 +810,7 @@ if ( ! function_exists( 'ultimate_override_shortcodes' ) ) {
 		$disabled_tags = array( '' );
 		foreach ( $shortcode_tags as $tag => $cb ) {
 			if ( in_array( $tag, $disabled_tags ) ) {
-				continue;
+				break;
 			}
 			// Overwrite the callback function
 			$shortcode_tags[ $tag ]            = 'ultimate_wrap_shortcode_in_div';

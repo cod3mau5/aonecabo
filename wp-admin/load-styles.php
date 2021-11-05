@@ -47,13 +47,13 @@ if ( isset( $_SERVER['HTTP_IF_NONE_MATCH'] ) && stripslashes( $_SERVER['HTTP_IF_
 
 foreach ( $load as $handle ) {
 	if ( ! array_key_exists( $handle, $wp_styles->registered ) ) {
-		continue;
+		break;
 	}
 
 	$style = $wp_styles->registered[ $handle ];
 
 	if ( empty( $style->src ) ) {
-		continue;
+		break;
 	}
 
 	$path = ABSPATH . $style->src;

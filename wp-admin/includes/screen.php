@@ -112,15 +112,15 @@ function meta_box_prefs( $screen ) {
 	foreach ( array_keys( $wp_meta_boxes[ $screen->id ] ) as $context ) {
 		foreach ( array( 'high', 'core', 'default', 'low' ) as $priority ) {
 			if ( ! isset( $wp_meta_boxes[ $screen->id ][ $context ][ $priority ] ) ) {
-				continue;
+				break;
 			}
 			foreach ( $wp_meta_boxes[ $screen->id ][ $context ][ $priority ] as $box ) {
 				if ( false == $box || ! $box['title'] ) {
-					continue;
+					break;
 				}
 				// Submit box cannot be hidden
 				if ( 'submitdiv' == $box['id'] || 'linksubmitdiv' == $box['id'] ) {
-					continue;
+					break;
 				}
 
 				$widget_title = $box['title'];

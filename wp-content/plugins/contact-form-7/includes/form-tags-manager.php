@@ -232,20 +232,20 @@ class WPCF7_FormTagsManager {
 			$tag = new WPCF7_FormTag( $tag );
 
 			if ( $type and ! in_array( $tag->type, $type, true ) ) {
-				continue;
+				break;
 			}
 
 			if ( $name and ! in_array( $tag->name, $name, true ) ) {
-				continue;
+				break;
 			}
 
 			if ( $feature ) {
 				if ( ! $this->tag_type_supports( $tag->type, $feature )
 				and ! $feature_negative ) {
-					continue;
+					break;
 				} elseif ( $this->tag_type_supports( $tag->type, $feature )
 				and $feature_negative ) {
-					continue;
+					break;
 				}
 			}
 

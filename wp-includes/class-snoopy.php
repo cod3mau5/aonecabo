@@ -1236,7 +1236,7 @@ class Snoopy
 				while (list($field_name, $file_names) = each($formfiles)) {
 					settype($file_names, "array");
 					while (list(, $file_name) = each($file_names)) {
-						if (!is_readable($file_name)) continue;
+						if (!is_readable($file_name)) break;
 
 						$fp = fopen($file_name, "r");
 						$file_content = fread($fp, filesize($file_name));

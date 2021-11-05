@@ -49,7 +49,7 @@ if ( isset( $_SERVER['HTTP_IF_NONE_MATCH'] ) && stripslashes( $_SERVER['HTTP_IF_
 
 foreach ( $load as $handle ) {
 	if ( ! array_key_exists( $handle, $wp_scripts->registered ) ) {
-		continue;
+		break;
 	}
 
 	$path = ABSPATH . $wp_scripts->registered[ $handle ]->src;

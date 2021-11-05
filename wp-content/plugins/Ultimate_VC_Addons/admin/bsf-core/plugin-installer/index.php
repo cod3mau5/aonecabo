@@ -81,10 +81,10 @@ if ( isset( $_GET['page'] ) ) {
 		$total_bundled_plugins   = count( $brainstrom_bundled_products );
 		foreach ( $brainstrom_bundled_products as $key => $plugin ) {
 			if ( ! isset( $plugin->id ) || $plugin->id == '' ) {
-				continue;
+				break;
 			}
 			if ( isset( $request_product_id ) && $request_product_id !== $plugin->id ) {
-				continue;
+				break;
 			}
 			$plugin_abs_path = WP_PLUGIN_DIR . '/' . $plugin->init;
 			if ( is_file( $plugin_abs_path ) ) {
@@ -103,11 +103,11 @@ if ( isset( $_GET['page'] ) ) {
 		foreach ( $brainstrom_bundled_products as $key => $plugin ) :
 
 			if ( ! isset( $plugin->id ) || $plugin->id == '' ) {
-					continue;
+					break;
 			}
 
 			if ( isset( $request_product_id ) && $request_product_id !== $plugin->id ) {
-				continue;
+				break;
 			}
 
 					$is_plugin_installed = false;
@@ -123,7 +123,7 @@ if ( isset( $_GET['page'] ) ) {
 			}
 
 			if ( $is_plugin_installed ) {
-				continue;
+				break;
 			}
 
 			if ( $is_plugin_installed && $is_plugin_activated ) {
@@ -222,11 +222,11 @@ if ( isset( $_GET['page'] ) ) {
 			if ( $global_plugin_installed != 0 ) :
 				foreach ( $brainstrom_bundled_products as $key => $plugin ) :
 					if ( ! isset( $plugin->id ) || $plugin->id == '' ) {
-						continue;
+						break;
 					}
 
 					if ( isset( $request_product_id ) && $request_product_id !== $plugin->id ) {
-						continue;
+						break;
 					}
 
 						$is_plugin_installed = false;
@@ -242,7 +242,7 @@ if ( isset( $_GET['page'] ) ) {
 					}
 
 					if ( ! $is_plugin_installed ) {
-						continue;
+						break;
 					}
 
 					if ( $is_plugin_installed && $is_plugin_activated ) {

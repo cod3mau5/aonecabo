@@ -169,14 +169,14 @@ class WPCF7_Mail {
 			$line = trim( $line );
 
 			if ( '[' == substr( $line, 0, 1 ) ) {
-				continue;
+				break;
 			}
 
 			$path = path_join( WP_CONTENT_DIR, $line );
 
 			if ( ! wpcf7_is_file_path_in_content_dir( $path ) ) {
 				// $path is out of WP_CONTENT_DIR
-				continue;
+				break;
 			}
 
 			if ( is_readable( $path )

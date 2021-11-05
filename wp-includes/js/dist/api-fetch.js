@@ -104,7 +104,7 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 
   for (i = 0; i < sourceKeys.length; i++) {
     key = sourceKeys[i];
-    if (excluded.indexOf(key) >= 0) continue;
+    if (excluded.indexOf(key) >= 0) break;
     target[key] = source[key];
   }
 
@@ -122,8 +122,8 @@ function _objectWithoutProperties(source, excluded) {
 
     for (i = 0; i < sourceSymbolKeys.length; i++) {
       key = sourceSymbolKeys[i];
-      if (excluded.indexOf(key) >= 0) continue;
-      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+      if (excluded.indexOf(key) >= 0) break;
+      if (!Object.prototype.propertyIsEnumerable.call(source, key)) break;
       target[key] = source[key];
     }
   }

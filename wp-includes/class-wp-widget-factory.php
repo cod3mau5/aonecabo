@@ -135,7 +135,7 @@ class WP_Widget_Factory {
 			// don't register new widget if old widget with the same id is already registered
 			if ( in_array( $this->widgets[ $key ]->id_base, $registered, true ) ) {
 				unset( $this->widgets[ $key ] );
-				continue;
+				break;
 			}
 
 			$this->widgets[ $key ]->_register();

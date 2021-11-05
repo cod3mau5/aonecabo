@@ -231,7 +231,7 @@ class Requests_Cookie {
 			$value = $this->normalize_attribute($key, $value);
 			if ($value === null) {
 				unset($this->attributes[$key]);
-				continue;
+				break;
 			}
 
 			if ($value !== $orig_value) {
@@ -478,7 +478,7 @@ class Requests_Cookie {
 
 			// Reject invalid cookie domains
 			if (!empty($origin) && !$parsed->domain_matches($origin->host)) {
-				continue;
+				break;
 			}
 
 			$cookies[$parsed->name] = $parsed;

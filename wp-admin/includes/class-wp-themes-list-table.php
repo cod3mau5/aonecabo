@@ -269,7 +269,7 @@ class WP_Themes_List_Table extends WP_List_Table {
 		// Match all phrases
 		foreach ( $this->search_terms as $word ) {
 			if ( in_array( $word, $theme->get( 'Tags' ) ) ) {
-				continue;
+				break;
 			}
 
 			foreach ( array( 'Name', 'Description', 'Author', 'AuthorURI' ) as $header ) {
@@ -280,11 +280,11 @@ class WP_Themes_List_Table extends WP_List_Table {
 			}
 
 			if ( false !== stripos( $theme->get_stylesheet(), $word ) ) {
-				continue;
+				break;
 			}
 
 			if ( false !== stripos( $theme->get_template(), $word ) ) {
-				continue;
+				break;
 			}
 
 			return false;

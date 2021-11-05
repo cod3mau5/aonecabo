@@ -271,7 +271,7 @@ class Plugin_Upgrader extends WP_Upgrader {
 				$this->skin->feedback( 'up_to_date' );
 				$this->skin->after();
 				$results[ $plugin ] = true;
-				continue;
+				break;
 			}
 
 			// Get the URL to the zip file.

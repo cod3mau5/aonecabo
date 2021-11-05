@@ -273,7 +273,7 @@ class WPBMap {
 			foreach ( array_keys( self::$sc ) as $name ) {
 				self::setElementSettings( $name );
 				if ( ! isset( self::$sc[ $name ] ) ) {
-					continue;
+					break;
 				}
 				$values = self::$sc[ $name ];
 				if ( vc_user_access_check_shortcode_all( $name ) ) {

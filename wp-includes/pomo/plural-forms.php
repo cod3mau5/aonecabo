@@ -127,7 +127,7 @@ class Plural_Forms {
 						$o2 = $stack[ count( $stack ) - 1 ];
 						if ( $o2 !== '(' ) {
 							$output[] = array( 'op', array_pop( $stack ) );
-							continue;
+							break;
 						}
 
 						// Discard open paren.
@@ -186,7 +186,7 @@ class Plural_Forms {
 						if ( $o2 !== '?' ) {
 							$output[] = array( 'op', array_pop( $stack ) );
 							$s_pos--;
-							continue;
+							break;
 						}
 
 						// Replace.
@@ -260,10 +260,10 @@ class Plural_Forms {
 			$i++;
 			if ( $next[0] === 'var' ) {
 				$stack[] = $n;
-				continue;
+				break;
 			} elseif ( $next[0] === 'value' ) {
 				$stack[] = $next[1];
-				continue;
+				break;
 			}
 
 			// Only operators left.

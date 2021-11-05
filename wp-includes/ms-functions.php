@@ -72,7 +72,7 @@ function get_active_blog_for_user( $user_id ) {
 		if ( is_array( $blogs ) && count( $blogs ) > 0 ) {
 			foreach ( (array) $blogs as $blog_id => $blog ) {
 				if ( $blog->site_id != get_current_network_id() ) {
-					continue;
+					break;
 				}
 				$details = get_site( $blog_id );
 				if ( is_object( $details ) && $details->archived == 0 && $details->spam == 0 && $details->deleted == 0 ) {
@@ -253,7 +253,7 @@ function remove_user_from_blog( $user_id, $blog_id = '', $reassign = '' ) {
 		$blogs      = get_blogs_of_user( $user_id );
 		foreach ( (array) $blogs as $blog ) {
 			if ( $blog->userblog_id == $blog_id ) {
-				continue;
+				break;
 			}
 			$new_id     = $blog->userblog_id;
 			$new_domain = $blog->domain;
@@ -395,7 +395,7 @@ function is_email_address_unsafe( $user_email ) {
 
 		foreach ( $banned_names as $banned_domain ) {
 			if ( ! $banned_domain ) {
-				continue;
+				break;
 			}
 
 			if ( $email_domain == $banned_domain ) {

@@ -112,7 +112,7 @@ class WP_Http_Cookie {
 
 				// Handle the cookie ending in ; which results in a empty final pair.
 				if ( empty( $pair ) ) {
-					continue;
+					break;
 				}
 
 				list( $key, $val ) = strpos( $pair, '=' ) ? explode( '=', $pair ) : array( $pair, '' );

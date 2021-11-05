@@ -974,15 +974,15 @@ var media = (function () {
         while (i--) {
           node = nodes[i];
           if (!node.parent) {
-            continue;
+            break;
           }
           if (node.parent.attr('data-mce-object')) {
-            continue;
+            break;
           }
           if (node.name === 'script') {
             videoScript = VideoScript.getVideoScriptMatch(Settings.getScripts(editor), node.attr('src'));
             if (!videoScript) {
-              continue;
+              break;
             }
           }
           if (videoScript) {
@@ -1035,7 +1035,7 @@ var media = (function () {
           while (i--) {
             node = nodes[i];
             if (!node.parent) {
-              continue;
+              break;
             }
             realElmName = node.attr(name);
             realElm = new global$8(realElmName, 1);

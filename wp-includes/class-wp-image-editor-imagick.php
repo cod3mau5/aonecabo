@@ -440,7 +440,7 @@ class WP_Image_Editor_Imagick extends WP_Image_Editor {
 			}
 
 			if ( ! isset( $size_data['width'] ) && ! isset( $size_data['height'] ) ) {
-				continue;
+				break;
 			}
 
 			if ( ! isset( $size_data['width'] ) ) {

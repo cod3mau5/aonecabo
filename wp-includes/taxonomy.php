@@ -1015,7 +1015,7 @@ function get_term_children( $term_id, $taxonomy ) {
 
 	foreach ( (array) $terms[ $term_id ] as $child ) {
 		if ( $term_id == $child ) {
-			continue;
+			break;
 		}
 
 		if ( isset( $terms[ $child ] ) ) {
@@ -2441,13 +2441,13 @@ function wp_set_object_terms( $object_id, $terms, $taxonomy, $append = false ) {
 
 	foreach ( (array) $terms as $term ) {
 		if ( ! strlen( trim( $term ) ) ) {
-			continue;
+			break;
 		}
 
 		if ( ! $term_info = term_exists( $term, $taxonomy ) ) {
 			// Skip if a non-existent term ID is passed.
 			if ( is_int( $term ) ) {
-				continue;
+				break;
 			}
 			$term_info = wp_insert_term( $term, $taxonomy );
 		}
@@ -2459,7 +2459,7 @@ function wp_set_object_terms( $object_id, $terms, $taxonomy, $append = false ) {
 		$tt_ids[]   = $tt_id;
 
 		if ( $wpdb->get_var( $wpdb->prepare( "SELECT term_taxonomy_id FROM $wpdb->term_relationships WHERE object_id = %d AND term_taxonomy_id = %d", $object_id, $tt_id ) ) ) {
-			continue;
+			break;
 		}
 
 		/**
@@ -2600,13 +2600,13 @@ function wp_remove_object_terms( $object_id, $terms, $taxonomy ) {
 
 	foreach ( (array) $terms as $term ) {
 		if ( ! strlen( trim( $term ) ) ) {
-			continue;
+			break;
 		}
 
 		if ( ! $term_info = term_exists( $term, $taxonomy ) ) {
 			// Skip if a non-existent term ID is passed.
 			if ( is_int( $term ) ) {
-				continue;
+				break;
 			}
 		}
 
@@ -3523,7 +3523,7 @@ function _get_term_children( $term_id, $terms, $taxonomy, &$ancestors = array() 
 
 		// Don't recurse if we've already identified the term as a child - this indicates a loop.
 		if ( isset( $ancestors[ $term->term_id ] ) ) {
-			continue;
+			break;
 		}
 
 		if ( $term->parent == $term_id ) {
@@ -3534,7 +3534,7 @@ function _get_term_children( $term_id, $terms, $taxonomy, &$ancestors = array() 
 			}
 
 			if ( ! isset( $has_children[ $term->term_id ] ) ) {
-				continue;
+				break;
 			}
 
 			$ancestors[ $term->term_id ] = 1;
@@ -3951,7 +3951,7 @@ function _wp_batch_split_terms() {
 		// Don't split the first tt belonging to a given term_id.
 		if ( ! isset( $skipped_first_term[ $term_id ] ) ) {
 			$skipped_first_term[ $term_id ] = 1;
-			continue;
+			break;
 		}
 
 		if ( ! isset( $split_term_data[ $term_id ] ) ) {

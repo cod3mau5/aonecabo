@@ -126,19 +126,19 @@ function vc_media_editor_add_image() {
 		if ( ! empty( $filters[ $attachment_id ] ) ) {
 			$filter_name = $filters[ $attachment_id ];
 		} else {
-			continue;
+			break;
 		}
 
 		$source_path = get_attached_file( $attachment_id );
 
 		if ( empty( $source_path ) ) {
-			continue;
+			break;
 		}
 
 		$temp_path = sys_get_temp_dir() . DIRECTORY_SEPARATOR . basename( $source_path );
 
 		if ( ! copy( $source_path, $temp_path ) ) {
-			continue;
+			break;
 		}
 
 		$extension = strtolower( pathinfo( $temp_path, PATHINFO_EXTENSION ) );
@@ -165,14 +165,14 @@ function vc_media_editor_add_image() {
 		}
 
 		if ( ! $image ) {
-			continue;
+			break;
 		}
 
 		$Filter = new vcImageFilter( $image );
 		$Filter->$filter_name();
 
 		if ( ! vc_save_gd_resource( $Filter->getImage(), $temp_path ) ) {
-			continue;
+			break;
 		}
 
 		$new_filename = basename( $temp_path, '.' . $extension ) . '-' . $filter_name . '.' . $extension;
@@ -190,7 +190,7 @@ function vc_media_editor_add_image() {
 		$new_attachment_id = media_handle_upload( $file_key, $post_id, $post_data, $overrides );
 
 		if ( ! $new_attachment_id || is_wp_error( $new_attachment_id ) ) {
-			continue;
+			break;
 		}
 
 		update_post_meta( $new_attachment_id, 'vc-applied-image-filter', $filter_name );

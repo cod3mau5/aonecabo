@@ -46,9 +46,9 @@
 
 			foreach($addons as $addon){
 				if(version_compare(RevSliderGlobals::SLIDER_REVISION, $addon->version_from, '<') || version_compare(RevSliderGlobals::SLIDER_REVISION, $addon->version_to, '>')){
-					continue;
+					break;
 				}
-				if( empty($addon->title) ) continue;
+				if( empty($addon->title) ) break;
 				
 				$rs_dash_background_style = !empty($addon->background) ? 'style="background-image: url('.$addon->background.');"' : "";
 				?>

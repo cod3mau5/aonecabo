@@ -229,7 +229,7 @@ final class WP_Customize_Selective_Refresh {
 			// Skip partials already created.
 			$partial = $this->get_partial( $partial_id );
 			if ( $partial ) {
-				continue;
+				break;
 			}
 
 			$partial_args  = false;
@@ -249,7 +249,7 @@ final class WP_Customize_Selective_Refresh {
 			 */
 			$partial_args = apply_filters( 'customize_dynamic_partial_args', $partial_args, $partial_id );
 			if ( false === $partial_args ) {
-				continue;
+				break;
 			}
 
 			/**
@@ -373,7 +373,7 @@ final class WP_Customize_Selective_Refresh {
 
 			if ( ! $partial || ! $partial->check_capabilities() ) {
 				$contents[ $partial_id ] = null;
-				continue;
+				break;
 			}
 
 			$contents[ $partial_id ] = array();

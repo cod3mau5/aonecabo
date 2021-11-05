@@ -83,7 +83,7 @@ function check_comment( $author, $email, $url, $comment, $user_ip, $user_agent, 
 
 			// Skip empty lines.
 			if ( empty( $word ) ) {
-				continue;
+				break;
 			}
 
 			/*
@@ -1249,7 +1249,7 @@ function wp_blacklist_check( $author, $email, $url, $comment, $user_ip, $user_ag
 
 		// Skip empty lines
 		if ( empty( $word ) ) {
-			continue; }
+			break; }
 
 		// Do some escaping magic so that '#' chars in the
 		// spam words don't break things:
@@ -3510,7 +3510,7 @@ function wp_comments_personal_data_eraser( $email_address, $page = 1 ) {
 
 			$items_retained = true;
 
-			continue;
+			break;
 		}
 
 		$args = array(

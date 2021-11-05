@@ -481,15 +481,15 @@ class WP_Filesystem_ftpsockets extends WP_Filesystem_Base {
 		foreach ( $list as $struc ) {
 
 			if ( '.' == $struc['name'] || '..' == $struc['name'] ) {
-				continue;
+				break;
 			}
 
 			if ( ! $include_hidden && '.' == $struc['name'][0] ) {
-				continue;
+				break;
 			}
 
 			if ( $limit_file && $struc['name'] != $limit_file ) {
-				continue;
+				break;
 			}
 
 			if ( 'd' == $struc['type'] ) {

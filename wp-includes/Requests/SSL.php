@@ -45,7 +45,7 @@ class Requests_SSL {
 			foreach ($altnames as $altname) {
 				$altname = trim($altname);
 				if (strpos($altname, 'DNS:') !== 0) {
-					continue;
+					break;
 				}
 
 				$has_dns_alt = true;

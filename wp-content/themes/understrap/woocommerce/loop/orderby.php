@@ -31,7 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		// Keep query string vars intact
 		foreach ( $_GET as $key => $val ) {
 			if ( 'orderby' === $key || 'submit' === $key ) {
-				continue;
+				break;
 			}
 			if ( is_array( $val ) ) {
 				foreach( $val as $innerVal ) {

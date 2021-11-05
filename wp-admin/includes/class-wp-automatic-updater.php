@@ -768,13 +768,13 @@ class WP_Automatic_Updater {
 
 			foreach ( $errors as $error ) {
 				if ( ! is_wp_error( $error ) ) {
-					continue;
+					break;
 				}
 				$error_code = $error->get_error_code();
 				/* translators: %s: Error code */
 				$body .= "\n\n" . sprintf( __( 'Error code: %s' ), $error_code );
 				if ( 'rollback_was_required' == $error_code ) {
-					continue;
+					break;
 				}
 				if ( $error->get_error_message() ) {
 					$body .= "\n" . $error->get_error_message();
@@ -850,7 +850,7 @@ class WP_Automatic_Updater {
 		// Plugins, Themes, Translations
 		foreach ( array( 'plugin', 'theme', 'translation' ) as $type ) {
 			if ( ! isset( $this->update_results[ $type ] ) ) {
-				continue;
+				break;
 			}
 			$success_items = wp_list_filter( $this->update_results[ $type ], array( 'result' => true ) );
 			if ( $success_items ) {
@@ -921,7 +921,7 @@ Thanks! -- The WordPress Team"
 
 		foreach ( array( 'core', 'plugin', 'theme', 'translation' ) as $type ) {
 			if ( ! isset( $this->update_results[ $type ] ) ) {
-				continue;
+				break;
 			}
 			foreach ( $this->update_results[ $type ] as $update ) {
 				$body[] = $update->name;
@@ -937,7 +937,7 @@ Thanks! -- The WordPress Team"
 					}
 					foreach ( $results as $result_type => $result ) {
 						if ( ! is_wp_error( $result ) ) {
-							continue;
+							break;
 						}
 
 						if ( 'rollback' === $result_type ) {

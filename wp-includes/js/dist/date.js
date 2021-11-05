@@ -340,7 +340,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 		for (i = 0; i < untils.length; i++) {
 			if (untils[i] == null) {
-				continue;
+				break;
 			}
 			untilYear = new Date(untils[i]).getUTCFullYear();
 			if (untilYear < start) {
@@ -732,7 +732,7 @@ function format(dateFormat) {
       // Add next character, then move on.
       i++;
       newFormat.push('[' + dateFormat[i] + ']');
-      continue;
+      break;
     }
 
     if (char in formatMap) {

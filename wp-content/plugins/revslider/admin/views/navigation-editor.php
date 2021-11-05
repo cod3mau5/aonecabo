@@ -173,7 +173,7 @@ $font_families = $rsopr->getArrFontFamilys();
 											<select name="rs-font-family" style="width: 160px">
 												<?php
 												foreach($font_families as $handle => $name){
-													if($name['label'] == 'Dont Show Me') continue;
+													if($name['label'] == 'Dont Show Me') break;
 													?>
 													<option value="<?php echo esc_attr($name['label']); ?>"><?php echo esc_attr($name['label']); ?></option>
 													<?php
@@ -700,7 +700,7 @@ $font_families = $rsopr->getArrFontFamilys();
 				css_handle = return_true_handle(css_handle);
 				
 				for(var key in rs_navigations){
-					if(rs_navigations[key]['handle'] != css_handle) continue;
+					if(rs_navigations[key]['handle'] != css_handle) break;
 					
 					
 					
@@ -709,7 +709,7 @@ $font_families = $rsopr->getArrFontFamilys();
 					}
 					
 					for(var phkey in rs_navigations[key]['settings']['placeholders']){
-						if(rs_navigations[key]['settings']['placeholders'][phkey]['nav-type'] !== nav_type) continue;
+						if(rs_navigations[key]['settings']['placeholders'][phkey]['nav-type'] !== nav_type) break;
 						var d = rs_navigations[key]['settings']['placeholders'][phkey];
 						
 						switch(d['type']){
@@ -885,7 +885,7 @@ $font_families = $rsopr->getArrFontFamilys();
 					
 					for(var key in cur_edit.settings.placeholders){
 						
-						if(cur_edit.settings.placeholders[key]['nav-type'] != nav_type) continue;
+						if(cur_edit.settings.placeholders[key]['nav-type'] != nav_type) break;
 						
 						//add to list
 						var ph_title = '';
@@ -903,7 +903,7 @@ $font_families = $rsopr->getArrFontFamilys();
 								ph_title = '<?php _e('Custom', 'revslider'); ?>';
 							break;
 							default:
-								continue;
+								break;
 							break;
 						}
 						
@@ -919,14 +919,14 @@ $font_families = $rsopr->getArrFontFamilys();
 				var nav_type = rs_get_current_nav_type();
 				
 				for(var key in rs_navigations){
-					if(rs_navigations[key]['id'] != cur_id) continue;
+					if(rs_navigations[key]['id'] != cur_id) break;
 					
 					if(typeof(rs_navigations[key]['settings']) !== 'undefined'){
 						if(rs_navigations[key]['settings']['placeholders'] == undefined) rs_navigations[key]['settings']['placeholders'] = [];
 					}
 					
 					for(var phkey in rs_navigations[key]['settings']['placeholders']){
-						if(rs_navigations[key]['settings']['placeholders'][phkey]['nav-type'] !== nav_type) continue;
+						if(rs_navigations[key]['settings']['placeholders'][phkey]['nav-type'] !== nav_type) break;
 						
 						if(rs_navigations[key]['settings']['placeholders'][phkey]['handle'] == placeholder){
 							
@@ -949,14 +949,14 @@ $font_families = $rsopr->getArrFontFamilys();
 					var nav_type = rs_get_current_nav_type();
 					
 					for(var key in rs_navigations){
-						if(rs_navigations[key]['id'] != cur_id) continue;
+						if(rs_navigations[key]['id'] != cur_id) break;
 						
 						if(typeof(rs_navigations[key]['settings']) !== 'undefined'){
 							if(rs_navigations[key]['settings']['placeholders'] == undefined) rs_navigations[key]['settings']['placeholders'] = [];
 						}
 						for(var phkey in rs_navigations[key]['settings']['placeholders']){
 							
-							if(rs_navigations[key]['settings']['placeholders'][phkey]['nav-type'] !== nav_type) continue;
+							if(rs_navigations[key]['settings']['placeholders'][phkey]['nav-type'] !== nav_type) break;
 							
 							if(rs_navigations[key]['settings']['placeholders'][phkey]['handle'] == placeholder){
 								delete(rs_navigations[key]['settings']['placeholders'][phkey]);
@@ -1177,7 +1177,7 @@ $font_families = $rsopr->getArrFontFamilys();
 				if(confirm(rev_lang.this_will_reset_navigation)){
 					var nav_id = jQuery(this).closest('.rs-nav-table-row').attr('id').replace('rs-nav-table-', '');
 					for(var key in rs_navigations){
-						if(rs_navigations[key]['id'] != nav_id) continue;
+						if(rs_navigations[key]['id'] != nav_id) break;
 						
 						if(typeof(rs_navigations[key]['settings']) !== 'undefined' && typeof(rs_navigations[key]['settings']['original']) !== 'undefined'){
 							rs_navigations[key]['css'] = {};
@@ -1219,7 +1219,7 @@ $font_families = $rsopr->getArrFontFamilys();
 				if(confirm(rev_lang.delete_navigation)){
 					
 					for(var key in rs_navigations){
-						if(rs_navigations[key]['id'] != nav_id) continue;
+						if(rs_navigations[key]['id'] != nav_id) break;
 
 						if(typeof(rs_navigations[key]['new']) !== 'undefined' && rs_navigations[key]['new'] == true){
 							delete rs_navigations[key];
@@ -1235,7 +1235,7 @@ $font_families = $rsopr->getArrFontFamilys();
 					UniteAdminRev.ajaxRequest('delete_navigation', nav_id, function(data){
 						if(data.success == true){
 							for(var key in rs_navigations){
-								if(rs_navigations[key]['id'] != nav_id) continue;
+								if(rs_navigations[key]['id'] != nav_id) break;
 								
 								delete rs_navigations[key];
 								break;
@@ -1308,7 +1308,7 @@ $font_families = $rsopr->getArrFontFamilys();
 				for(var key in rs_navigations){
 					if(rs_navigations[key]['id'] == nav_id){
 						updated = key;						
-						continue;
+						break;
 					}
 					if(rs_navigations[key]['name'] == name){
 						alert(rev_lang.nav_name_already_exists);
@@ -1474,9 +1474,9 @@ $font_families = $rsopr->getArrFontFamilys();
 					
 					for(var key in rs_navigations){
 						if(i === 1){
-							if(typeof(rs_navigations[key]['default']) !== 'undefined') continue;
+							if(typeof(rs_navigations[key]['default']) !== 'undefined') break;
 						}else{
-							if(typeof(rs_navigations[key]['default']) === 'undefined') continue;
+							if(typeof(rs_navigations[key]['default']) === 'undefined') break;
 						}
 						
 						if(parseInt(rs_navigations[key]['id']) > parseInt(latest_nav_id) && parseInt(rs_navigations[key]['id']) < 5000) latest_nav_id = parseInt(rs_navigations[key]['id']);
@@ -1701,7 +1701,7 @@ $font_families = $rsopr->getArrFontFamilys();
 								}
 							}
 							for(var key in rs_navigations){
-								if(rs_navigations[key]['id'] != cur_id) continue;
+								if(rs_navigations[key]['id'] != cur_id) break;
 								
 								if(typeof(rs_navigations[key]['settings']) !== 'undefined'){
 									if(rs_navigations[key]['settings']['placeholders'] == undefined) rs_navigations[key]['settings']['placeholders'] = [];
@@ -1921,7 +1921,7 @@ $font_families = $rsopr->getArrFontFamilys();
 			<select name="ph-font-family" style="width: 112px;">
 				<?php
 				foreach($font_families as $handle => $name){
-					if($name['label'] == 'Dont Show Me') continue;
+					if($name['label'] == 'Dont Show Me') break;
 					?>
 					<option value="<?php echo esc_attr($name['label']); ?>"><?php echo esc_attr($name['label']); ?></option>
 					<?php

@@ -174,7 +174,7 @@ function wp_get_script_polyfill( &$scripts, $tests ) {
 	$polyfill = '';
 	foreach ( $tests as $test => $handle ) {
 		if ( ! array_key_exists( $handle, $scripts->registered ) ) {
-			continue;
+			break;
 		}
 
 		$src = $scripts->registered[ $handle ]->src;
@@ -192,7 +192,7 @@ function wp_get_script_polyfill( &$scripts, $tests ) {
 		$src = esc_url( apply_filters( 'script_loader_src', $src, $handle ) );
 
 		if ( ! $src ) {
-			continue;
+			break;
 		}
 
 		$polyfill .= (
@@ -701,13 +701,13 @@ function wp_tinymce_inline_scripts() {
 		if ( is_bool( $value ) ) {
 			$val       = $value ? 'true' : 'false';
 			$init_obj .= $key . ':' . $val . ',';
-			continue;
+			break;
 		} elseif ( ! empty( $value ) && is_string( $value ) && (
 			( '{' == $value[0] && '}' == $value[strlen( $value ) - 1] ) ||
 			( '[' == $value[0] && ']' == $value[strlen( $value ) - 1] ) ||
 			preg_match( '/^\(?function ?\(/', $value ) ) ) {
 			$init_obj .= $key . ':' . $value . ',';
-			continue;
+			break;
 		}
 		$init_obj .= $key . ':"' . $value . '",';
 	}

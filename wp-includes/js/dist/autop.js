@@ -304,7 +304,7 @@ function autop(text) {
 
       if (start === -1) {
         text += textPart;
-        continue;
+        break;
       }
 
       var name = '<pre wp-pre-tag-' + i + '></pre>';

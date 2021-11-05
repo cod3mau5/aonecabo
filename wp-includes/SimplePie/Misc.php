@@ -1788,7 +1788,7 @@ class SimplePie_Misc
 					if ($string[$position - 1] === '\\')
 					{
 						$position++;
-						continue;
+						break;
 					}
 					elseif (isset($string[$position]))
 					{

@@ -1329,7 +1329,7 @@ function wp_dashboard_plugins_output( $rss, $args = array() ) {
 
 	foreach ( array( $popular ) as $feed ) {
 		if ( is_wp_error( $feed ) || ! $feed->get_item_quantity() )
-			continue;
+			break;
 
 		$items = $feed->get_items(0, 5);
 
@@ -1349,7 +1349,7 @@ function wp_dashboard_plugins_output( $rss, $args = array() ) {
 				$slug = $matches[1];
 			else {
 				unset( $items[$item_key] );
-				continue;
+				break;
 			}
 
 			// Is this random plugin's slug already installed? If so, try again.
@@ -1370,7 +1370,7 @@ function wp_dashboard_plugins_output( $rss, $args = array() ) {
 			unset($items[$item_key]);
 
 		if ( !isset($items[$item_key]) )
-			continue;
+			break;
 
 		$raw_title = $item->get_title();
 

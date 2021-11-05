@@ -517,11 +517,11 @@ class WP_Tax_Query {
 
 		foreach ( $parent_query as $sibling ) {
 			if ( ! is_array( $sibling ) || ! $this->is_first_order_clause( $sibling ) ) {
-				continue;
+				break;
 			}
 
 			if ( empty( $sibling['alias'] ) || empty( $sibling['operator'] ) ) {
-				continue;
+				break;
 			}
 
 			// The sibling must both have compatible operator to share its alias.

@@ -811,9 +811,9 @@ class RevSliderSlide extends RevSliderElementsBase{
 				$meta = str_replace('_REVSLIDER_', '-', $meta);
 				$vals = explode(':', $meta);
 				
-				if(count($vals) !== 2) continue; //not correct values
+				if(count($vals) !== 2) break; //not correct values
 				$vals[1] = intval($vals[1]); //get real number
-				if($vals[1] === 0 || $vals[1] < 0) continue; //needs to be at least 1 
+				if($vals[1] === 0 || $vals[1] < 0) break; //needs to be at least 1 
 				
 				if($vals[0] == 'words'){
 					$metaValue = explode(' ', strip_tags($content), $vals[1]+1);
@@ -822,7 +822,7 @@ class RevSliderSlide extends RevSliderElementsBase{
 				}elseif($vals[0] == 'chars'){
 					$metaValue = substr(strip_tags($content), 0, $vals[1]);
 				}else{
-					continue;
+					break;
 				}
 				
 				$text = str_replace($match,$metaValue,$text);	
@@ -1544,9 +1544,9 @@ class RevSliderSlide extends RevSliderElementsBase{
 				$meta = str_replace('_REVSLIDER_', '-', $meta);
 				$vals = explode(':', $meta);
 				
-				if(count($vals) !== 2) continue; //not correct values
+				if(count($vals) !== 2) break; //not correct values
 				$vals[1] = intval($vals[1]); //get real number
-				if($vals[1] === 0 || $vals[1] < 0) continue; //needs to be at least 1 
+				if($vals[1] === 0 || $vals[1] < 0) break; //needs to be at least 1 
 				
 				if($vals[0] == 'words'){
 					$metaValue = explode(' ', strip_tags($content), $vals[1]+1);
@@ -1555,7 +1555,7 @@ class RevSliderSlide extends RevSliderElementsBase{
 				}elseif($vals[0] == 'chars'){
 					$metaValue = substr(strip_tags($content), 0, $vals[1]);
 				}else{
-					continue;
+					break;
 				}
 				
 				$text = str_replace($match,$metaValue,$text);	
@@ -1573,9 +1573,9 @@ class RevSliderSlide extends RevSliderElementsBase{
 				$meta = str_replace('_REVSLIDER_', '-', $meta);
 				$vals = explode(':', $meta);
 				
-				if(count($vals) !== 1) continue; //not correct values
+				if(count($vals) !== 1) break; //not correct values
 				$vals[0] = intval($vals[0]); //get real number
-				if($vals[0] === 0 || $vals[0] < 0) continue; //needs to be at least 1 
+				if($vals[0] === 0 || $vals[0] < 0) break; //needs to be at least 1 
 				
 				$avatar = get_avatar_url($authorID,array("size"=>$vals[0]));
 				

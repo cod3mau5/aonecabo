@@ -704,7 +704,7 @@ class SMTP
             //First 4 chars contain response code followed by - or space
             $s = trim(substr($s, 4));
             if (empty($s)) {
-                continue;
+                break;
             }
             $fields = explode(' ', $s);
             if (!empty($fields)) {

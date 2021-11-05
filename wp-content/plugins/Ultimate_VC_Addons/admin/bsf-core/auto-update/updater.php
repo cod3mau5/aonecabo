@@ -101,23 +101,23 @@ if ( ! function_exists( 'bsf_check_product_update' ) ) {
 		if ( ! empty( $mix ) ) :
 			foreach ( $mix as $key => $product ) :
 				if ( ! isset( $product['id'] ) ) {
-					continue;
+					break;
 				}
 				$constant = strtoupper( str_replace( '-', '_', $product['id'] ) );
 				$constant = 'BSF_' . $constant . '_CHECK_UPDATES';
 				if ( defined( $constant ) && ( constant( $constant ) === 'false' || constant( $constant ) === false ) ) {
-					continue;
+					break;
 				}
 				array_push( $registered, $product['id'] );
 				// check license array build
 				$temp             = array();
 				$temp['site_url'] = site_url();
 				if ( ! isset( $product['purchase_key'] ) ) {
-					continue;
+					break;
 				}
 				$is_wp = ( isset( $product['in_house'] ) && $product['in_house'] === 'wp' ) ? true : false;
 				if ( $is_wp ) {
-					continue;
+					break;
 				}
 				$temp['purchase_code'] = $product['purchase_key'];
 				$temp['user_email']    = $bsf_user_email;
@@ -151,7 +151,7 @@ if ( ! function_exists( 'bsf_check_product_update' ) ) {
 						if ( ! empty( $bsf_product_plugins ) ) {
 							foreach ( $bsf_product_plugins as $key => $plugin ) {
 								if ( ! isset( $plugin['id'] ) ) {
-									continue;
+									break;
 								}
 								$pid = (string) $plugin['id'];
 								if ( $pid === $rid ) {
@@ -171,7 +171,7 @@ if ( ! function_exists( 'bsf_check_product_update' ) ) {
 						if ( ! empty( $bsf_product_themes ) ) {
 							foreach ( $bsf_product_themes as $key => $theme ) {
 								if ( ! isset( $theme['id'] ) ) {
-									continue;
+									break;
 								}
 								$pid = $theme['id'];
 								if ( $pid === $rid ) {
@@ -194,11 +194,11 @@ if ( ! function_exists( 'bsf_check_product_update' ) ) {
 								foreach ( $brainstrom_bundled_products as $bkeys => $bps ) {
 									foreach ( $bps as $bkey => $bp ) {
 										if ( ! isset( $bp->id ) ) {
-											continue;
+											break;
 										}
 										foreach ( $remote_data->bundled_products as $rbp ) {
 											if ( ! isset( $rbp->id ) ) {
-												continue;
+												break;
 											}
 											if ( $rbp->id === $bp->id ) {
 												$bprd = $brainstrom_bundled_products[ $bkeys ];

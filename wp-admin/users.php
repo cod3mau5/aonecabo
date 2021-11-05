@@ -135,7 +135,7 @@ switch ( $wp_list_table->current_action() ) {
 			if ( $id == $current_user->ID && ! $wp_roles->role_objects[ $role ]->has_cap( 'promote_users' )
 			&& ! ( is_multisite() && current_user_can( 'manage_network_users' ) ) ) {
 					$update = 'err_admin_role';
-					continue;
+					break;
 			}
 
 			// If the user doesn't already belong to the blog, bail.
@@ -189,7 +189,7 @@ switch ( $wp_list_table->current_action() ) {
 
 			if ( $id == $current_user->ID ) {
 				$update = 'err_admin_del';
-				continue;
+				break;
 			}
 			switch ( $_REQUEST['delete_option'] ) {
 				case 'delete':
@@ -356,7 +356,7 @@ switch ( $wp_list_table->current_action() ) {
 			$id = (int) $id;
 			if ( ! current_user_can( 'remove_user', $id ) ) {
 				$update = 'err_admin_remove';
-				continue;
+				break;
 			}
 			remove_user_from_blog( $id, $blog_id );
 		}

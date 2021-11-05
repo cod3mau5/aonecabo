@@ -50,11 +50,11 @@ if ( ! class_exists( 'BSF_Update_Manager' ) ) {
 				}
 
 				if ( isset( $_transient_data->response[ $template ] ) ) {
-					continue;
+					break;
 				}
 
 				if ( false === $this->enable_auto_updates( $product['id'] ) ) {
-					continue;
+					break;
 				}
 
 				$plugin                 = new stdClass();
@@ -118,7 +118,7 @@ if ( ! class_exists( 'BSF_Update_Manager' ) ) {
 			foreach ( $update_data as $key => $product ) {
 
 				if ( false === $this->enable_auto_updates( $product['id'] ) ) {
-					continue;
+					break;
 				}
 
 				if ( isset( $product['template'] ) && $product['template'] != '' ) {
@@ -385,7 +385,7 @@ if ( ! class_exists( 'BSF_Update_Manager' ) ) {
 				$constant = 'BSF_' . $constant . '_CHECK_UPDATES';
 
 				if ( defined( $constant ) && ( constant( $constant ) === 'false' || constant( $constant ) === false ) ) {
-					continue;
+					break;
 				}
 
 				$remote       = isset( $product['remote'] ) ? $product['remote'] : '';

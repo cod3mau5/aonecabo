@@ -495,7 +495,7 @@ function ms_not_installed( $domain, $path ) {
 	$msg .= ' ' . __( 'If you&#8217;re still stuck with this message, then check that your database contains the following tables:' ) . '</p><ul>';
 	foreach ( $wpdb->tables( 'global' ) as $t => $table ) {
 		if ( 'sitecategories' == $t ) {
-			continue;
+			break;
 		}
 		$msg .= '<li>' . $table . '</li>';
 	}

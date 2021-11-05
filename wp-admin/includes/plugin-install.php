@@ -603,7 +603,7 @@ function install_plugin_information() {
 
 	foreach ( (array) $api->sections as $section_name => $content ) {
 		if ( 'reviews' === $section_name && ( empty( $api->ratings ) || 0 === array_sum( (array) $api->ratings ) ) ) {
-			continue;
+			break;
 		}
 
 		if ( isset( $plugins_section_titles[ $section_name ] ) ) {

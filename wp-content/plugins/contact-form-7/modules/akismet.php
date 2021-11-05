@@ -72,7 +72,7 @@ function wpcf7_akismet_submitted_params() {
 	foreach ( (array) $_POST as $key => $val ) {
 		if ( '_wpcf7' == substr( $key, 0, 6 )
 		or '_wpnonce' == $key ) {
-			continue;
+			break;
 		}
 
 		if ( is_array( $val ) ) {
@@ -82,7 +82,7 @@ function wpcf7_akismet_submitted_params() {
 		$val = trim( $val );
 
 		if ( 0 == strlen( $val ) ) {
-			continue;
+			break;
 		}
 
 		if ( $tags = wpcf7_scan_form_tags( array( 'name' => $key ) ) ) {
@@ -96,10 +96,10 @@ function wpcf7_akismet_submitted_params() {
 
 				if ( 'author' == $akismet ) {
 					$params[$akismet] = trim( $params[$akismet] . ' ' . $val );
-					continue;
+					break;
 				} elseif ( '' == $params[$akismet] ) {
 					$params[$akismet] = $val;
-					continue;
+					break;
 				}
 			}
 		}

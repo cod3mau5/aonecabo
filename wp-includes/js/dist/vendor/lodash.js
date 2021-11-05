@@ -5705,7 +5705,7 @@
         }
         if (compared !== undefined) {
           if (compared) {
-            continue;
+            break;
           }
           result = false;
           break;

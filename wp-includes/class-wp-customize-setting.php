@@ -476,7 +476,7 @@ class WP_Customize_Setting {
 		foreach ( self::$aggregated_multidimensionals[ $this->type ][ $id_base ]['previewed_instances'] as $previewed_setting ) {
 			// Skip applying previewed value for any settings that have already been applied.
 			if ( ! empty( self::$aggregated_multidimensionals[ $this->type ][ $id_base ]['preview_applied_instances'][ $previewed_setting->id ] ) ) {
-				continue;
+				break;
 			}
 
 			// Do the replacements of the posted/default sub value into the root value.

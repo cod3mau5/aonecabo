@@ -2272,7 +2272,7 @@ var inlite = (function () {
             } else {
               global$7(eventCtrl.getEl()).on('DOMMouseScroll', fixWheelEvent);
             }
-            continue;
+            break;
           }
           if (name$$1 === 'mouseenter' || name$$1 === 'mouseleave') {
             if (!eventRootCtrl._hasMouseEnter) {
@@ -3447,7 +3447,7 @@ var inlite = (function () {
         if (panel.settings.autohide) {
           if (clickCtrl) {
             if (isChildOf(clickCtrl, panel) || panel.parent() === clickCtrl) {
-              continue;
+              break;
             }
           }
           e = panel.fire('autohide', { target: e.target });

@@ -36,7 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<?php foreach ( $order->get_items() as $item_id => $item ) : ?>
 					<?php
 						if ( ! apply_filters( 'woocommerce_order_item_visible', true, $item ) ) {
-							continue;
+							break;
 						}
 					?>
 					<tr class="<?php echo esc_attr( apply_filters( 'woocommerce_order_item_class', 'order_item', $item, $order ) ); ?>">

@@ -123,7 +123,7 @@ function wpcf7_acceptance_filter( $accepted, $submission ) {
 		$name = $tag->name;
 
 		if ( empty( $name ) ) {
-			continue;
+			break;
 		}
 
 		$value = ( ! empty( $_POST[$name] ) ? 1 : 0 );
@@ -139,7 +139,7 @@ function wpcf7_acceptance_filter( $accepted, $submission ) {
 		}
 
 		if ( $tag->has_option( 'optional' ) ) {
-			continue;
+			break;
 		}
 
 		$invert = $tag->has_option( 'invert' );

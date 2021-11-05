@@ -809,7 +809,7 @@ function wp_filter_oembed_iframe_title_attribute( $result, $data, $url ) {
 		foreach ( $attrs as $attr => $item ) {
 			$lower_attr = strtolower( $attr );
 			if ( $lower_attr === $attr ) {
-				continue;
+				break;
 			}
 			if ( ! isset( $attrs[ $lower_attr ] ) ) {
 				$attrs[ $lower_attr ] = $item;

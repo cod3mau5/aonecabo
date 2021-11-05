@@ -564,18 +564,18 @@ function _wp_ajax_add_hierarchical_term() {
 		$cat_name          = trim( $cat_name );
 		$category_nicename = sanitize_title( $cat_name );
 		if ( '' === $category_nicename ) {
-			continue;
+			break;
 		}
 
 		$cat_id = wp_insert_term( $cat_name, $taxonomy->name, array( 'parent' => $parent ) );
 		if ( ! $cat_id || is_wp_error( $cat_id ) ) {
-			continue;
+			break;
 		} else {
 			$cat_id = $cat_id['term_id'];
 		}
 		$checked_categories[] = $cat_id;
 		if ( $parent ) { // Do these all at once in a second
-			continue;
+			break;
 		}
 
 		ob_start();
@@ -964,12 +964,12 @@ function wp_ajax_add_link_category( $action ) {
 		$cat_name = trim( $cat_name );
 		$slug     = sanitize_title( $cat_name );
 		if ( '' === $slug ) {
-			continue;
+			break;
 		}
 
 		$cat_id = wp_insert_term( $cat_name, 'link_category' );
 		if ( ! $cat_id || is_wp_error( $cat_id ) ) {
-			continue;
+			break;
 		} else {
 			$cat_id = $cat_id['term_id'];
 		}
@@ -1152,7 +1152,7 @@ function wp_ajax_get_comments( $action ) {
 	ob_start();
 	foreach ( $wp_list_table->items as $comment ) {
 		if ( ! current_user_can( 'edit_comment', $comment->comment_ID ) && 0 === $comment->comment_approved ) {
-			continue;
+			break;
 		}
 		get_comment( $comment );
 		$wp_list_table->single_row( $comment );
@@ -2112,7 +2112,7 @@ function wp_ajax_widgets_order() {
 				$val = explode( ',', $val );
 				foreach ( $val as $k => $v ) {
 					if ( strpos( $v, 'widget-' ) === false ) {
-						continue;
+						break;
 					}
 
 					$sb[ $k ] = substr( $v, strpos( $v, '_' ) + 1 );
@@ -2207,7 +2207,7 @@ function wp_ajax_save_widget() {
 
 		if ( $name == $id_base ) {
 			if ( ! is_callable( $control['callback'] ) ) {
-				continue;
+				break;
 			}
 
 			ob_start();
@@ -2524,7 +2524,7 @@ function wp_ajax_set_attachment_thumbnail() {
 	// For each found attachment, set its thumbnail.
 	foreach ( $post_ids as $post_id ) {
 		if ( ! current_user_can( 'edit_post', $post_id ) ) {
-			continue;
+			break;
 		}
 
 		if ( set_post_thumbnail( $post_id, $thumbnail_id ) ) {
@@ -2933,13 +2933,13 @@ function wp_ajax_save_attachment_order() {
 
 	foreach ( $attachments as $attachment_id => $menu_order ) {
 		if ( ! current_user_can( 'edit_post', $attachment_id ) ) {
-			continue;
+			break;
 		}
 		if ( ! $attachment = get_post( $attachment_id ) ) {
-			continue;
+			break;
 		}
 		if ( 'attachment' != $attachment->post_type ) {
-			continue;
+			break;
 		}
 
 		wp_update_post(

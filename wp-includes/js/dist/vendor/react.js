@@ -710,7 +710,7 @@ function flushWork(didTimeout) {
           do {
             flushFirstCallback();
           } while (firstCallbackNode !== null && firstCallbackNode.expirationTime <= currentTime);
-          continue;
+          break;
         }
         break;
       }

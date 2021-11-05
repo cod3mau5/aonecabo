@@ -828,7 +828,7 @@ function wp_admin_bar_new_content_menu( $wp_admin_bar ) {
 	// Add any additional custom post types.
 	foreach ( $cpts as $cpt ) {
 		if ( ! current_user_can( $cpt->cap->create_posts ) ) {
-			continue;
+			break;
 		}
 
 		$key             = 'post-new.php?post_type=' . $cpt->name;

@@ -559,7 +559,7 @@
     var argsLength = arguments.length;
     for (var i = 0, length = getLength(array); i < length; i++) {
       var item = array[i];
-      if (_.contains(result, item)) continue;
+      if (_.contains(result, item)) break;
       for (var j = 1; j < argsLength; j++) {
         if (!_.contains(arguments[j], item)) break;
       }

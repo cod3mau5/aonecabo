@@ -97,7 +97,7 @@ if ( empty( $sidebars_widgets ) ) {
 
 foreach ( $sidebars_widgets as $sidebar_id => $widgets ) {
 	if ( 'wp_inactive_widgets' == $sidebar_id ) {
-		continue;
+		break;
 	}
 
 	if ( ! is_registered_sidebar( $sidebar_id ) ) {
@@ -189,7 +189,7 @@ if ( isset( $_POST['savewidget'] ) || isset( $_POST['removewidget'] ) ) {
 
 	foreach ( (array) $wp_registered_widget_updates as $name => $control ) {
 		if ( $name != $id_base || ! is_callable( $control['callback'] ) ) {
-			continue;
+			break;
 		}
 
 		ob_start();

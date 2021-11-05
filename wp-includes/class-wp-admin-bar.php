@@ -308,12 +308,12 @@ class WP_Admin_Bar {
 
 		foreach ( $this->_get_nodes() as $node ) {
 			if ( 'root' == $node->id ) {
-				continue;
+				break;
 			}
 
 			// Fetch the parent node. If it isn't registered, ignore the node.
 			if ( ! $parent = $this->_get_node( $node->parent ) ) {
-				continue;
+				break;
 			}
 
 			// Generate the group class (we distinguish between top level and other level groups).

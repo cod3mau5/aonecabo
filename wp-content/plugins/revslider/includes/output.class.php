@@ -504,12 +504,12 @@ class RevSliderOutput {
 					
 				if($date_from != ''){
 					$date_from = strtotime($date_from);
-					if($ts < $date_from) continue;
+					if($ts < $date_from) break;
 				}
 				
 				if($date_to != ''){
 					$date_to = strtotime($date_to);
-					if($ts > $date_to) continue;
+					if($ts > $date_to) break;
 				}
 			}
 			
@@ -1404,7 +1404,7 @@ class RevSliderOutput {
 			$unique_id = $this->zIndex - 4;
 		
 		//$visible = RevSliderFunctions::getVal($layer, 'visible', true);
-		//if($visible == false) continue;
+		//if($visible == false) break;
 		
 		$type = RevSliderFunctions::getVal($layer, 'type', 'text');
 		$svg_val = '';
@@ -3358,8 +3358,8 @@ class RevSliderOutput {
 		
 		$def_string = '';
 		foreach($def as $key => $value){
-			if(trim($value[0]) == '' || $value[0] == $value[1]) continue;
-			if(str_replace('px', '', $value[0]) == str_replace('px', '', $value[1])) continue;
+			if(trim($value[0]) == '' || $value[0] == $value[1]) break;
+			if(str_replace('px', '', $value[0]) == str_replace('px', '', $value[1])) break;
 			$def_string .= $key.':'.$value[0].';';
 		}
 		if($blurfilter != 0 && $blurfilter != '0px' || $blur_write_all){
@@ -3494,7 +3494,7 @@ class RevSliderOutput {
 			
 			$def_string_h = '';
 			foreach($def_h as $key => $value){
-				if(trim($value[0]) == '' || $value[0] === $value[1]) continue;
+				if(trim($value[0]) == '' || $value[0] === $value[1]) break;
 				$def_string_h .= $key.':'.$value[0].';';
 			}
 			if($hover_blurfilter != 0 && $hover_blurfilter != '0px' || $blur_write_all){
@@ -3562,10 +3562,10 @@ class RevSliderOutput {
 		
 		foreach($st_idle as $key => $value){
 			if($type == 'image' || $type == 'video'){ //do not print unneeded styles
-				if(in_array($key, $this->ignore_styles)) continue;
+				if(in_array($key, $this->ignore_styles)) break;
 			}
-			if(trim($value[0]) == '' || $value[0] == $value[1]) continue;
-			if(str_replace('px', '', $value[0]) == str_replace('px', '', $value[1])) continue;
+			if(trim($value[0]) == '' || $value[0] == $value[1]) break;
+			if(str_replace('px', '', $value[0]) == str_replace('px', '', $value[1])) break;
 			$style_string .= $key.':'.$value[0].';';
 		}
 		
@@ -3576,7 +3576,7 @@ class RevSliderOutput {
 		if($is_hover_active){
 			
 			foreach($st_hover as $key => $value){
-				if(trim($value[0]) == '' || $value[0] === $value[1]) continue;
+				if(trim($value[0]) == '' || $value[0] === $value[1]) break;
 				$st_h_string .= $key.':'.$value[0].';';
 			}
 			
@@ -3705,7 +3705,7 @@ class RevSliderOutput {
 				
 				switch($action){
 					case 'none':
-						continue;
+						break;
 					break;
 					case 'link':
 						//if post based, replace {{}} with correct info
@@ -4303,14 +4303,14 @@ class RevSliderOutput {
 		foreach($zones as $zs => $zone){ //go through all three zones
 			$lzone = array();
 			foreach($layers as $layer){
-				if(RevSliderFunctions::getVal($layer, 'type', 'text') !== 'row') continue; //we only want to handle rows here to get the zones we need to create
+				if(RevSliderFunctions::getVal($layer, 'type', 'text') !== 'row') break; //we only want to handle rows here to get the zones we need to create
 				
 				$this->row_zindex = 0;
 				
 				$layer_zone = RevSliderFunctions::getVal($layer, 'align_vert');
 				$layer_zone = (is_object($layer_zone)) ? RevSliderFunctions::get_biggest_device_setting($layer_zone, $enabled_sizes) : $layer_zone;
 				
-				if($layer_zone !== $zone) continue; //wrong zones, so continue
+				if($layer_zone !== $zone) break; //wrong zones, so continue
 				
 				//we have found a zone, now fill it with rows, columns, layers
 				ob_start(); //fetch the data, as we need to set the z-index on the rows
@@ -4344,12 +4344,12 @@ class RevSliderOutput {
 		$row_layer = array();
 		$go = 9999;
 		foreach($layers as $layer){
-			if(RevSliderFunctions::getVal($layer, 'type', 'text') !== 'row') continue; //we only want to handle rows here of the current zone and add them as a rows
+			if(RevSliderFunctions::getVal($layer, 'type', 'text') !== 'row') break; //we only want to handle rows here of the current zone and add them as a rows
 			
 			$layer_zone = RevSliderFunctions::getVal($layer, 'align_vert');
 			$layer_zone = (is_object($layer_zone)) ? RevSliderFunctions::get_biggest_device_setting($layer_zone, $enabled_sizes) : $layer_zone;
 			
-			if($layer_zone !== $current_zone) continue; //wrong zones, so continue
+			if($layer_zone !== $current_zone) break; //wrong zones, so continue
 			
 			$groupOrder = RevSliderFunctions::getVal($layer, 'groupOrder');
 			if($groupOrder === ''){
@@ -4398,8 +4398,8 @@ class RevSliderOutput {
 			
 			$this->container_mode = 'row';
 			
-			if(RevSliderFunctions::getVal($layer, 'type', 'text') !== 'column') continue; //we only want to handle columns here of the current row
-			if(RevSliderFunctions::getVal($layer, 'p_uid', -1) !== $unique_id) continue; //has the wrong row ID
+			if(RevSliderFunctions::getVal($layer, 'type', 'text') !== 'column') break; //we only want to handle columns here of the current row
+			if(RevSliderFunctions::getVal($layer, 'p_uid', -1) !== $unique_id) break; //has the wrong row ID
 			
 			$this->putLayer($layer, true, false, 'column');
 			$cuid = RevSliderFunctions::getVal($layer, 'unique_id', -1);
@@ -4409,7 +4409,7 @@ class RevSliderOutput {
 			$go = 9999;
 			foreach($layers as $nlayer){
 				$uid = RevSliderFunctions::getVal($nlayer, 'p_uid', -1);
-				if($uid !== $cuid) continue;
+				if($uid !== $cuid) break;
 				
 				$groupOrder = RevSliderFunctions::getVal($nlayer, 'groupOrder');
 				if($groupOrder === ''){
@@ -4453,7 +4453,7 @@ class RevSliderOutput {
 		$enabled_sizes = array('desktop' => 'on', 'notebook' => 'off', 'tablet' => 'off', 'mobile' => 'off');
 		
 		foreach($layers as $layer){
-			if(RevSliderFunctions::getVal($layer, 'type', 'text') !== 'group') continue; //we only want to handle groups here to get the zones we need to create
+			if(RevSliderFunctions::getVal($layer, 'type', 'text') !== 'group') break; //we only want to handle groups here to get the zones we need to create
 			
 			$this->container_mode = '';
 			
@@ -4480,7 +4480,7 @@ class RevSliderOutput {
 		foreach($layers as $layer){
 			$unique_id = RevSliderFunctions::getVal($layer, 'p_uid');
 			
-			if($u_id !== $unique_id) continue;
+			if($u_id !== $unique_id) break;
 			
 			$this->putLayer($layer, true); //add the layer into the group
 		}

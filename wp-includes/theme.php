@@ -469,7 +469,7 @@ function search_theme_directories( $force = false ) {
 			foreach ( $cached_roots as $theme_dir => $theme_root ) {
 				// A cached theme root is no longer around, so skip it.
 				if ( ! isset( $relative_theme_roots[ $theme_root ] ) ) {
-					continue;
+					break;
 				}
 				$found_themes[ $theme_dir ] = array(
 					'theme_file' => $theme_dir . '/style.css',
@@ -492,11 +492,11 @@ function search_theme_directories( $force = false ) {
 		$dirs = @ scandir( $theme_root );
 		if ( ! $dirs ) {
 			trigger_error( "$theme_root is not readable", E_USER_NOTICE );
-			continue;
+			break;
 		}
 		foreach ( $dirs as $dir ) {
 			if ( ! is_dir( $theme_root . '/' . $dir ) || $dir[0] == '.' || $dir == 'CVS' ) {
-				continue;
+				break;
 			}
 			if ( file_exists( $theme_root . '/' . $dir . '/style.css' ) ) {
 				// wp-content/themes/a-single-theme
@@ -512,14 +512,14 @@ function search_theme_directories( $force = false ) {
 				$sub_dirs = @ scandir( $theme_root . '/' . $dir );
 				if ( ! $sub_dirs ) {
 					trigger_error( "$theme_root/$dir is not readable", E_USER_NOTICE );
-					continue;
+					break;
 				}
 				foreach ( $sub_dirs as $sub_dir ) {
 					if ( ! is_dir( $theme_root . '/' . $dir . '/' . $sub_dir ) || $dir[0] == '.' || $dir == 'CVS' ) {
-						continue;
+						break;
 					}
 					if ( ! file_exists( $theme_root . '/' . $dir . '/' . $sub_dir . '/style.css' ) ) {
-						continue;
+						break;
 					}
 					$found_themes[ $dir . '/' . $sub_dir ] = array(
 						'theme_file' => $dir . '/' . $sub_dir . '/style.css',
@@ -3286,7 +3286,7 @@ function _wp_keep_alive_customize_changeset_dependent_auto_drafts( $new_status, 
 
 	foreach ( $data['nav_menus_created_posts']['value'] as $post_id ) {
 		if ( empty( $post_id ) || 'auto-draft' !== get_post_status( $post_id ) ) {
-			continue;
+			break;
 		}
 		$wpdb->update(
 			$wpdb->posts,

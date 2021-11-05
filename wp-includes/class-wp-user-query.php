@@ -454,7 +454,7 @@ class WP_User_Query {
 		$orderby_array = array();
 		foreach ( $ordersby as $_key => $_value ) {
 			if ( ! $_value ) {
-				continue;
+				break;
 			}
 
 			if ( is_int( $_key ) ) {
@@ -470,7 +470,7 @@ class WP_User_Query {
 			$parsed = $this->parse_orderby( $_orderby );
 
 			if ( ! $parsed ) {
-				continue;
+				break;
 			}
 
 			if ( 'nicename__in' === $_orderby || 'login__in' === $_orderby ) {

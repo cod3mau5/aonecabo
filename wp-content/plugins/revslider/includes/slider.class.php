@@ -1115,7 +1115,7 @@ class RevSliderSlider extends RevSliderElementsBase{
 						$tmpl_slider = $tmpl->getThemePunchTemplateSliders();
 						
 						foreach($tmpl_slider as $tp_slider){
-							if(!isset($tp_slider['installed'])) continue;
+							if(!isset($tp_slider['installed'])) break;
 							
 							if($tp_slider['uid'] == $uid_check){
 								$is_template = $uid_check;
@@ -1193,7 +1193,7 @@ class RevSliderSlider extends RevSliderElementsBase{
 							strpos($class,".tp-caption") === false || // everything that is not tp-caption
 							(strpos($class,".") === false || strpos($class,"#") !== false) || // no class -> #ID or img
 							strpos($class,">") !== false){ //.tp-caption>.imageclass or .tp-caption.imageclass>img or .tp-caption.imageclass .img
-							continue;
+							break;
 						}
 						
 						//is a dynamic style
@@ -2426,7 +2426,7 @@ class RevSliderSlider extends RevSliderElementsBase{
 				
 				if(!empty($arrPosts)){
 					foreach($arrPosts as $k => $p){
-						if(!isset($p->status_type)) continue;
+						if(!isset($p->status_type)) break;
 						
 						if(in_array($p->status_type, array("wall_post"))) unset($arrPosts[$k]);
 					}
@@ -2538,7 +2538,7 @@ class RevSliderSlider extends RevSliderElementsBase{
 		if(empty($arrPosts)) RevSliderFunctions::throwError(__('Failed to load Stream', 'revslider'));
 		
 		foreach($arrPosts as $postData){
-			if(empty($postData)) continue; //ignore empty entries, like from instagram
+			if(empty($postData)) break; //ignore empty entries, like from instagram
 			
 			$slideTemplate = $slideTemplates[$templateKey];
 			
@@ -2611,7 +2611,7 @@ class RevSliderSlider extends RevSliderElementsBase{
 			if($publishedOnly == true){
 				$state = $slide->getParam("state", "published");
 				if($state == "unpublished"){
-					continue;
+					break;
 				}
 			}
 			
@@ -2622,7 +2622,7 @@ class RevSliderSlider extends RevSliderElementsBase{
 					$arrChildren[$parentID] = array();
 				$arrChildren[$parentID][] = $slide;
 				if(!$allwpml)
-					continue;	//skip adding to main list
+					break;	//skip adding to main list
 			}
 			
 			//init the children array
@@ -2636,7 +2636,7 @@ class RevSliderSlider extends RevSliderElementsBase{
 		//add children array to the parent slides
 		foreach($arrChildren as $parentID=>$arr){
 			if(!isset($arrSlides[$parentID])){
-				continue;
+				break;
 			}
 			$arrSlides[$parentID]->setArrChildren($arr);
 		}
@@ -2988,9 +2988,9 @@ class RevSliderSlider extends RevSliderElementsBase{
 			This part needs to stay for backwards compatibility. It is used in the update process from v4x to v5x
 			*/
 			if($templates === true){
-				if($slider->getParam("template","false") == "false") continue;
+				if($slider->getParam("template","false") == "false") break;
 			}elseif($templates === false){
-				if($slider->getParam("template","false") == "true") continue;
+				if($slider->getParam("template","false") == "true") break;
 			}
 			
 			$arrSliders[] = $slider;
@@ -3064,18 +3064,18 @@ class RevSliderSlider extends RevSliderElementsBase{
 			
 			//filter by gallery only
 			if($filterType == self::SLIDER_TYPE_POSTS && $isFromPosts == false)
-				continue;
+				break;
 				
 			if($filterType == self::SLIDER_TYPE_GALLERY && $isFromPosts == true)
-				continue;
+				break;
 			
 			//filter by template type
 			if($filterType == self::SLIDER_TYPE_TEMPLATE && $isFromPosts == false)
-				continue;
+				break;
 			
 			//filter by except
 			if(!empty($exceptID) && $exceptID == $id)
-				continue;
+				break;
 				
 			$title = $slider->getTitle();
 			$arrShort[$id] = $title;
@@ -3100,14 +3100,14 @@ class RevSliderSlider extends RevSliderElementsBase{
 			
 			//filter by gallery only
 			if($filterType == self::SLIDER_TYPE_POSTS && $isFromPosts == false)
-				continue;
+				break;
 				
 			if($filterType == self::SLIDER_TYPE_GALLERY && $isFromPosts == true)
-				continue;
+				break;
 			
 			//filter by template type
 			if($filterType == self::SLIDER_TYPE_TEMPLATE && $isFromPosts == false) //$isTemplate == "false")
-				continue;
+				break;
 				
 			$sliderTitle = $slider->getTitle();
 			$arrSlides = $slider->getArrSlidesFromGalleryShort();
@@ -3322,7 +3322,7 @@ class RevSliderSlider extends RevSliderElementsBase{
 			else
 				$the_post = (array)$post;
 			
-			if($the_post['ID'] == $post_id) continue;
+			if($the_post['ID'] == $post_id) break;
 			
 			$my_posts[] = $the_post;
 		}

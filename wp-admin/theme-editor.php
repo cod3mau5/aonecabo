@@ -223,7 +223,7 @@ if ( $description ) {
 <?php
 foreach ( wp_get_themes( array( 'errors' => null ) ) as $a_stylesheet => $a_theme ) {
 	if ( $a_theme->errors() && 'theme_no_stylesheet' == $a_theme->errors()->get_error_code() ) {
-		continue;
+		break;
 	}
 
 	$selected = $a_stylesheet == $stylesheet ? ' selected="selected"' : '';

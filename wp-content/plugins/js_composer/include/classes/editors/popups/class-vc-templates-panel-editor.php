@@ -567,7 +567,7 @@ HTML;
 			$category_templates = array();
 			foreach ( $default_templates as $template_id => $template_data ) {
 				if ( isset( $template_data['disabled'] ) && $template_data['disabled'] ) {
-					continue;
+					break;
 				}
 				$category_templates[] = array(
 					'unique_id' => $template_id,

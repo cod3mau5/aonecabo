@@ -1245,7 +1245,7 @@ class PHPMailer
             foreach (array('From', 'Sender', 'ConfirmReadingTo') as $address_kind) {
                 $this->$address_kind = trim($this->$address_kind);
                 if (empty($this->$address_kind)) {
-                    continue;
+                    break;
                 }
                 $this->$address_kind = $this->punyencodeAddress($this->$address_kind);
                 if (!$this->validateAddress($this->$address_kind)) {
@@ -1661,7 +1661,7 @@ class PHPMailer
             $hostinfo = array();
             if (!preg_match('/^((ssl|tls):\/\/)*([a-zA-Z0-9\.-]*):?([0-9]*)$/', trim($hostentry), $hostinfo)) {
                 // Not a valid host entry
-                continue;
+                break;
             }
             // $hostinfo[2]: optional ssl or tls prefix
             // $hostinfo[3]: the hostname
@@ -2620,7 +2620,7 @@ class PHPMailer
 
                 $inclhash = md5(serialize($attachment));
                 if (in_array($inclhash, $incl)) {
-                    continue;
+                    break;
                 }
                 $incl[] = $inclhash;
                 $name = $attachment[2];
@@ -2629,7 +2629,7 @@ class PHPMailer
                 $disposition = $attachment[6];
                 $cid = $attachment[7];
                 if ($disposition == 'inline' && array_key_exists($cid, $cidUniq)) {
-                    continue;
+                    break;
                 }
                 $cidUniq[$cid] = true;
 
@@ -3458,7 +3458,7 @@ class PHPMailer
                             $message
                         );
                     }
-                    continue;
+                    break;
                 }
                 if (
                     // Only process relative URLs if a basedir is provided (i.e. no absolute local paths)

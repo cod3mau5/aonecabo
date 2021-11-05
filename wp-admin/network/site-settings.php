@@ -44,7 +44,7 @@ if ( isset( $_REQUEST['action'] ) && 'update-site' == $_REQUEST['action'] && is_
 		$key = wp_unslash( $key );
 		$val = wp_unslash( $val );
 		if ( $key === 0 || is_array( $val ) || in_array( $key, $skip_options ) ) {
-			continue; // Avoids "0 is a protected WP option and may not be modified" error when edit blog options
+			break; // Avoids "0 is a protected WP option and may not be modified" error when edit blog options
 		}
 		update_option( $key, $val );
 	}

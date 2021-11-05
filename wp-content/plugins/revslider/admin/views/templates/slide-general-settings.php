@@ -1286,7 +1286,7 @@ $slide_general_addon = apply_filters('revslider_slide_settings_addons', array(),
 								if($nav['handle'] == $ph_arr_type){ //check for settings, placeholders
 									if(isset($nav['settings']) && isset($nav['settings']['placeholders'])){
 										foreach($nav['settings']['placeholders'] as $placeholder){
-											if(empty($placeholder)) continue;
+											if(empty($placeholder)) break;
 											
 											$ph_vals = array();
 											
@@ -1330,7 +1330,7 @@ $slide_general_addon = apply_filters('revslider_slide_settings_addons', array(),
 														<?php
 														$font_families = $operations->getArrFontFamilys();
 														foreach($font_families as $handle => $name){
-															if($name['label'] == 'Dont Show Me') continue;
+															if($name['label'] == 'Dont Show Me') break;
 															
 															echo '<option value="'. esc_attr($name['label']) .'"';
 															if($ph_vals['font_family'] == esc_attr($name['label'])){

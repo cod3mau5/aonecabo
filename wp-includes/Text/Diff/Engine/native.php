@@ -67,7 +67,7 @@ class Text_Diff_Engine_native {
         for ($yi = $skip; $yi < $n_to - $endskip; $yi++) {
             $line = $to_lines[$yi];
             if (($this->ychanged[$yi] = empty($xhash[$line]))) {
-                continue;
+                break;
             }
             $yhash[$line] = 1;
             $this->yv[] = $line;
@@ -76,7 +76,7 @@ class Text_Diff_Engine_native {
         for ($xi = $skip; $xi < $n_from - $endskip; $xi++) {
             $line = $from_lines[$xi];
             if (($this->xchanged[$xi] = empty($yhash[$line]))) {
-                continue;
+                break;
             }
             $this->xv[] = $line;
             $this->xind[] = $xi;
@@ -186,7 +186,7 @@ class Text_Diff_Engine_native {
             for (; $x < $x1; $x++) {
                 $line = $flip ? $this->yv[$x] : $this->xv[$x];
                 if (empty($ymatches[$line])) {
-                    continue;
+                    break;
                 }
                 $matches = $ymatches[$line];
                 reset($matches);
@@ -368,7 +368,7 @@ class Text_Diff_Engine_native {
 
             /* Find the end of this run of changes. */
             while (++$i < $len && $changed[$i]) {
-                continue;
+                break;
             }
 
             do {
@@ -387,7 +387,7 @@ class Text_Diff_Engine_native {
                     }
                     assert($j > 0);
                     while ($other_changed[--$j]) {
-                        continue;
+                        break;
                     }
                     assert($j >= 0 && !$other_changed[$j]);
                 }
@@ -428,7 +428,7 @@ class Text_Diff_Engine_native {
                 $changed[--$i] = 0;
                 assert($j > 0);
                 while ($other_changed[--$j]) {
-                    continue;
+                    break;
                 }
                 assert($j >= 0 && !$other_changed[$j]);
             }

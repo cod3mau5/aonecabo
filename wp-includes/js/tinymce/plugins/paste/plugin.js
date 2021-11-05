@@ -461,7 +461,7 @@ var paste = (function () {
           var nodeText = getText(node);
           if (isBulletList(nodeText)) {
             convertParagraphToLi(node, 'ul');
-            continue;
+            break;
           }
           if (isNumericList(nodeText)) {
             var matches = /([0-9]+)\./.exec(nodeText);
@@ -470,11 +470,11 @@ var paste = (function () {
               start = parseInt(matches[1], 10);
             }
             convertParagraphToLi(node, 'ol', start);
-            continue;
+            break;
           }
           if (node._listLevel) {
             convertParagraphToLi(node, 'ul', 1);
-            continue;
+            break;
           }
           currentListNode = null;
         } else {
@@ -627,7 +627,7 @@ var paste = (function () {
           name = node.attr('name');
           if (href && href.indexOf('#_msocom_') !== -1) {
             node.remove();
-            continue;
+            break;
           }
           if (href && href.indexOf('file://') === 0) {
             href = href.split('#')[1];
@@ -640,7 +640,7 @@ var paste = (function () {
           } else {
             if (name && !/^_?(?:toc|edn|ftn)/i.test(name)) {
               node.unwrap();
-              continue;
+              break;
             }
             node.attr({
               href: href,
@@ -1375,7 +1375,7 @@ var paste = (function () {
           while (i--) {
             src = nodes[i].attributes.map.src;
             if (!src) {
-              continue;
+              break;
             }
             if (isWebKitFakeUrl(src)) {
               remove(nodes[i]);

@@ -1258,7 +1258,7 @@ function get_category_children( $id, $before = '/', $after = '', $visited = arra
 	$cat_ids = get_all_category_ids();
 	foreach ( (array) $cat_ids as $cat_id ) {
 		if ( $cat_id == $id )
-			continue;
+			break;
 
 		$category = get_category( $cat_id );
 		if ( is_wp_error( $category ) )

@@ -54,7 +54,7 @@
 			source = iframes[ i ];
 
 			if ( e.source !== source.contentWindow ) {
-				continue;
+				break;
 			}
 
 			source.removeAttribute( 'style' );

@@ -131,7 +131,7 @@ module.exports = function memize( fn, options ) {
 			// Check whether node arguments match arguments length
 			if ( node.args.length !== arguments.length ) {
 				node = node.next;
-				continue;
+				break;
 			}
 
 			// Check whether node arguments match arguments values
@@ -540,7 +540,7 @@ function isShallowEqual( a, b, fromIndex ) {
 			// Check whether node arguments match arguments
 			if ( ! isShallowEqual( node.args, args, 1 ) ) {
 				node = node.next;
-				continue;
+				break;
 			}
 
 			// At this point we can assume we've found a match
@@ -1567,16 +1567,16 @@ function createFromElement(_ref3) {
 
       accumulator.formats.length += _text.length;
       accumulator.replacements.length += _text.length;
-      continue;
+      break;
     }
 
     if (node.nodeType !== ELEMENT_NODE) {
-      continue;
+      break;
     }
 
     if (removeNode && removeNode(node) || unwrapNode && unwrapNode(node) && !node.hasChildNodes()) {
       accumulateSelection(accumulator, node, range, createEmptyValue());
-      continue;
+      break;
     }
 
     if (type === 'script') {
@@ -1594,7 +1594,7 @@ function createFromElement(_ref3) {
       accumulator.formats.length += 1;
       accumulator.replacements = accumulator.replacements.concat(_value.replacements);
       accumulator.text += OBJECT_REPLACEMENT_CHARACTER;
-      continue;
+      break;
     }
 
     if (type === 'br') {
@@ -1602,7 +1602,7 @@ function createFromElement(_ref3) {
       accumulator.text += '\n';
       accumulator.formats.length += 1;
       accumulator.replacements.length += 1;
-      continue;
+      break;
     }
 
     var lastFormats = accumulator.formats[accumulator.formats.length - 1];
@@ -1660,7 +1660,7 @@ function createFromElement(_ref3) {
     accumulateSelection(accumulator, node, range, value); // Don't apply the element as formatting if it has no content.
 
     if (isEmpty(value) && format && !format.attributes) {
-      continue;
+      break;
     }
 
     var formats = accumulator.formats;
@@ -1761,7 +1761,7 @@ function createFromMultilineElement(_ref4) {
     var node = element.children[index];
 
     if (node.nodeName.toLowerCase() !== multilineTag) {
-      continue;
+      break;
     }
 
     var value = createFromElement({
@@ -1837,7 +1837,7 @@ function getAttributes(_ref5) {
         value = _element$attributes$i.value;
 
     if (removeAttribute && removeAttribute(name)) {
-      continue;
+      break;
     }
 
     var safeName = /^on/i.test(name) ? 'data-disable-rich-text-' + name : name;
@@ -2869,7 +2869,7 @@ function toTree(_ref2) {
   for (var i = 0; i < formatsLength; i++) {
     var _ret = _loop(i);
 
-    if (_ret === "continue") continue;
+    if (_ret === "continue") break;
   }
 
   return tree;
@@ -3307,7 +3307,7 @@ function createElementHTML(_ref6) {
 
   for (var key in attributes) {
     if (!Object(external_this_wp_escapeHtml_["isValidAttributeName"])(key)) {
-      continue;
+      break;
     }
 
     attributeString += " ".concat(key, "=\"").concat(Object(external_this_wp_escapeHtml_["escapeAttribute"])(attributes[key]), "\"");
@@ -3440,7 +3440,7 @@ function getTargetLevelLineIndex(_ref, lineIndex) {
 
   while (index-- >= 0) {
     if (text[index] !== LINE_SEPARATOR) {
-      continue;
+      break;
     }
 
     var formatsAtIndex = formats[index] || []; // Return the first line index that is one level higher. If the level is
@@ -3488,7 +3488,7 @@ function indentListItems(value, rootFormat) {
 
   for (var index = lineIndex; index < end; index++) {
     if (text[index] !== LINE_SEPARATOR) {
-      continue;
+      break;
     } // Get the previous list, and if there's a child list, take over the
     // formats. If not, duplicate the last level and create a new level.
 
@@ -3536,7 +3536,7 @@ function getParentLineIndex(_ref, lineIndex) {
 
   while (index-- >= 0) {
     if (text[index] !== LINE_SEPARATOR) {
-      continue;
+      break;
     }
 
     var formatsAtIndex = formats[index] || [];
@@ -3571,7 +3571,7 @@ function getLastChildIndex(_ref, lineIndex) {
   for (var index = lineIndex || 0; index < text.length; index++) {
     // We're only interested in line indices.
     if (text[index] !== LINE_SEPARATOR) {
-      continue;
+      break;
     }
 
     var formatsAtIndex = formats[index] || []; // If the amout of formats is equal or more, store it, then return the
@@ -3626,7 +3626,7 @@ function outdentListItems(value) {
   for (var index = startingLineIndex; index <= lastChildIndex; index++) {
     // Skip indices that are not line separators.
     if (text[index] !== LINE_SEPARATOR) {
-      continue;
+      break;
     } // In the case of level 0, the formats at the index are undefined.
 
 
@@ -3684,7 +3684,7 @@ function changeListType(value, newFormat) {
 
   for (var index = startIndex + 1 || 0; index < text.length; index++) {
     if (text[index] !== LINE_SEPARATOR) {
-      continue;
+      break;
     }
 
     if ((newFormats[index] || []).length <= startCount) {
@@ -3692,7 +3692,7 @@ function changeListType(value, newFormat) {
     }
 
     if (!newFormats[index]) {
-      continue;
+      break;
     }
 
     changed = true;

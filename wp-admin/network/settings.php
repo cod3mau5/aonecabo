@@ -118,7 +118,7 @@ if ( $_POST ) {
 
 	foreach ( $options as $option_name ) {
 		if ( ! isset( $_POST[ $option_name ] ) ) {
-			continue;
+			break;
 		}
 		$value = wp_unslash( $_POST[ $option_name ] );
 		update_site_option( $option_name, $value );

@@ -274,7 +274,7 @@ if ( ! class_exists( 'Translations', false ) ) :
 			foreach ( $lines as $line ) {
 				$parts = explode( ':', $line, 2 );
 				if ( ! isset( $parts[1] ) ) {
-					continue;
+					break;
 				}
 				$headers[ trim( $parts[0] ) ] = trim( $parts[1] );
 			}

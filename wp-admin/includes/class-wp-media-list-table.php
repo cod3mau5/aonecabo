@@ -104,7 +104,7 @@ class WP_Media_List_Table extends WP_List_Table {
 
 		foreach ( $post_mime_types as $mime_type => $label ) {
 			if ( ! wp_match_mime_types( $mime_type, $avail_post_mime_types ) ) {
-				continue;
+				break;
 			}
 
 			$selected = selected(
@@ -629,7 +629,7 @@ class WP_Media_List_Table extends WP_List_Table {
 				( $this->is_trash && $post->post_status != 'trash' )
 				|| ( ! $this->is_trash && $post->post_status === 'trash' )
 			) {
-				continue;
+				break;
 			}
 			$post_owner = ( get_current_user_id() == $post->post_author ) ? 'self' : 'other';
 			?>

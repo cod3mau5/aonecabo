@@ -600,7 +600,7 @@ function export_wp( $args = array() ) {
 					 * @param object $meta     Current meta object.
 					 */
 					if ( apply_filters( 'wxr_export_skip_postmeta', false, $meta->meta_key, $meta ) ) {
-						continue;
+						break;
 					}
 					?>
 		<wp:postmeta>
@@ -643,7 +643,7 @@ function export_wp( $args = array() ) {
 						 * @param object $meta     Current meta object.
 						 */
 						if ( apply_filters( 'wxr_export_skip_commentmeta', false, $meta->meta_key, $meta ) ) {
-							continue;
+							break;
 						}
 						?>
 	<wp:commentmeta>

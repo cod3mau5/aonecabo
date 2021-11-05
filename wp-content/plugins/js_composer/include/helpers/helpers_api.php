@@ -281,7 +281,7 @@ function vc_map_integrate_shortcode( $shortcode, $field_prefix = '', $group_pref
 				if ( isset( $change_fields ) ) {
 					$param = vc_map_integrate_include_exclude_fields( $param, $change_fields );
 					if ( empty( $param ) ) {
-						continue;
+						break;
 					}
 				}
 				if ( ! empty( $group_prefix ) ) {

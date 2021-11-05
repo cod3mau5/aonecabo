@@ -162,7 +162,7 @@ class WP_Meta_Query {
 				$relation = $query;
 
 			} elseif ( ! is_array( $query ) ) {
-				continue;
+				break;
 
 				// First-order clause.
 			} elseif ( $this->is_first_order_clause( $query ) ) {
@@ -709,12 +709,12 @@ class WP_Meta_Query {
 		foreach ( $parent_query as $sibling ) {
 			// If the sibling has no alias yet, there's nothing to check.
 			if ( empty( $sibling['alias'] ) ) {
-				continue;
+				break;
 			}
 
 			// We're only interested in siblings that are first-order clauses.
 			if ( ! is_array( $sibling ) || ! $this->is_first_order_clause( $sibling ) ) {
-				continue;
+				break;
 			}
 
 			$compatible_compares = array();

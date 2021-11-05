@@ -126,7 +126,7 @@ function wpcf7_quiz_ajax_refill( $items ) {
 		$pipes = $fe['pipes'];
 
 		if ( empty( $name ) ) {
-			continue;
+			break;
 		}
 
 		if ( $pipes instanceof WPCF7_Pipes

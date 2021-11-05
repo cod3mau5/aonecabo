@@ -226,13 +226,13 @@ class WP {
 							// This is a verbose page match, let's check to be sure about it.
 							$page = get_page_by_path( $matches[ $varmatch[1] ] );
 							if ( ! $page ) {
-								continue;
+								break;
 							}
 
 							$post_status_obj = get_post_status_object( $page->post_status );
 							if ( ! $post_status_obj->public && ! $post_status_obj->protected
 								&& ! $post_status_obj->private && $post_status_obj->exclude_from_search ) {
-								continue;
+								break;
 							}
 						}
 
@@ -543,7 +543,7 @@ class WP {
 			if ( '' != $this->query_vars[ $wpvar ] ) {
 				$this->query_string .= ( strlen( $this->query_string ) < 1 ) ? '' : '&';
 				if ( ! is_scalar( $this->query_vars[ $wpvar ] ) ) { // Discard non-scalars.
-					continue;
+					break;
 				}
 				$this->query_string .= $wpvar . '=' . rawurlencode( $this->query_vars[ $wpvar ] );
 			}

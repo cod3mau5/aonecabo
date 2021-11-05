@@ -296,7 +296,7 @@ function wpcf7_load_contact_form_admin() {
 			$post = WPCF7_ContactForm::get_instance( $post );
 
 			if ( empty( $post ) ) {
-				continue;
+				break;
 			}
 
 			if ( ! current_user_can( 'wpcf7_delete_contact_form', $post->id() ) ) {

@@ -356,7 +356,7 @@ if ( ! class_exists( 'AIO_Icon_Manager' ) ) {
 							}
 						}
 						if ( substr( $entry, - 1 ) == '/' || ! empty( $delete ) ) {
-							continue;
+							break;
 						} // skip directories and non matching files
 						$fp  = $zip->getStream( $entry );
 						$ofp = fopen( $this->paths['tempdir'] . '/' . basename( $entry ), 'w' );

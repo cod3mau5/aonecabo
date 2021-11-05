@@ -112,7 +112,7 @@ if ( $doaction ) {
 
 				if ( wp_check_post_lock( $post_id ) ) {
 					$locked++;
-					continue;
+					break;
 				}
 
 				if ( ! wp_trash_post( $post_id ) ) {

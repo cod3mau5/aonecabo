@@ -258,7 +258,7 @@ function wp_list_bookmarks( $args = '' ) {
 			$params    = array_merge( $r, array( 'category' => $cat->term_id ) );
 			$bookmarks = get_bookmarks( $params );
 			if ( empty( $bookmarks ) ) {
-				continue;
+				break;
 			}
 			$output .= str_replace(
 				array( '%id', '%class' ),

@@ -573,15 +573,15 @@ class WP_Filesystem_SSH2 extends WP_Filesystem_Base {
 			$struc['name'] = $entry;
 
 			if ( '.' == $struc['name'] || '..' == $struc['name'] ) {
-				continue; //Do not care about these folders.
+				break; //Do not care about these folders.
 			}
 
 			if ( ! $include_hidden && '.' == $struc['name'][0] ) {
-				continue;
+				break;
 			}
 
 			if ( $limit_file && $struc['name'] != $limit_file ) {
-				continue;
+				break;
 			}
 
 			$struc['perms']       = $this->gethchmod( $path . '/' . $entry );

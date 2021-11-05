@@ -489,7 +489,7 @@ final class WP_Customize_Widgets {
 
 				// Skip widgets that may have gone away due to a plugin being deactivated.
 				if ( ! $is_active_sidebar || ! isset( $wp_registered_widgets[ $widget_id ] ) ) {
-					continue;
+					break;
 				}
 
 				$registered_widget = $wp_registered_widgets[ $widget_id ];
@@ -957,7 +957,7 @@ final class WP_Customize_Widgets {
 
 		foreach ( $sort as $widget ) {
 			if ( in_array( $widget['callback'], $done, true ) ) { // We already showed this multi-widget
-				continue;
+				break;
 			}
 
 			$sidebar = is_active_widget( $widget['callback'], $widget['id'], false, false );

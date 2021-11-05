@@ -183,7 +183,7 @@ class WP_Filesystem_Base {
 			// Direct matches ( folder = CONSTANT/ )
 			foreach ( $constant_overrides as $constant => $dir ) {
 				if ( ! defined( $constant ) ) {
-					continue;
+					break;
 				}
 				if ( $folder === $dir ) {
 					return trailingslashit( constant( $constant ) );
@@ -193,7 +193,7 @@ class WP_Filesystem_Base {
 			// Prefix Matches ( folder = CONSTANT/subdir )
 			foreach ( $constant_overrides as $constant => $dir ) {
 				if ( ! defined( $constant ) ) {
-					continue;
+					break;
 				}
 				if ( 0 === stripos( $folder, $dir ) ) { // $folder starts with $dir
 					$potential_folder = preg_replace( '#^' . preg_quote( $dir, '#' ) . '/#i', trailingslashit( constant( $constant ) ), $folder );
@@ -261,7 +261,7 @@ class WP_Filesystem_Base {
 
 		foreach ( $folder_parts as $index => $key ) {
 			if ( $index == $last_index ) {
-				continue; // We want this to be caught by the next code block.
+				break; // We want this to be caught by the next code block.
 			}
 
 			/*

@@ -152,14 +152,14 @@ class WP_Dependencies {
 			$queued       = in_array( $handle, $this->to_do, true );
 
 			if ( in_array( $handle, $this->done, true ) ) { // Already done
-				continue;
+				break;
 			}
 
 			$moved     = $this->set_group( $handle, $recursion, $group );
 			$new_group = $this->groups[ $handle ];
 
 			if ( $queued && ! $moved ) { // already queued and in the right group
-				continue;
+				break;
 			}
 
 			$keep_going = true;
@@ -175,12 +175,12 @@ class WP_Dependencies {
 				if ( $recursion ) {
 					return false; // Abort this branch.
 				} else {
-					continue; // We're at the top level. Move on to the next one.
+					break; // We're at the top level. Move on to the next one.
 				}
 			}
 
 			if ( $queued ) { // Already grabbed it and its dependencies.
-				continue;
+				break;
 			}
 
 			if ( isset( $handle_parts[1] ) ) {
@@ -337,7 +337,7 @@ class WP_Dependencies {
 	protected function recurse_deps( $queue, $handle ) {
 		foreach ( $queue as $queued ) {
 			if ( ! isset( $this->registered[ $queued ] ) ) {
-				continue;
+				break;
 			}
 
 			if ( in_array( $handle, $this->registered[ $queued ]->deps ) ) {

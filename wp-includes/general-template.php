@@ -2985,25 +2985,25 @@ function wp_resource_hints() {
 					$atts = $url;
 					$url  = $url['href'];
 				} else {
-					continue;
+					break;
 				}
 			}
 
 			$url = esc_url( $url, array( 'http', 'https' ) );
 
 			if ( ! $url ) {
-				continue;
+				break;
 			}
 
 			if ( isset( $unique_urls[ $url ] ) ) {
-				continue;
+				break;
 			}
 
 			if ( in_array( $relation_type, array( 'preconnect', 'dns-prefetch' ) ) ) {
 				$parsed = wp_parse_url( $url );
 
 				if ( empty( $parsed['host'] ) ) {
-					continue;
+					break;
 				}
 
 				if ( 'preconnect' === $relation_type && ! empty( $parsed['scheme'] ) ) {
@@ -3027,7 +3027,7 @@ function wp_resource_hints() {
 				if ( ! is_scalar( $value ) ||
 					( ! in_array( $attr, array( 'as', 'crossorigin', 'href', 'pr', 'rel', 'type' ), true ) && ! is_numeric( $attr ) ) ) {
 
-					continue;
+					break;
 				}
 
 				$value = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
@@ -3062,7 +3062,7 @@ function wp_dependencies_unique_hosts() {
 		if ( $dependencies instanceof WP_Dependencies && ! empty( $dependencies->queue ) ) {
 			foreach ( $dependencies->queue as $handle ) {
 				if ( ! isset( $dependencies->registered[ $handle ] ) ) {
-					continue;
+					break;
 				}
 
 				/* @var _WP_Dependency $dependency */

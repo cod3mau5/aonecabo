@@ -244,7 +244,7 @@ module.exports = function memize( fn, options ) {
 			// Check whether node arguments match arguments length
 			if ( node.args.length !== arguments.length ) {
 				node = node.next;
-				continue;
+				break;
 			}
 
 			// Check whether node arguments match arguments values
@@ -710,7 +710,7 @@ Url.prototype.parse = function(url, parseQueryString, slashesDenoteHost) {
       var hostparts = this.hostname.split(/\./);
       for (var i = 0, l = hostparts.length; i < l; i++) {
         var part = hostparts[i];
-        if (!part) continue;
+        if (!part) break;
         if (!part.match(hostnamePartPattern)) {
           var newpart = '';
           for (var j = 0, k = part.length; j < k; j++) {
@@ -782,7 +782,7 @@ Url.prototype.parse = function(url, parseQueryString, slashesDenoteHost) {
     for (var i = 0, l = autoEscape.length; i < l; i++) {
       var ae = autoEscape[i];
       if (rest.indexOf(ae) === -1)
-        continue;
+        break;
       var esc = encodeURIComponent(ae);
       if (esc === ae) {
         esc = escape(ae);
@@ -1224,7 +1224,7 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 
   for (i = 0; i < sourceKeys.length; i++) {
     key = sourceKeys[i];
-    if (excluded.indexOf(key) >= 0) continue;
+    if (excluded.indexOf(key) >= 0) break;
     target[key] = source[key];
   }
 
@@ -1242,8 +1242,8 @@ function _objectWithoutProperties(source, excluded) {
 
     for (i = 0; i < sourceSymbolKeys.length; i++) {
       key = sourceSymbolKeys[i];
-      if (excluded.indexOf(key) >= 0) continue;
-      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+      if (excluded.indexOf(key) >= 0) break;
+      if (!Object.prototype.propertyIsEnumerable.call(source, key)) break;
       target[key] = source[key];
     }
   }
@@ -14708,7 +14708,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 		for (var i = 0; i < arguments.length; i++) {
 			var arg = arguments[i];
-			if (!arg) continue;
+			if (!arg) break;
 
 			var argType = typeof arg;
 

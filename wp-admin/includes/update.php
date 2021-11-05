@@ -53,7 +53,7 @@ function get_core_updates( $options = array() ) {
 	$result  = array();
 	foreach ( $updates as $update ) {
 		if ( $update->response == 'autoupdate' ) {
-			continue;
+			break;
 		}
 
 		if ( array_key_exists( $update->current . '|' . $update->locale, $dismissed ) ) {
@@ -92,11 +92,11 @@ function find_core_auto_update() {
 	$upgrader    = new WP_Automatic_Updater;
 	foreach ( $updates->updates as $update ) {
 		if ( 'autoupdate' != $update->response ) {
-			continue;
+			break;
 		}
 
 		if ( ! $upgrader->should_update( 'core', $update, ABSPATH ) ) {
-			continue;
+			break;
 		}
 
 		if ( ! $auto_update || version_compare( $update->current, $auto_update->current, '>' ) ) {

@@ -1331,7 +1331,7 @@ if($slide->isStaticSlide()){
 $mslide_list = array();
 if(!empty($arrSlidesWPML)){
 	foreach($arrSlidesWPML as $arwmpl) {
-		if($arwmpl['id'] == $slideID) continue;
+		if($arwmpl['id'] == $slideID) break;
 		
 		$mslide_list[] = array($arwmpl['id'] => $arwmpl['title']);
 	}

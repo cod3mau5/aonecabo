@@ -141,7 +141,7 @@ class WP_Block_Type {
 			// If the attribute is not defined by the block type, it cannot be
 			// validated.
 			if ( ! isset( $this->attributes[ $attribute_name ] ) ) {
-				continue;
+				break;
 			}
 
 			$schema = $this->attributes[ $attribute_name ];

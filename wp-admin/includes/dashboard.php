@@ -930,7 +930,7 @@ function wp_dashboard_recent_comments( $total_items = 5 ) {
 		}
 		foreach ( $possible as $comment ) {
 			if ( ! current_user_can( 'read_post', $comment->comment_post_ID ) ) {
-				continue;
+				break;
 			}
 			$comments[] = $comment;
 			if ( count( $comments ) == $total_items ) {

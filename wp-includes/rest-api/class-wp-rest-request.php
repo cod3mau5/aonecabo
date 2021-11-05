@@ -773,11 +773,11 @@ class WP_REST_Request implements ArrayAccess {
 
 		foreach ( $order as $type ) {
 			if ( empty( $this->params[ $type ] ) ) {
-				continue;
+				break;
 			}
 			foreach ( $this->params[ $type ] as $key => $value ) {
 				if ( ! isset( $attributes['args'][ $key ] ) ) {
-					continue;
+					break;
 				}
 				$param_args = $attributes['args'][ $key ];
 
@@ -787,7 +787,7 @@ class WP_REST_Request implements ArrayAccess {
 				}
 				// If there's still no sanitize_callback, nothing to do here.
 				if ( empty( $param_args['sanitize_callback'] ) ) {
-					continue;
+					break;
 				}
 
 				$sanitized_value = call_user_func( $param_args['sanitize_callback'], $value, $this, $key );

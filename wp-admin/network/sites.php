@@ -145,7 +145,7 @@ if ( isset( $_GET['action'] ) ) {
 				$site_id = (int) $site_id;
 
 				if ( $site_id == get_network()->site_id ) {
-					continue;
+					break;
 				}
 
 				if ( ! current_user_can( 'delete_site', $site_id ) ) {

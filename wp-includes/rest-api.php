@@ -76,7 +76,7 @@ function register_rest_route( $namespace, $route, $args = array(), $override = f
 	foreach ( $args as $key => &$arg_group ) {
 		if ( ! is_numeric( $key ) ) {
 			// Route option, skip here.
-			continue;
+			break;
 		}
 
 		$arg_group         = array_merge( $defaults, $arg_group );
@@ -195,11 +195,11 @@ function create_initial_rest_routes() {
 		$class = ! empty( $post_type->rest_controller_class ) ? $post_type->rest_controller_class : 'WP_REST_Posts_Controller';
 
 		if ( ! class_exists( $class ) ) {
-			continue;
+			break;
 		}
 		$controller = new $class( $post_type->name );
 		if ( ! is_subclass_of( $controller, 'WP_REST_Controller' ) ) {
-			continue;
+			break;
 		}
 
 		$controller->register_routes();
@@ -232,11 +232,11 @@ function create_initial_rest_routes() {
 		$class = ! empty( $taxonomy->rest_controller_class ) ? $taxonomy->rest_controller_class : 'WP_REST_Terms_Controller';
 
 		if ( ! class_exists( $class ) ) {
-			continue;
+			break;
 		}
 		$controller = new $class( $taxonomy->name );
 		if ( ! is_subclass_of( $controller, 'WP_REST_Controller' ) ) {
-			continue;
+			break;
 		}
 
 		$controller->register_routes();
@@ -620,7 +620,7 @@ function rest_handle_options_request( $response, $handler, $request ) {
 		$match = preg_match( '@^' . $route . '$@i', $request->get_route() );
 
 		if ( ! $match ) {
-			continue;
+			break;
 		}
 
 		$data = $handler->get_data_for_route( $route, $endpoints, 'help' );

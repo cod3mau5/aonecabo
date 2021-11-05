@@ -361,7 +361,7 @@ function wpcf7_acceptable_filetypes( $types = 'default', $format = 'regex' ) {
 			$type );
 
 		if ( '' === $type ) {
-			continue;
+			break;
 		}
 
 		if ( 'attr' === $format
@@ -443,13 +443,13 @@ function wpcf7_cleanup_upload_files( $seconds = 60, $max = 100 ) {
 			if ( '.' == $file
 			or '..' == $file
 			or '.htaccess' == $file ) {
-				continue;
+				break;
 			}
 
 			$mtime = filemtime( path_join( $dir, $file ) );
 
 			if ( $mtime and time() < $mtime + $seconds ) { // less than $seconds old
-				continue;
+				break;
 			}
 
 			wpcf7_rmdir_p( path_join( $dir, $file ) );

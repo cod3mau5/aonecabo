@@ -54,7 +54,7 @@ function wpcf7_blacklist_check( $target ) {
 
 		if ( empty( $word )
 		or 256 < strlen( $word ) ) {
-			continue;
+			break;
 		}
 
 		$pattern = sprintf( '#%s#i', preg_quote( $word, '#' ) );
@@ -139,7 +139,7 @@ function wpcf7_format_atts( $atts ) {
 		$key = strtolower( trim( $key ) );
 
 		if ( ! preg_match( '/^[a-z_:][a-z_:.0-9-]*$/', $key ) ) {
-			continue;
+			break;
 		}
 
 		$value = trim( $value );
@@ -282,7 +282,7 @@ function wpcf7_rmdir_p( $dir ) {
 		while ( false !== ( $file = readdir( $handle ) ) ) {
 			if ( $file == "."
 			or $file == ".." ) {
-				continue;
+				break;
 			}
 
 			wpcf7_rmdir_p( path_join( $dir, $file ) );
@@ -312,7 +312,7 @@ function wpcf7_build_query( $args, $key = '' ) {
 		}
 
 		if ( null === $v ) {
-			continue;
+			break;
 		} elseif ( false === $v ) {
 			$v = '0';
 		}

@@ -2507,7 +2507,7 @@
             configFromStringAndFormat(tempConfig);
 
             if (!isValid(tempConfig)) {
-                continue;
+                break;
             }
 
             // if there is any input that was not parsed add a penalty for that format

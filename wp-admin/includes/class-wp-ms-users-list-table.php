@@ -336,7 +336,7 @@ class WP_MS_Users_List_Table extends WP_List_Table {
 
 		foreach ( $blogs as $val ) {
 			if ( ! can_edit_network( $val->site_id ) ) {
-				continue;
+				break;
 			}
 
 			$path = ( $val->path === '/' ) ? '' : $val->path;

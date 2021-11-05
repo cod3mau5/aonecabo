@@ -130,7 +130,7 @@ class WPBakeryShortCode_VC_Row extends WPBakeryShortCode {
 			$inner = '';
 			foreach ( $this->settings['params'] as $param ) {
 				if ( ! isset( $param['param_name'] ) ) {
-					continue;
+					break;
 				}
 				$param_value = isset( $atts[ $param['param_name'] ] ) ? $atts[ $param['param_name'] ] : '';
 				if ( is_array( $param_value ) ) {

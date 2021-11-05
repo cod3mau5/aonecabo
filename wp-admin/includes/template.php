@@ -222,7 +222,7 @@ function wp_popular_terms_checklist( $taxonomy, $default = 0, $number = 10, $ech
 	foreach ( (array) $terms as $term ) {
 		$popular_ids[] = $term->term_id;
 		if ( ! $echo ) { // Hack for Ajax use.
-			continue;
+			break;
 		}
 		$id      = "popular-$taxonomy-$term->term_id";
 		$checked = in_array( $term->term_id, $checked_terms ) ? 'checked="checked"' : '';
@@ -705,7 +705,7 @@ function meta_form( $post = null ) {
 
 		foreach ( $keys as $key ) {
 			if ( is_protected_meta( $key, 'post' ) || ! current_user_can( 'add_post_meta', $post->ID, $key ) ) {
-				continue;
+				break;
 			}
 			echo "\n<option value='" . esc_attr( $key ) . "'>" . esc_html( $key ) . '</option>';
 		}
@@ -881,7 +881,7 @@ function parent_dropdown( $default = 0, $parent = 0, $level = 0, $post = null ) 
 		foreach ( $items as $item ) {
 			// A page cannot be its own parent.
 			if ( $post && $post->ID && $item->ID == $post->ID ) {
-				continue;
+				break;
 			}
 
 			$pad      = str_repeat( '&nbsp;', $level * 3 );
@@ -1024,7 +1024,7 @@ function add_meta_box( $id, $title, $callback, $screen = null, $context = 'advan
 	foreach ( array_keys( $wp_meta_boxes[ $page ] ) as $a_context ) {
 		foreach ( array( 'high', 'core', 'default', 'low' ) as $a_priority ) {
 			if ( ! isset( $wp_meta_boxes[ $page ][ $a_context ][ $a_priority ][ $id ] ) ) {
-				continue;
+				break;
 			}
 
 			// If a core box was previously added or removed by a plugin, don't add.
@@ -1233,14 +1233,14 @@ function do_meta_boxes( $screen, $context, $object ) {
 			if ( isset( $wp_meta_boxes[ $page ][ $context ][ $priority ] ) ) {
 				foreach ( (array) $wp_meta_boxes[ $page ][ $context ][ $priority ] as $box ) {
 					if ( false == $box || ! $box['title'] ) {
-						continue;
+						break;
 					}
 
 					$block_compatible = true;
 					if ( is_array( $box['args'] ) ) {
 						// If a meta box is just here for back compat, don't show it in the block editor.
 						if ( $screen->is_block_editor() && isset( $box['args']['__back_compat_meta_box'] ) && $box['args']['__back_compat_meta_box'] ) {
-							continue;
+							break;
 						}
 
 						if ( isset( $box['args']['__block_editor_compatible_meta_box'] ) ) {
@@ -1411,7 +1411,7 @@ function do_accordion_sections( $screen, $context, $object ) {
 			if ( isset( $wp_meta_boxes[ $page ][ $context ][ $priority ] ) ) {
 				foreach ( $wp_meta_boxes[ $page ][ $context ][ $priority ] as $box ) {
 					if ( false == $box || ! $box['title'] ) {
-						continue;
+						break;
 					}
 					$i++;
 					$hidden_class = in_array( $box['id'], $hidden ) ? 'hide-if-js' : '';
@@ -1605,7 +1605,7 @@ function do_settings_sections( $page ) {
 		}
 
 		if ( ! isset( $wp_settings_fields ) || ! isset( $wp_settings_fields[ $page ] ) || ! isset( $wp_settings_fields[ $page ][ $section['id'] ] ) ) {
-			continue;
+			break;
 		}
 		echo '<table class="form-table">';
 		do_settings_fields( $page, $section['id'] );
@@ -2281,7 +2281,7 @@ function get_submit_button( $text = '', $type = 'primary large', $name = 'submit
 	$classes          = array( 'button' );
 	foreach ( $type as $t ) {
 		if ( 'secondary' === $t || 'button-secondary' === $t ) {
-			continue;
+			break;
 		}
 		$classes[] = in_array( $t, $button_shorthand ) ? 'button-' . $t : $t;
 	}

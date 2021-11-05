@@ -476,7 +476,7 @@ final class _WP_Editors {
 						foreach ( $mce_external_plugins as $name => $url ) {
 							if ( in_array( $name, $plugins, true ) ) {
 								unset( $mce_external_plugins[ $name ] );
-								continue;
+								break;
 							}
 
 							$url                           = set_url_scheme( $url );
@@ -742,14 +742,14 @@ final class _WP_Editors {
 			if ( is_bool( $value ) ) {
 				$val      = $value ? 'true' : 'false';
 				$options .= $key . ':' . $val . ',';
-				continue;
+				break;
 			} elseif ( ! empty( $value ) && is_string( $value ) && (
 				( '{' == $value[0] && '}' == $value{strlen( $value ) - 1} ) ||
 				( '[' == $value[0] && ']' == $value{strlen( $value ) - 1} ) ||
 				preg_match( '/^\(?function ?\(/', $value ) ) ) {
 
 				$options .= $key . ':' . $value . ',';
-				continue;
+				break;
 			}
 			$options .= $key . ':"' . $value . '",';
 		}
@@ -1374,7 +1374,7 @@ final class _WP_Editors {
 			// Remove strings that are not translated.
 			if ( $key === $value ) {
 				unset( $mce_translation[ $key ] );
-				continue;
+				break;
 			}
 
 			if ( false !== strpos( $value, '&' ) ) {

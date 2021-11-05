@@ -222,7 +222,7 @@ class WP_Image_Editor_GD extends WP_Image_Editor {
 
 		foreach ( $sizes as $size => $size_data ) {
 			if ( ! isset( $size_data['width'] ) && ! isset( $size_data['height'] ) ) {
-				continue;
+				break;
 			}
 
 			if ( ! isset( $size_data['width'] ) ) {

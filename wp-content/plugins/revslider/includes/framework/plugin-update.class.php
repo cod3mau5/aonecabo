@@ -220,7 +220,7 @@ class RevSliderPluginUpdate {
 			//only do this to styles prior 5.0
 			$settings = json_decode($attr['settings'], true);
 			if(!empty($settings) && isset($settings['translated'])){
-				if(version_compare($settings['translated'], 5.0, '>=')) continue;
+				if(version_compare($settings['translated'], 5.0, '>=')) break;
 			}
 			
 			$idle = json_decode($attr['params'], true);
@@ -310,7 +310,7 @@ class RevSliderPluginUpdate {
 		
 		if(!empty($arrSliders) && is_array($arrSliders)){
 			foreach($arrSliders as $slider){
-				if($slider->getParam('source_type', 'gallery') !== 'posts')  continue; //only check Slider with type of posts
+				if($slider->getParam('source_type', 'gallery') !== 'posts')  break; //only check Slider with type of posts
 				
 				$slider_id = $slider->getID();
 				
@@ -606,7 +606,7 @@ class RevSliderPluginUpdate {
 									//check for selected style in styles, then add all deformations to the layer
 									$cur_style = RevSliderFunctions::getVal($layer, 'style', '');
 									
-									if(trim($cur_style) == '') continue;
+									if(trim($cur_style) == '') break;
 									$wws = false;
 									
 									foreach($styles as $style){
@@ -616,7 +616,7 @@ class RevSliderPluginUpdate {
 										}
 									}
 									
-									if($wws == false) continue;
+									if($wws == false) break;
 									
 									$css_idle = '';
 									$css_hover = '';
@@ -1004,7 +1004,7 @@ class RevSliderPluginUpdate {
 						if($image !== ''){
 							$ml_id = RevSliderFunctionsWP::get_image_id_by_url($image);
 						}
-						if($image == '' && $image_id == '') continue; //if we are a video and have no cover image, do nothing
+						if($image == '' && $image_id == '') break; //if we are a video and have no cover image, do nothing
 						
 						if($ml_id !== false && $ml_id !== $image_id){
 							$urlImage = wp_get_attachment_image_src($ml_id, 'full');

@@ -145,7 +145,7 @@ while ( $my_query->have_posts() ) {
 	$post_title = the_title( '', '', false );
 	$post_id = $my_query->post->ID;
 	if ( in_array( get_the_ID(), $vc_posts_grid_exclude_id ) ) {
-		continue;
+		break;
 	}
 	if ( 'teaser' === $slides_content ) {
 		$content = apply_filters( 'the_excerpt', get_the_excerpt() );

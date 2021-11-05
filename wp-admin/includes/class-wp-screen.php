@@ -1103,11 +1103,11 @@ final class WP_Screen {
 		foreach ( $columns as $column => $title ) {
 			// Can't hide these for they are special
 			if ( in_array( $column, $special ) ) {
-				continue;
+				break;
 			}
 
 			if ( empty( $title ) ) {
-				continue;
+				break;
 			}
 
 			/*

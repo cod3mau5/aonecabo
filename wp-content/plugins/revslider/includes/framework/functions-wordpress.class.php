@@ -1131,7 +1131,7 @@ class RevSliderFunctionsWP {
 		$arrTax = array();
 		foreach($catIDs as $cat){
 			if(strpos($cat,"option_disabled") === 0)
-				continue;
+				break;
 			
 			$pos = strrpos($cat,"_");
 			if($pos === false)

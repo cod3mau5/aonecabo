@@ -239,7 +239,7 @@ class getID3
 		}
 		foreach ($optArray as $opt => $val) {
 			if (isset($this->$opt) === false) {
-				continue;
+				break;
 			}
 			$this->$opt = $val;
 		}
@@ -1239,7 +1239,7 @@ class getID3
 
 				if (!isset($this->info['tags'][$tag_name])) {
 					// comments are set but contain nothing but empty strings, so skip
-					continue;
+					break;
 				}
 
 				$this->CharConvert($this->info['tags'][$tag_name], $this->info[$comment_name]['encoding']);           // only copy gets converted!

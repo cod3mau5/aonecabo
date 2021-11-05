@@ -137,7 +137,7 @@ if ( isset( $_GET['action'] ) ) {
 				foreach ( $_POST['blog'] as $id => $users ) {
 					foreach ( $users as $blogid => $user_id ) {
 						if ( ! current_user_can( 'delete_user', $id ) ) {
-							continue;
+							break;
 						}
 
 						if ( ! empty( $_POST['delete'] ) && 'reassign' == $_POST['delete'][ $blogid ][ $id ] ) {
@@ -152,7 +152,7 @@ if ( isset( $_GET['action'] ) ) {
 			if ( is_array( $_POST['user'] ) && ! empty( $_POST['user'] ) ) {
 				foreach ( $_POST['user'] as $id ) {
 					if ( ! current_user_can( 'delete_user', $id ) ) {
-						continue;
+						break;
 					}
 					wpmu_delete_user( $id );
 					$i++;

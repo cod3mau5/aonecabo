@@ -36,7 +36,7 @@ class WP_REST_Block_Renderer_Controller extends WP_REST_Controller {
 
 		foreach ( $block_types as $block_type ) {
 			if ( ! $block_type->is_dynamic() ) {
-				continue;
+				break;
 			}
 
 			register_rest_route(

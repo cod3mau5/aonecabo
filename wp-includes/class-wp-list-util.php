@@ -244,11 +244,11 @@ class WP_List_Util {
 
 		foreach ( $this->orderby as $field => $direction ) {
 			if ( ! isset( $a[ $field ] ) || ! isset( $b[ $field ] ) ) {
-				continue;
+				break;
 			}
 
 			if ( $a[ $field ] == $b[ $field ] ) {
-				continue;
+				break;
 			}
 
 			$results = 'DESC' === $direction ? array( 1, -1 ) : array( -1, 1 );

@@ -1062,7 +1062,7 @@ final class WP_Customize_Manager {
 		$dismissed                 = 0;
 		foreach ( $changeset_autodraft_posts as $autosave_autodraft_post ) {
 			if ( $autosave_autodraft_post->ID === $this->changeset_post_id() ) {
-				continue;
+				break;
 			}
 			if ( update_post_meta( $autosave_autodraft_post->ID, '_customize_restore_dismissed', true ) ) {
 				$dismissed++;
@@ -1269,7 +1269,7 @@ final class WP_Customize_Manager {
 		foreach ( array_keys( $posts ) as $post_symbol ) {
 			if ( empty( $posts[ $post_symbol ]['post_name'] ) && empty( $posts[ $post_symbol ]['post_title'] ) ) {
 				unset( $posts[ $post_symbol ] );
-				continue;
+				break;
 			}
 			if ( empty( $posts[ $post_symbol ]['post_name'] ) ) {
 				$posts[ $post_symbol ]['post_name'] = sanitize_title( $posts[ $post_symbol ]['post_title'] );
@@ -1365,7 +1365,7 @@ final class WP_Customize_Manager {
 						$file_array['tmp_name'] = $temp_file_name;
 					}
 					if ( empty( $file_array['tmp_name'] ) ) {
-						continue;
+						break;
 					}
 
 					$attachment_post_data = array_merge(
@@ -1384,7 +1384,7 @@ final class WP_Customize_Manager {
 
 					$attachment_id = media_handle_sideload( $file_array, 0, null, $attachment_post_data );
 					if ( is_wp_error( $attachment_id ) ) {
-						continue;
+						break;
 					}
 					update_post_meta( $attachment_id, '_starter_content_theme', $this->get_stylesheet() );
 					update_post_meta( $attachment_id, '_customize_draft_post_name', $attachment['post_name'] );
@@ -1399,7 +1399,7 @@ final class WP_Customize_Manager {
 		if ( ! empty( $posts ) ) {
 			foreach ( array_keys( $posts ) as $post_symbol ) {
 				if ( empty( $posts[ $post_symbol ]['post_type'] ) || empty( $posts[ $post_symbol ]['post_name'] ) ) {
-					continue;
+					break;
 				}
 				$post_type = $posts[ $post_symbol ]['post_type'];
 				if ( ! empty( $posts[ $post_symbol ]['post_name'] ) ) {
@@ -1407,13 +1407,13 @@ final class WP_Customize_Manager {
 				} elseif ( ! empty( $posts[ $post_symbol ]['post_title'] ) ) {
 					$post_name = sanitize_title( $posts[ $post_symbol ]['post_title'] );
 				} else {
-					continue;
+					break;
 				}
 
 				// Use existing auto-draft post if one already exists with the same type and name.
 				if ( isset( $existing_starter_content_posts[ $post_type . ':' . $post_name ] ) ) {
 					$posts[ $post_symbol ]['ID'] = $existing_starter_content_posts[ $post_type . ':' . $post_name ]->ID;
-					continue;
+					break;
 				}
 
 				// Translate the featured image symbol.
@@ -1502,7 +1502,7 @@ final class WP_Customize_Manager {
 							$nav_menu_item['title'] = $original_object->post_title;
 						}
 					} else {
-						continue;
+						break;
 					}
 				} else {
 					$nav_menu_item['object_id'] = 0;
@@ -1529,7 +1529,7 @@ final class WP_Customize_Manager {
 				} elseif ( isset( $attachment_ids[ $matches['symbol'] ] ) ) {
 					$value = $attachment_ids[ $matches['symbol'] ];
 				} else {
-					continue;
+					break;
 				}
 			}
 
@@ -1547,7 +1547,7 @@ final class WP_Customize_Manager {
 				} elseif ( isset( $attachment_ids[ $matches['symbol'] ] ) ) {
 					$value = $attachment_ids[ $matches['symbol'] ];
 				} else {
-					continue;
+					break;
 				}
 			}
 
@@ -1556,7 +1556,7 @@ final class WP_Customize_Manager {
 				$name     = 'header_image_data';
 				$metadata = wp_get_attachment_metadata( $value );
 				if ( empty( $metadata ) ) {
-					continue;
+					break;
 				}
 				$value = array(
 					'attachment_id' => $value,
@@ -1608,7 +1608,7 @@ final class WP_Customize_Manager {
 
 			// A file is required and URLs to files are not currently allowed.
 			if ( empty( $attachment['file'] ) || preg_match( '#^https?://$#', $attachment['file'] ) ) {
-				continue;
+				break;
 			}
 
 			$file_path = null;
@@ -1619,14 +1619,14 @@ final class WP_Customize_Manager {
 			} elseif ( file_exists( get_template_directory() . '/' . $attachment['file'] ) ) {
 				$file_path = get_template_directory() . '/' . $attachment['file'];
 			} else {
-				continue;
+				break;
 			}
 			$file_name = basename( $attachment['file'] );
 
 			// Skip file types that are not recognized.
 			$checked_filetype = wp_check_filetype( $file_name );
 			if ( empty( $checked_filetype['type'] ) ) {
-				continue;
+				break;
 			}
 
 			// Ensure post_name is set since not automatically derived from post_title for new auto-draft posts.
@@ -1717,7 +1717,7 @@ final class WP_Customize_Manager {
 		if ( ! $args['exclude_changeset'] ) {
 			foreach ( $this->changeset_data() as $setting_id => $setting_params ) {
 				if ( ! array_key_exists( 'value', $setting_params ) ) {
-					continue;
+					break;
 				}
 				if ( isset( $setting_params['type'] ) && 'theme_mod' === $setting_params['type'] ) {
 
@@ -2065,7 +2065,7 @@ final class WP_Customize_Manager {
 		foreach ( $allowed_urls as $allowed_url ) {
 			$parsed = wp_parse_url( $allowed_url );
 			if ( empty( $parsed['host'] ) ) {
-				continue;
+				break;
 			}
 			$host = $parsed['host'];
 			if ( ! empty( $parsed['port'] ) ) {
@@ -2290,13 +2290,13 @@ final class WP_Customize_Manager {
 				if ( $options['validate_existence'] ) {
 					$validities[ $setting_id ] = new WP_Error( 'unrecognized', __( 'Setting does not exist or is unrecognized.' ) );
 				}
-				continue;
+				break;
 			}
 			if ( $options['validate_capability'] && ! current_user_can( $setting->capability ) ) {
 				$validity = new WP_Error( 'unauthorized', __( 'Unauthorized to modify setting due to capability.' ) );
 			} else {
 				if ( is_null( $unsanitized_value ) ) {
-					continue;
+					break;
 				}
 				$validity = $setting->validate( $unsanitized_value );
 			}
@@ -2755,12 +2755,12 @@ final class WP_Customize_Manager {
 		foreach ( $args['data'] as $setting_id => $setting_params ) {
 			$setting = $this->get_setting( $setting_id );
 			if ( ! $setting || ! $setting->check_capabilities() ) {
-				continue;
+				break;
 			}
 
 			// Skip updating changeset for invalid setting values.
 			if ( isset( $setting_validities[ $setting_id ] ) && is_wp_error( $setting_validities[ $setting_id ] ) ) {
-				continue;
+				break;
 			}
 
 			$changeset_setting_id = $setting_id;
@@ -2782,7 +2782,7 @@ final class WP_Customize_Manager {
 
 				// Skip updating setting params if unchanged (ensuring the user_id is not overwritten).
 				if ( $data[ $changeset_setting_id ] === $merged_setting_params ) {
-					continue;
+					break;
 				}
 
 				$data[ $changeset_setting_id ] = array_merge(
@@ -3725,7 +3725,7 @@ final class WP_Customize_Manager {
 		foreach ( $setting_ids as $setting_id ) {
 			// Skip settings already created
 			if ( $this->get_setting( $setting_id ) ) {
-				continue;
+				break;
 			}
 
 			$setting_args  = false;
@@ -3745,7 +3745,7 @@ final class WP_Customize_Manager {
 			 */
 			$setting_args = apply_filters( 'customize_dynamic_setting_args', $setting_args, $setting_id );
 			if ( false === $setting_args ) {
-				continue;
+				break;
 			}
 
 			/**
@@ -4364,7 +4364,7 @@ final class WP_Customize_Manager {
 
 		foreach ( $this->controls as $id => $control ) {
 			if ( ! isset( $this->sections[ $control->section ] ) || ! $control->check_capabilities() ) {
-				continue;
+				break;
 			}
 
 			$this->sections[ $control->section ]->controls[] = $control;
@@ -4386,7 +4386,7 @@ final class WP_Customize_Manager {
 
 		foreach ( $this->sections as $section ) {
 			if ( ! $section->check_capabilities() ) {
-				continue;
+				break;
 			}
 
 			$section->controls = wp_list_sort(
@@ -4423,7 +4423,7 @@ final class WP_Customize_Manager {
 
 		foreach ( $this->panels as $panel ) {
 			if ( ! $panel->check_capabilities() ) {
-				continue;
+				break;
 			}
 
 			$panel->sections      = wp_list_sort(

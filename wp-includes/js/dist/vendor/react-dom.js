@@ -324,7 +324,7 @@ function recomputePluginOrdering() {
     var pluginIndex = eventPluginOrder.indexOf(pluginName);
     !(pluginIndex > -1) ? invariant(false, 'EventPluginRegistry: Cannot inject event plugins that do not exist in the plugin ordering, `%s`.', pluginName) : void 0;
     if (plugins[pluginIndex]) {
-      continue;
+      break;
     }
     !pluginModule.extractEvents ? invariant(false, 'EventPluginRegistry: Event plugins must implement an `extractEvents` method, but `%s` does not.', pluginName) : void 0;
     plugins[pluginIndex] = pluginModule;
@@ -450,7 +450,7 @@ function injectEventPluginsByName(injectedNamesToPlugins) {
   var isOrderingDirty = false;
   for (var pluginName in injectedNamesToPlugins) {
     if (!injectedNamesToPlugins.hasOwnProperty(pluginName)) {
-      continue;
+      break;
     }
     var pluginModule = injectedNamesToPlugins[pluginName];
     if (!namesToPlugins.hasOwnProperty(pluginName) || namesToPlugins[pluginName] !== pluginModule) {
@@ -1464,7 +1464,7 @@ function SyntheticEvent(dispatchConfig, targetInst, nativeEvent, nativeEventTarg
   var Interface = this.constructor.Interface;
   for (var propName in Interface) {
     if (!Interface.hasOwnProperty(propName)) {
-      continue;
+      break;
     }
     {
       delete this[propName]; // this has a getter/setter for warnings
@@ -3541,7 +3541,7 @@ function updateNamedCousins(rootNode, props) {
     for (var i = 0; i < group.length; i++) {
       var otherNode = group[i];
       if (otherNode === rootNode || otherNode.form !== rootNode.form) {
-        continue;
+        break;
       }
       // This will throw if radio buttons rendered by different copies of React
       // and the same name are rendered into the same form (same as #1939).
@@ -4342,7 +4342,7 @@ function findCurrentHostFiber(parent) {
     } else if (node.child) {
       node.child.return = node;
       node = node.child;
-      continue;
+      break;
     }
     if (node === currentParent) {
       return null;
@@ -4375,7 +4375,7 @@ function findCurrentHostFiberWithNoPortals(parent) {
     } else if (node.child && node.tag !== HostPortal) {
       node.child.return = node;
       node = node.child;
-      continue;
+      break;
     }
     if (node === currentParent) {
       return null;
@@ -5840,7 +5840,7 @@ function checkSelectPropTypes(props) {
   for (var i = 0; i < valuePropNames.length; i++) {
     var propName = valuePropNames[i];
     if (props[propName] == null) {
-      continue;
+      break;
     }
     var isArray = Array.isArray(props[propName]);
     if (props.multiple && !isArray) {
@@ -6427,7 +6427,7 @@ function createDangerousStringForStyles(styles) {
     var delimiter = '';
     for (var styleName in styles) {
       if (!styles.hasOwnProperty(styleName)) {
-        continue;
+        break;
       }
       var styleValue = styles[styleName];
       if (styleValue != null) {
@@ -6453,7 +6453,7 @@ function setValueForStyles(node, styles) {
   var style = node.style;
   for (var styleName in styles) {
     if (!styles.hasOwnProperty(styleName)) {
-      continue;
+      break;
     }
     var isCustomProperty = styleName.indexOf('--') === 0;
     {
@@ -7509,7 +7509,7 @@ function trapClickOnNonInteractiveElement(node) {
 function setInitialDOMProperties(tag, domElement, rootContainerElement, nextProps, isCustomComponentTag) {
   for (var propKey in nextProps) {
     if (!nextProps.hasOwnProperty(propKey)) {
-      continue;
+      break;
     }
     var nextProp = nextProps[propKey];
     if (propKey === STYLE$1) {
@@ -7800,7 +7800,7 @@ function diffProperties(domElement, tag, lastRawProps, nextRawProps, rootContain
   var styleUpdates = null;
   for (propKey in lastProps) {
     if (nextProps.hasOwnProperty(propKey) || !lastProps.hasOwnProperty(propKey) || lastProps[propKey] == null) {
-      continue;
+      break;
     }
     if (propKey === STYLE$1) {
       var lastStyle = lastProps[propKey];
@@ -7835,7 +7835,7 @@ function diffProperties(domElement, tag, lastRawProps, nextRawProps, rootContain
     var nextProp = nextProps[propKey];
     var lastProp = lastProps != null ? lastProps[propKey] : undefined;
     if (!nextProps.hasOwnProperty(propKey) || nextProp === lastProp || nextProp == null && lastProp == null) {
-      continue;
+      break;
     }
     if (propKey === STYLE$1) {
       {
@@ -8061,7 +8061,7 @@ function diffHydratedProperties(domElement, tag, rawProps, parentNamespace, root
   var updatePayload = null;
   for (var propKey in rawProps) {
     if (!rawProps.hasOwnProperty(propKey)) {
-      continue;
+      break;
     }
     var nextProp = rawProps[propKey];
     if (propKey === CHILDREN) {
@@ -11570,7 +11570,7 @@ function areHookInputsEqual(arr1, arr2) {
     var val2 = arr2[i];
     if (val1 === val2 && (val1 !== 0 || 1 / val1 === 1 / val2) || val1 !== val1 && val2 !== val2 // eslint-disable-line no-self-compare
     ) {
-        continue;
+        break;
       }
     return false;
   }
@@ -13522,7 +13522,7 @@ function ChildReconciler(shouldTrackSideEffects) {
       for (; newIdx < newChildren.length; newIdx++) {
         var _newFiber = createChild(returnFiber, newChildren[newIdx], expirationTime);
         if (!_newFiber) {
-          continue;
+          break;
         }
         lastPlacedIndex = placeChild(_newFiber, lastPlacedIndex, newIdx);
         if (previousNewFiber === null) {
@@ -13673,7 +13673,7 @@ function ChildReconciler(shouldTrackSideEffects) {
       for (; !step.done; newIdx++, step = newChildren.next()) {
         var _newFiber3 = createChild(returnFiber, step.value, expirationTime);
         if (_newFiber3 === null) {
-          continue;
+          break;
         }
         lastPlacedIndex = placeChild(_newFiber3, lastPlacedIndex, newIdx);
         if (previousNewFiber === null) {
@@ -15286,7 +15286,7 @@ if (supportsMutation) {
       } else if (node.child !== null) {
         node.child.return = node;
         node = node.child;
-        continue;
+        break;
       }
       if (node === workInProgress) {
         return;
@@ -15406,12 +15406,12 @@ if (supportsMutation) {
           // Continue traversing like normal
           node.child.return = node;
           node = node.child;
-          continue;
+          break;
         }
       } else if (node.child !== null) {
         node.child.return = node;
         node = node.child;
-        continue;
+        break;
       }
       // $FlowFixMe This is correct but Flow is confused by the labeled break.
       node = node;
@@ -15494,12 +15494,12 @@ if (supportsMutation) {
           // Continue traversing like normal
           node.child.return = node;
           node = node.child;
-          continue;
+          break;
         }
       } else if (node.child !== null) {
         node.child.return = node;
         node = node.child;
-        continue;
+        break;
       }
       // $FlowFixMe This is correct but Flow is confused by the labeled break.
       node = node;
@@ -16209,11 +16209,11 @@ function hideOrUnhideAllChildren(finishedWork, isHidden) {
         var fallbackChildFragment = node.child.sibling;
         fallbackChildFragment.return = node;
         node = fallbackChildFragment;
-        continue;
+        break;
       } else if (node.child !== null) {
         node.child.return = node;
         node = node.child;
-        continue;
+        break;
       }
       if (node === finishedWork) {
         return;
@@ -16341,7 +16341,7 @@ function commitNestedUnmounts(root) {
     !supportsMutation || node.tag !== HostPortal)) {
       node.child.return = node;
       node = node.child;
-      continue;
+      break;
     }
     if (node === root) {
       return;
@@ -16535,7 +16535,7 @@ function commitPlacement(finishedWork) {
     } else if (node.child !== null) {
       node.child.return = node;
       node = node.child;
-      continue;
+      break;
     }
     if (node === finishedWork) {
       return;
@@ -16606,7 +16606,7 @@ function unmountHostComponents(current$$1) {
       if (node.child !== null) {
         node.child.return = node;
         node = node.child;
-        continue;
+        break;
       }
     } else {
       commitUnmount(node);
@@ -16614,7 +16614,7 @@ function unmountHostComponents(current$$1) {
       if (node.child !== null) {
         node.child.return = node;
         node = node.child;
-        continue;
+        break;
       }
     }
     if (node === current$$1) {
@@ -17839,7 +17839,7 @@ function completeUnitOfWork(workInProgress) {
       } else if (returnFiber !== null) {
         // If there's no more work in this returnFiber. Complete the returnFiber.
         workInProgress = returnFiber;
-        continue;
+        break;
       } else {
         // We've reached the root.
         return null;
@@ -17905,7 +17905,7 @@ function completeUnitOfWork(workInProgress) {
       } else if (returnFiber !== null) {
         // If there's no more work in this returnFiber. Complete the returnFiber.
         workInProgress = returnFiber;
-        continue;
+        break;
       } else {
         return null;
       }
@@ -18123,7 +18123,7 @@ function renderRoot(root, isYieldy) {
         } else {
           throwException(root, returnFiber, sourceFiber, thrownValue, nextRenderExpirationTime);
           nextUnitOfWork = completeUnitOfWork(sourceFiber);
-          continue;
+          break;
         }
       }
     }

@@ -41,7 +41,7 @@ class Text_Diff_Engine_xdiff {
         $edits = array();
         foreach ($diff as $line) {
             if (!strlen($line)) {
-                continue;
+                break;
             }
             switch ($line[0]) {
             case ' ':

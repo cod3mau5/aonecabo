@@ -141,10 +141,10 @@ function insert_with_markers( $filename, $marker, $insertion ) {
 	foreach ( $lines as $line ) {
 		if ( ! $found_marker && false !== strpos( $line, $start_marker ) ) {
 			$found_marker = true;
-			continue;
+			break;
 		} elseif ( ! $found_end_marker && false !== strpos( $line, $end_marker ) ) {
 			$found_end_marker = true;
-			continue;
+			break;
 		}
 		if ( ! $found_marker ) {
 			$pre_lines[] = $line;
@@ -332,7 +332,7 @@ function wp_print_theme_file_tree( $tree, $level = 2, $size = 1, $index = 1 ) {
 			$index++;
 			if ( ! is_array( $theme_file ) ) {
 				wp_print_theme_file_tree( $theme_file, $level, $index, $size );
-				continue;
+				break;
 			}
 			?>
 			<li role="treeitem" aria-expanded="true" tabindex="-1"
@@ -421,7 +421,7 @@ function wp_print_plugin_file_tree( $tree, $label = '', $level = 2, $size = 1, $
 			$index++;
 			if ( ! is_array( $plugin_file ) ) {
 				wp_print_plugin_file_tree( $plugin_file, $label, $level, $index, $size );
-				continue;
+				break;
 			}
 			?>
 			<li role="treeitem" aria-expanded="true" tabindex="-1"
@@ -548,7 +548,7 @@ function wp_doc_link_parse( $content ) {
 	$ignore_functions = array();
 	for ( $t = 0; $t < $count - 2; $t++ ) {
 		if ( ! is_array( $tokens[ $t ] ) ) {
-			continue;
+			break;
 		}
 
 		if ( T_STRING == $tokens[ $t ][0] && ( '(' == $tokens[ $t + 1 ] || '(' == $tokens[ $t + 2 ] ) ) {
@@ -578,7 +578,7 @@ function wp_doc_link_parse( $content ) {
 	$out = array();
 	foreach ( $functions as $function ) {
 		if ( in_array( $function, $ignore_functions ) ) {
-			continue;
+			break;
 		}
 		$out[] = $function;
 	}
@@ -990,7 +990,7 @@ function wp_check_locked_posts( $response, $data, $screen_id ) {
 	if ( array_key_exists( 'wp-check-locked-posts', $data ) && is_array( $data['wp-check-locked-posts'] ) ) {
 		foreach ( $data['wp-check-locked-posts'] as $key ) {
 			if ( ! $post_id = absint( substr( $key, 5 ) ) ) {
-				continue;
+				break;
 			}
 
 			if ( ( $user_id = wp_check_post_lock( $post_id ) ) && ( $user = get_userdata( $user_id ) ) && current_user_can( 'edit_post', $post_id ) ) {
@@ -1432,7 +1432,7 @@ final class WP_Privacy_Policy_Content {
 		foreach ( $old as $key => $data ) {
 			if ( ! empty( $data['removed'] ) ) {
 				unset( $old[ $key ] );
-				continue;
+				break;
 			}
 
 			$old[ $key ] = array(
@@ -1515,7 +1515,7 @@ final class WP_Privacy_Policy_Content {
 			if ( ! empty( $old_data['removed'] ) ) {
 				// Remove the old policy text.
 				$update_cache = true;
-				continue;
+				break;
 			}
 
 			if ( ! empty( $old_data['updated'] ) ) {

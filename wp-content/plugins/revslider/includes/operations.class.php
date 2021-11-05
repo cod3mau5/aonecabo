@@ -338,7 +338,7 @@ class RevSliderOperations extends RevSliderElementsBase{
 		}
 		
 		foreach($arrAnimations as $key => $value){
-			if(!isset($value['params'])) continue;
+			if(!isset($value['params'])) break;
 			
 			$t = json_decode(str_replace("'", '"', $value['params']), true);
 			if(!empty($t))
@@ -409,7 +409,7 @@ class RevSliderOperations extends RevSliderElementsBase{
 		}
 		
 		foreach($arrAnimations as $key => $value){
-			if(!isset($value['params'])) continue;
+			if(!isset($value['params'])) break;
 			
 			$t = json_decode(str_replace("'", '"', $value['params']), true);
 			if(!empty($t))
@@ -1220,7 +1220,7 @@ class RevSliderOperations extends RevSliderElementsBase{
 					strpos($class,">") !== false){ //.tp-caption>.imageclass or .tp-caption.imageclass>img or .tp-caption.imageclass .img
 
 					$static[$class] = $styles;
-					continue;
+					break;
 				}
 
 				//is a dynamic style
@@ -1797,10 +1797,10 @@ ob_end_clean();
 						if(strpos($o, 'public/assets/js/') !== false){ //this will be the jsFileLocation script part
 							$slider_html = str_replace($o, '"'.$path_js.'"', $slider_html);
 						}
-						continue; //no correct file, nothing to add
+						break; //no correct file, nothing to add
 					}
 					
-					if(isset($added[$_file])) continue;
+					if(isset($added[$_file])) break;
 					
 					$add = '';
 					$__file = '';
@@ -2632,8 +2632,8 @@ ob_end_clean();
 		if(!empty($slides) && count($slides) > 0){
 			foreach($slides as $key => $slide){
 				
-				if(isset($slide['params']['state']) && $slide['params']['state'] != 'published') continue;
-				if(!isset($slide['id'])) continue;
+				if(isset($slide['params']['state']) && $slide['params']['state'] != 'published') break;
+				if(!isset($slide['id'])) break;
 				
 				$slide_counter++;
 
@@ -2765,7 +2765,7 @@ ob_end_clean();
 								}
 								if(!empty($poster_img)){
 									foreach($poster_img as $img){
-										if(trim($img) == '') continue;
+										if(trim($img) == '') break;
 										
 										$cur_img_id = RevSliderFunctionsWP::get_image_id_by_url($img);
 										
@@ -2851,11 +2851,11 @@ ob_end_clean();
 											break;
 											case 'youtube':
 												$infos['id'] = 'external';
-												if(!isset($layer['video_data']->id) || empty($layer['video_data']->id)) continue;
+												if(!isset($layer['video_data']->id) || empty($layer['video_data']->id)) break;
 												$used_videos[$do_ssl.'//www.youtube.com/watch?v='.$layer['video_data']->id] = $infos;
 											break;
 											case 'vimeo':
-												if(!isset($layer['video_data']->id) || empty($layer['video_data']->id)) continue;
+												if(!isset($layer['video_data']->id) || empty($layer['video_data']->id)) break;
 												$infos['id'] = 'external';
 												$used_videos[$do_ssl.'//vimeo.com/'.$layer['video_data']->id] = $infos;
 											break;

@@ -105,7 +105,7 @@ class WPCF7_Submission {
 
 		foreach ( (array) $tags as $tag ) {
 			if ( empty( $tag->name ) ) {
-				continue;
+				break;
 			}
 
 			$type = $tag->type;

@@ -7602,7 +7602,7 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 
   for (i = 0; i < sourceKeys.length; i++) {
     key = sourceKeys[i];
-    if (excluded.indexOf(key) >= 0) continue;
+    if (excluded.indexOf(key) >= 0) break;
     target[key] = source[key];
   }
 
@@ -7620,8 +7620,8 @@ function _objectWithoutProperties(source, excluded) {
 
     for (i = 0; i < sourceSymbolKeys.length; i++) {
       key = sourceSymbolKeys[i];
-      if (excluded.indexOf(key) >= 0) continue;
-      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+      if (excluded.indexOf(key) >= 0) break;
+      if (!Object.prototype.propertyIsEnumerable.call(source, key)) break;
       target[key] = source[key];
     }
   }
@@ -7858,7 +7858,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) break; if (!Object.prototype.hasOwnProperty.call(obj, i)) break; target[i] = obj[i]; } return target; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -15705,7 +15705,7 @@ function filterOptions(search) {
     });
 
     if (!isMatch) {
-      continue;
+      break;
     }
 
     filtered.push(option); // Abort early if max reached
@@ -25439,7 +25439,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 		for (var i = 0; i < arguments.length; i++) {
 			var arg = arguments[i];
-			if (!arg) continue;
+			if (!arg) break;
 
 			var argType = typeof arg;
 
@@ -29962,11 +29962,11 @@ function arrObjKeys(obj, inspect) {
     }
 
     for (var key in obj) { // eslint-disable-line no-restricted-syntax
-        if (!has(obj, key)) { continue; } // eslint-disable-line no-restricted-syntax, no-continue
-        if (isArr && String(Number(key)) === key && key < obj.length) { continue; } // eslint-disable-line no-restricted-syntax, no-continue
+        if (!has(obj, key)) { break; } // eslint-disable-line no-restricted-syntax, no-continue
+        if (isArr && String(Number(key)) === key && key < obj.length) { break; } // eslint-disable-line no-restricted-syntax, no-continue
         if (hasShammedSymbols && symMap['$' + key] instanceof Symbol) {
             // this is to prevent shammed Symbols, which are stored as strings, from being included in the string key section
-            continue; // eslint-disable-line no-restricted-syntax, no-continue
+            break; // eslint-disable-line no-restricted-syntax, no-continue
         } else if ((/[^\w$]/).test(key)) {
             xs.push(inspect(key, obj) + ': ' + inspect(obj[key], obj));
         } else {
@@ -31083,7 +31083,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*global define:false */
                 // pull out the numeric keypad from here cause keypress should
                 // be able to detect the keys from the character
                 if (key > 95 && key < 112) {
-                    continue;
+                    break;
                 }
 
                 if (_MAP.hasOwnProperty(key)) {
@@ -31277,7 +31277,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*global define:false */
             for (key in _sequenceLevels) {
                 if (doNotReset[key]) {
                     activeSequences = true;
-                    continue;
+                    break;
                 }
                 _sequenceLevels[key] = 0;
             }
@@ -31323,13 +31323,13 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*global define:false */
                 // if a sequence name is not specified, but this is a sequence at
                 // the wrong level then move onto the next match
                 if (!sequenceName && callback.seq && _sequenceLevels[callback.seq] != callback.level) {
-                    continue;
+                    break;
                 }
 
                 // if the action we are looking for doesn't match the action we got
                 // then we should keep going
                 if (action != callback.action) {
-                    continue;
+                    break;
                 }
 
                 // if this is a keypress event and the meta key and control key
@@ -31423,7 +31423,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*global define:false */
                     // any sequences that do not match here will be discarded
                     // below by the _resetSequences call
                     if (callbacks[i].level != maxLevel) {
-                        continue;
+                        break;
                     }
 
                     processedSequenceCallback = true;
@@ -31431,7 +31431,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*global define:false */
                     // keep a list of which sequences were matches for later
                     doNotReset[callbacks[i].seq] = 1;
                     _fireCallback(callbacks[i].callback, e, callbacks[i].combo, callbacks[i].seq);
-                    continue;
+                    break;
                 }
 
                 // if there were no sequence matches but we are still here

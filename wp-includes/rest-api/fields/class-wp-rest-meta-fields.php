@@ -135,7 +135,7 @@ abstract class WP_REST_Meta_Fields {
 		foreach ( $fields as $meta_key => $args ) {
 			$name = $args['name'];
 			if ( ! array_key_exists( $name, $meta ) ) {
-				continue;
+				break;
 			}
 
 			/*
@@ -147,7 +147,7 @@ abstract class WP_REST_Meta_Fields {
 				if ( is_wp_error( $result ) ) {
 					return $result;
 				}
-				continue;
+				break;
 			}
 
 			$is_valid = rest_validate_value_from_schema( $meta[ $name ], $args['schema'], 'meta.' . $name );
@@ -246,12 +246,12 @@ abstract class WP_REST_Meta_Fields {
 			$remove_keys = array_keys( $to_remove, $value, true );
 
 			if ( empty( $remove_keys ) ) {
-				continue;
+				break;
 			}
 
 			if ( count( $remove_keys ) > 1 ) {
 				// To remove, we need to remove first, then add, so don't touch.
-				continue;
+				break;
 			}
 
 			$remove_key = $remove_keys[0];
@@ -361,7 +361,7 @@ abstract class WP_REST_Meta_Fields {
 
 		foreach ( $meta_keys as $name => $args ) {
 			if ( empty( $args['show_in_rest'] ) ) {
-				continue;
+				break;
 			}
 
 			$rest_args = array();
@@ -391,7 +391,7 @@ abstract class WP_REST_Meta_Fields {
 			$type = ! empty( $rest_args['schema']['type'] ) ? $rest_args['schema']['type'] : $type;
 
 			if ( ! in_array( $type, array( 'string', 'boolean', 'integer', 'number' ) ) ) {
-				continue;
+				break;
 			}
 
 			if ( empty( $rest_args['single'] ) ) {

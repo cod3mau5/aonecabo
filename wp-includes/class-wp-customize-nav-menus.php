@@ -834,7 +834,7 @@ final class WP_Customize_Nav_Menus {
 		if ( $taxonomies ) {
 			foreach ( $taxonomies as $slug => $taxonomy ) {
 				if ( 'post_format' === $taxonomy && ! current_theme_supports( 'post-formats' ) ) {
-					continue;
+					break;
 				}
 				$item_types[] = array(
 					'title'      => $taxonomy->labels->name,
@@ -1283,18 +1283,18 @@ final class WP_Customize_Nav_Menus {
 		$post_ids = array();
 		foreach ( wp_parse_id_list( $value ) as $post_id ) {
 			if ( empty( $post_id ) ) {
-				continue;
+				break;
 			}
 			$post = get_post( $post_id );
 			if ( 'auto-draft' !== $post->post_status && 'draft' !== $post->post_status ) {
-				continue;
+				break;
 			}
 			$post_type_obj = get_post_type_object( $post->post_type );
 			if ( ! $post_type_obj ) {
-				continue;
+				break;
 			}
 			if ( ! current_user_can( $post_type_obj->cap->publish_posts ) || ! current_user_can( $post_type_obj->cap->edit_post, $post_id ) ) {
-				continue;
+				break;
 			}
 			$post_ids[] = $post->ID;
 		}
@@ -1321,7 +1321,7 @@ final class WP_Customize_Nav_Menus {
 				// Prevent overriding the status that a user may have prematurely updated the post to.
 				$current_status = get_post_status( $post_id );
 				if ( 'auto-draft' !== $current_status && 'draft' !== $current_status ) {
-					continue;
+					break;
 				}
 
 				$target_status = 'attachment' === get_post_type( $post_id ) ? 'inherit' : 'publish';

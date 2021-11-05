@@ -259,7 +259,7 @@ class Requests_Transport_fsockopen implements Requests_Transport {
 				if ($this->max_bytes) {
 					// Have we already hit a limit?
 					if ($size === $this->max_bytes) {
-						continue;
+						break;
 					}
 					if (($size + $data_length) > $this->max_bytes) {
 						// Limit the length

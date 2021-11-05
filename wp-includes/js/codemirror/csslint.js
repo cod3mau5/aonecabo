@@ -523,7 +523,7 @@ Matcher.many = function(required) {
         var tryMatch = function(matchCount) {
             for (var i = 0; i < ms.length; i++) {
                 if (seen[i]) {
-                    continue;
+                    break;
                 }
                 expression.mark();
                 if (ms[i].match(expression)) {
@@ -5269,7 +5269,7 @@ TokenStream.prototype = mix(new TokenStreamBase(), {
                     } else {
                         // This character is null or not part of the escape;
                         // jump back to the top to process it.
-                        continue;
+                        break;
                     }
                 }
             } else if (c === delim) {
@@ -7488,7 +7488,7 @@ function clone(parent, circular, depth, prototype, includeNonEnumerable) {
       }
 
       if (attrs && attrs.set == null) {
-        continue;
+        break;
       }
       child[i] = _clone(parent[i], depth - 1);
     }
@@ -7501,7 +7501,7 @@ function clone(parent, circular, depth, prototype, includeNonEnumerable) {
         var symbol = symbols[i];
         var descriptor = Object.getOwnPropertyDescriptor(parent, symbol);
         if (descriptor && !descriptor.enumerable && !includeNonEnumerable) {
-          continue;
+          break;
         }
         child[symbol] = _clone(parent[symbol], depth - 1);
         if (!descriptor.enumerable) {
@@ -7518,7 +7518,7 @@ function clone(parent, circular, depth, prototype, includeNonEnumerable) {
         var propertyName = allPropertyNames[i];
         var descriptor = Object.getOwnPropertyDescriptor(parent, propertyName);
         if (descriptor && descriptor.enumerable) {
-          continue;
+          break;
         }
         child[propertyName] = _clone(parent[propertyName], depth - 1);
         Object.defineProperty(child, propertyName, {

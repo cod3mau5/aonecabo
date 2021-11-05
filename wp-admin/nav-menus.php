@@ -274,7 +274,7 @@ switch ( $action ) {
 		check_admin_referer( 'nav_menus_bulk_actions' );
 		foreach ( $_REQUEST['delete_menus'] as $menu_id_to_delete ) {
 			if ( ! is_nav_menu( $menu_id_to_delete ) ) {
-				continue;
+				break;
 			}
 
 			$deletion = wp_delete_nav_menu( $menu_id_to_delete );

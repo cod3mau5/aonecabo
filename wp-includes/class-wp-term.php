@@ -151,7 +151,7 @@ final class WP_Term {
 				// If the term is shared only with invalid taxonomies, return the one valid term.
 				foreach ( $terms as $t ) {
 					if ( ! taxonomy_exists( $t->taxonomy ) ) {
-						continue;
+						break;
 					}
 
 					// Only hit if we've already identified a term in a valid taxonomy.

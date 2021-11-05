@@ -10,7 +10,7 @@ if ( 'vc_edit_form' === vc_post_param( 'action' ) && vc_verify_admin_nonce() ) {
 		foreach ( $taxonomies as $taxonomy ) {
 			$tax = get_taxonomy( $taxonomy );
 			if ( ( is_object( $tax ) && ( ! $tax->show_tagcloud || empty( $tax->labels->name ) ) ) || ! is_object( $tax ) ) {
-				continue;
+				break;
 			}
 			$tag_taxonomies[ $tax->labels->name ] = esc_attr( $taxonomy );
 		}

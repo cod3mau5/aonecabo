@@ -827,7 +827,7 @@ class WP_REST_Terms_Controller extends WP_REST_Controller {
 			$post_type_object = get_post_type_object( $type );
 
 			if ( empty( $post_type_object->show_in_rest ) ) {
-				continue;
+				break;
 			}
 
 			$rest_base         = ! empty( $post_type_object->rest_base ) ? $post_type_object->rest_base : $post_type_object->name;

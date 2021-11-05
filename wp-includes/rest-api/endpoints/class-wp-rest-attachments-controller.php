@@ -350,7 +350,7 @@ class WP_REST_Attachments_Controller extends WP_REST_Posts_Controller {
 					// Use the same method image_downsize() does.
 					$image_src = wp_get_attachment_image_src( $post->ID, $size );
 					if ( ! $image_src ) {
-						continue;
+						break;
 					}
 
 					$size_data['source_url'] = $image_src[0];
@@ -637,7 +637,7 @@ class WP_REST_Attachments_Controller extends WP_REST_Posts_Controller {
 			$value = trim( $value );
 
 			if ( strpos( $value, ';' ) === false ) {
-				continue;
+				break;
 			}
 
 			list( $type, $attr_parts ) = explode( ';', $value, 2 );
@@ -647,7 +647,7 @@ class WP_REST_Attachments_Controller extends WP_REST_Posts_Controller {
 
 			foreach ( $attr_parts as $part ) {
 				if ( strpos( $part, '=' ) === false ) {
-					continue;
+					break;
 				}
 
 				list( $key, $value ) = explode( '=', $part, 2 );
@@ -656,7 +656,7 @@ class WP_REST_Attachments_Controller extends WP_REST_Posts_Controller {
 			}
 
 			if ( empty( $attributes['filename'] ) ) {
-				continue;
+				break;
 			}
 
 			$filename = trim( $attributes['filename'] );

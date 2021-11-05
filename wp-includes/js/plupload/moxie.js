@@ -997,7 +997,7 @@ define("moxie/core/utils/Env", [
 	  x = Math.max(v1.length, v2.length);
 	  for (i = 0; i < x; i++) {
 	    if (v1[i] == v2[i]) {
-	      continue;
+	      break;
 	    }
 	    v1[i] = numVersion(v1[i]);
 	    v2[i] = numVersion(v2[i]);
@@ -7620,7 +7620,7 @@ define("moxie/runtime/html5/image/JPEGHeaders", [
 			// omit RST (restart) markers
 			if (marker >= 0xFFD0 && marker <= 0xFFD7) {
 				idx += 2;
-				continue;
+				break;
 			}
 
 			// no headers allowed after SOS marker
@@ -8125,7 +8125,7 @@ define("moxie/runtime/html5/image/ExifParser", [
 				tag = tags2extract[data.SHORT(offset)];
 
 				if (tag === undefined) {
-					continue; // Not the tag we requested
+					break; // Not the tag we requested
 				}
 
 				type = types[data.SHORT(offset+=2)];
@@ -8152,7 +8152,7 @@ define("moxie/runtime/html5/image/ExifParser", [
 				// special care for the string
 				if (type === 'ASCII') {
 					hash[tag] = Basic.trim(data.STRING(offset, count).replace(/\0$/, '')); // strip trailing NULL
-					continue;
+					break;
 				} else {
 					values = data.asArray(type, offset, count);
 					value = (count == 1 ? values[0] : values);

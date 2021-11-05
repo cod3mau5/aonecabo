@@ -694,7 +694,7 @@ function media_upload_form_handler() {
 			$post = $_post = get_post( $attachment_id, ARRAY_A );
 
 			if ( ! current_user_can( 'edit_post', $attachment_id ) ) {
-				continue;
+				break;
 			}
 
 			if ( isset( $attachment['post_content'] ) ) {
@@ -1327,7 +1327,7 @@ function get_attachment_fields_to_edit( $post, $errors = null ) {
 	foreach ( get_attachment_taxonomies( $post ) as $taxonomy ) {
 		$t = (array) get_taxonomy( $taxonomy );
 		if ( ! $t['public'] || ! $t['show_ui'] ) {
-			continue;
+			break;
 		}
 		if ( empty( $t['label'] ) ) {
 			$t['label'] = $taxonomy;
@@ -1437,7 +1437,7 @@ function get_media_items( $post_id, $errors ) {
 	$output = '';
 	foreach ( (array) $attachments as $id => $attachment ) {
 		if ( $attachment->post_status == 'trash' ) {
-			continue;
+			break;
 		}
 		if ( $item = get_media_item( $id, array( 'errors' => isset( $errors[ $id ] ) ? $errors[ $id ] : null ) ) ) {
 			$output .= "\n<div id='media-item-$id' class='media-item child-of-$attachment->post_parent preloaded'><div class='progress hidden'><div class='bar'></div></div><div id='media-upload-error-$id' class='hidden'></div><div class='filename hidden'></div>$item\n</div>";
@@ -1641,12 +1641,12 @@ function get_media_item( $attachment_id, $args = null ) {
 
 	foreach ( $form_fields as $id => $field ) {
 		if ( $id[0] == '_' ) {
-			continue;
+			break;
 		}
 
 		if ( ! empty( $field['tr'] ) ) {
 			$item .= $field['tr'];
-			continue;
+			break;
 		}
 
 		$field = array_merge( $defaults, $field );
@@ -1654,7 +1654,7 @@ function get_media_item( $attachment_id, $args = null ) {
 
 		if ( $field['input'] == 'hidden' ) {
 			$hidden_fields[ $name ] = $field['value'];
-			continue;
+			break;
 		}
 
 		$required      = $field['required'] ? '<span class="required">*</span>' : '';
@@ -1750,7 +1750,7 @@ function get_compat_media_markup( $attachment_id, $args = null ) {
 		foreach ( get_attachment_taxonomies( $post ) as $taxonomy ) {
 			$t = (array) get_taxonomy( $taxonomy );
 			if ( ! $t['public'] || ! $t['show_ui'] ) {
-				continue;
+				break;
 			}
 			if ( empty( $t['label'] ) ) {
 				$t['label'] = $taxonomy;
@@ -1812,7 +1812,7 @@ function get_compat_media_markup( $attachment_id, $args = null ) {
 	$item = '';
 	foreach ( $form_fields as $id => $field ) {
 		if ( $id[0] == '_' ) {
-			continue;
+			break;
 		}
 
 		$name    = "attachments[$attachment_id][$id]";
@@ -1820,18 +1820,18 @@ function get_compat_media_markup( $attachment_id, $args = null ) {
 
 		if ( ! empty( $field['tr'] ) ) {
 			$item .= $field['tr'];
-			continue;
+			break;
 		}
 
 		$field = array_merge( $defaults, $field );
 
 		if ( ( ! $field['show_in_edit'] && ! $args['in_modal'] ) || ( ! $field['show_in_modal'] && $args['in_modal'] ) ) {
-			continue;
+			break;
 		}
 
 		if ( $field['input'] == 'hidden' ) {
 			$hidden_fields[ $name ] = $field['value'];
-			continue;
+			break;
 		}
 
 		$readonly      = ! $user_can_edit && ! empty( $field['taxonomy'] ) ? " readonly='readonly' " : '';
@@ -2599,7 +2599,7 @@ function media_upload_library_form( $errors ) {
 		$class = '';
 
 		if ( ! wp_match_mime_types( $mime_type, $avail_post_mime_types ) ) {
-			continue;
+			break;
 		}
 
 		if ( isset( $_GET['post_mime_type'] ) && wp_match_mime_types( $mime_type, $_GET['post_mime_type'] ) ) {
@@ -2665,7 +2665,7 @@ function media_upload_library_form( $errors ) {
 		<?php
 		foreach ( $arc_result as $arc_row ) {
 			if ( $arc_row->yyear == 0 ) {
-				continue;
+				break;
 			}
 			$arc_row->mmonth = zeroise( $arc_row->mmonth, 2 );
 
@@ -3133,7 +3133,7 @@ function attachment_submitbox_metadata() {
 
 		foreach ( $fields as $key => $label ) {
 			if ( empty( $meta[ $key ] ) ) {
-				continue;
+				break;
 			}
 			?>
 		<div class="misc-pub-section misc-pub-mime-meta misc-pub-<?php echo sanitize_html_class( $key ); ?>">
@@ -3177,7 +3177,7 @@ function attachment_submitbox_metadata() {
 
 		foreach ( $audio_fields as $key => $label ) {
 			if ( empty( $meta['audio'][ $key ] ) ) {
-				continue;
+				break;
 			}
 			?>
 		<div class="misc-pub-section misc-pub-audio misc-pub-<?php echo sanitize_html_class( $key ); ?>">
@@ -3471,7 +3471,7 @@ function wp_media_attach_action( $parent_id, $action = 'attach' ) {
 		$att_id = (int) $att_id;
 
 		if ( ! current_user_can( 'edit_post', $att_id ) ) {
-			continue;
+			break;
 		}
 
 		$ids[] = $att_id;

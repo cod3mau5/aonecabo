@@ -2165,7 +2165,7 @@ class wpdb {
 		foreach ( $data as $value ) {
 			if ( is_null( $value['value'] ) ) {
 				$formats[] = 'NULL';
-				continue;
+				break;
 			}
 
 			$formats[] = $value['format'];
@@ -2229,7 +2229,7 @@ class wpdb {
 		foreach ( $data as $field => $value ) {
 			if ( is_null( $value['value'] ) ) {
 				$fields[] = "`$field` = NULL";
-				continue;
+				break;
 			}
 
 			$fields[] = "`$field` = " . $value['format'];
@@ -2238,7 +2238,7 @@ class wpdb {
 		foreach ( $where as $field => $value ) {
 			if ( is_null( $value['value'] ) ) {
 				$conditions[] = "`$field` IS NULL";
-				continue;
+				break;
 			}
 
 			$conditions[] = "`$field` = " . $value['format'];
@@ -2290,7 +2290,7 @@ class wpdb {
 		foreach ( $where as $field => $value ) {
 			if ( is_null( $value['value'] ) ) {
 				$conditions[] = "`$field` IS NULL";
-				continue;
+				break;
 			}
 
 			$conditions[] = "`$field` = " . $value['format'];
@@ -2941,7 +2941,7 @@ class wpdb {
 		// If any of the columns don't have one of these collations, it needs more sanity checking.
 		foreach ( $this->col_meta[ $table ] as $col ) {
 			if ( empty( $col->Collation ) ) {
-				continue;
+				break;
 			}
 
 			if ( ! in_array( $col->Collation, array( 'utf8_general_ci', 'utf8_bin', 'utf8mb4_general_ci', 'utf8mb4_bin' ), true ) ) {
@@ -2984,12 +2984,12 @@ class wpdb {
 
 			// There's no charset to work with.
 			if ( false === $charset ) {
-				continue;
+				break;
 			}
 
 			// Column isn't a string.
 			if ( ! is_string( $value['value'] ) ) {
-				continue;
+				break;
 			}
 
 			$needs_validation = true;
@@ -3012,7 +3012,7 @@ class wpdb {
 				reset_mbstring_encoding();
 
 				if ( ! $needs_validation ) {
-					continue;
+					break;
 				}
 			}
 
@@ -3044,7 +3044,7 @@ class wpdb {
 				if ( false !== $length && mb_strlen( $value['value'], 'UTF-8' ) > $length ) {
 					$value['value'] = mb_substr( $value['value'], 0, $length, 'UTF-8' );
 				}
-				continue;
+				break;
 			}
 
 			// We couldn't use any local conversions, send it to the DB.
@@ -3089,7 +3089,7 @@ class wpdb {
 			$sql = array();
 			foreach ( $queries as $column => $query ) {
 				if ( ! $query ) {
-					continue;
+					break;
 				}
 
 				$sql[] = $query . " AS x_$column";

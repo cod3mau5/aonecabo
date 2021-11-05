@@ -115,14 +115,14 @@ final class WP_Hook implements Iterator, ArrayAccess {
 			$current = current( $iteration );
 			// If we're already at the end of this iteration, just leave the array pointer where it is.
 			if ( false === $current ) {
-				continue;
+				break;
 			}
 
 			$iteration = $new_priorities;
 
 			if ( $current < $min ) {
 				array_unshift( $iteration, $current );
-				continue;
+				break;
 			}
 
 			while ( current( $iteration ) < $current ) {
@@ -367,7 +367,7 @@ final class WP_Hook implements Iterator, ArrayAccess {
 		foreach ( $filters as $tag => $callback_groups ) {
 			if ( is_object( $callback_groups ) && $callback_groups instanceof WP_Hook ) {
 				$normalized[ $tag ] = $callback_groups;
-				continue;
+				break;
 			}
 			$hook = new WP_Hook();
 

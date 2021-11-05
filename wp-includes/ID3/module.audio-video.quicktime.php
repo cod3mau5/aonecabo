@@ -1603,7 +1603,7 @@ if (!empty($atom_structure['sample_description_table'][$i]['width']) && !empty($
 						foreach ($atom_structure['gps_toc'] as $key => $gps_pointer) {
 							if ($key == 0) {
 								// "The first row is version/metadata/notsure, I skip that."
-								continue;
+								break;
 							}
 							$this->fseek($gps_pointer['offset']);
 							$GPS_free_data = $this->fread($gps_pointer['size']);
@@ -1737,7 +1737,7 @@ if (!empty($atom_structure['sample_description_table'][$i]['width']) && !empty($
 				// to read user data atoms, you should allow for the terminating 0.
 				if (strlen($atom_data) > 12) {
 					$subatomoffset += 4;
-					continue;
+					break;
 				}
 				return $atom_structure;
 			}

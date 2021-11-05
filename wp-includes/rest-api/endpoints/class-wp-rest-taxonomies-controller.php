@@ -118,7 +118,7 @@ class WP_REST_Taxonomies_Controller extends WP_REST_Controller {
 		$data = array();
 		foreach ( $taxonomies as $tax_type => $value ) {
 			if ( empty( $value->show_in_rest ) || ( 'edit' === $request['context'] && ! current_user_can( $value->cap->assign_terms ) ) ) {
-				continue;
+				break;
 			}
 			$tax               = $this->prepare_item_for_response( $value, $request );
 			$tax               = $this->prepare_response_for_collection( $tax );

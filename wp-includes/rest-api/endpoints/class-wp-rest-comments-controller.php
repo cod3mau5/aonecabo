@@ -260,7 +260,7 @@ class WP_REST_Comments_Controller extends WP_REST_Controller {
 
 		foreach ( $query_result as $comment ) {
 			if ( ! $this->check_read_permission( $comment, $request ) ) {
-				continue;
+				break;
 			}
 
 			$data       = $this->prepare_item_for_response( $comment, $request );

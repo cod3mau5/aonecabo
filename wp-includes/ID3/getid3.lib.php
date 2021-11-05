@@ -1310,7 +1310,7 @@ class getid3_lib
 					if ($field == 'picture') {
 						// pictures can take up a lot of space, and we don't need multiple copies of them
 						// let there be a single copy in [comments][picture], and not elsewhere
-						continue;
+						break;
 					}
 					foreach ($values as $index => $value) {
 						if (is_array($value)) {

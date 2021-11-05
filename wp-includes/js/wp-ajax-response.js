@@ -11,7 +11,7 @@ window.wpAjax = jQuery.extend( {
 		q = s.split('?'); if ( q[1] ) { s = q[1]; }
 		pp = s.split('&');
 		for ( i in pp ) {
-			if ( jQuery.isFunction(pp.hasOwnProperty) && !pp.hasOwnProperty(i) ) { continue; }
+			if ( jQuery.isFunction(pp.hasOwnProperty) && !pp.hasOwnProperty(i) ) { break; }
 			p = pp[i].split('=');
 			r[p[0]] = p[1];
 		}

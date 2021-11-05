@@ -564,7 +564,7 @@
       var changed = {};
       for (var attr in diff) {
         var val = diff[attr];
-        if (_.isEqual(old[attr], val)) continue;
+        if (_.isEqual(old[attr], val)) break;
         changed[attr] = val;
       }
       return _.size(changed) ? changed : false;
@@ -1121,7 +1121,7 @@
       var removed = [];
       for (var i = 0; i < models.length; i++) {
         var model = this.get(models[i]);
-        if (!model) continue;
+        if (!model) break;
 
         var index = this.indexOf(model);
         this.models.splice(index, 1);
@@ -1307,7 +1307,7 @@
       for (var key in events) {
         var method = events[key];
         if (!_.isFunction(method)) method = this[method];
-        if (!method) continue;
+        if (!method) break;
         var match = key.match(delegateEventSplitter);
         this.delegate(match[1], match[2], _.bind(method, this));
       }

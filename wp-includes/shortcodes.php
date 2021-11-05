@@ -369,7 +369,7 @@ function do_shortcodes_in_html_tags( $content, $ignore_html, $tagnames ) {
 
 	foreach ( $textarr as &$element ) {
 		if ( '' == $element || '<' !== $element[0] ) {
-			continue;
+			break;
 		}
 
 		$noopen  = false === strpos( $element, '[' );
@@ -380,13 +380,13 @@ function do_shortcodes_in_html_tags( $content, $ignore_html, $tagnames ) {
 				// Need to encode stray [ or ] chars.
 				$element = strtr( $element, $trans );
 			}
-			continue;
+			break;
 		}
 
 		if ( $ignore_html || '<!--' === substr( $element, 0, 4 ) || '<![CDATA[' === substr( $element, 0, 9 ) ) {
 			// Encode all [ and ] chars.
 			$element = strtr( $element, $trans );
-			continue;
+			break;
 		}
 
 		$attributes = wp_kses_attr_parse( $element );
@@ -398,7 +398,7 @@ function do_shortcodes_in_html_tags( $content, $ignore_html, $tagnames ) {
 
 			// Looks like we found some crazy unfiltered HTML.  Skipping it for sanity.
 			$element = strtr( $element, $trans );
-			continue;
+			break;
 		}
 
 		// Get element name
@@ -413,7 +413,7 @@ function do_shortcodes_in_html_tags( $content, $ignore_html, $tagnames ) {
 			$open  = strpos( $attr, '[' );
 			$close = strpos( $attr, ']' );
 			if ( false === $open || false === $close ) {
-				continue; // Go to next attribute.  Square braces will be escaped at end of loop.
+				break; // Go to next attribute.  Square braces will be escaped at end of loop.
 			}
 			$double = strpos( $attr, '"' );
 			$single = strpos( $attr, "'" );

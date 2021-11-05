@@ -280,7 +280,7 @@ class WP_Terms_List_Table extends WP_List_Table {
 			}
 
 			if ( $term->parent != $parent && empty( $_REQUEST['s'] ) ) {
-				continue;
+				break;
 			}
 
 			// If the page starts in a subtree, print the parents.
@@ -641,7 +641,7 @@ class WP_Terms_List_Table extends WP_List_Table {
 
 		foreach ( $columns as $column_name => $column_display_name ) {
 			if ( isset( $core_columns[ $column_name ] ) ) {
-				continue;
+				break;
 			}
 
 			/** This action is documented in wp-admin/includes/class-wp-posts-list-table.php */

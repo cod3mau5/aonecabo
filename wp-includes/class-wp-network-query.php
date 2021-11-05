@@ -295,7 +295,7 @@ class WP_Network_Query {
 			$orderby_array = array();
 			foreach ( $ordersby as $_key => $_value ) {
 				if ( ! $_value ) {
-					continue;
+					break;
 				}
 
 				if ( is_int( $_key ) ) {
@@ -309,12 +309,12 @@ class WP_Network_Query {
 				$parsed = $this->parse_orderby( $_orderby );
 
 				if ( ! $parsed ) {
-					continue;
+					break;
 				}
 
 				if ( 'network__in' === $_orderby ) {
 					$orderby_array[] = $parsed;
-					continue;
+					break;
 				}
 
 				$orderby_array[] = $parsed . ' ' . $this->parse_order( $_order );

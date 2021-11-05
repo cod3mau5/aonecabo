@@ -351,11 +351,11 @@ switch ( $step ) {
 		foreach ( $config_file as $line_num => $line ) {
 			if ( '$table_prefix =' == substr( $line, 0, 15 ) ) {
 				$config_file[ $line_num ] = '$table_prefix = \'' . addcslashes( $prefix, "\\'" ) . "';\r\n";
-				continue;
+				break;
 			}
 
 			if ( ! preg_match( '/^define\(\s*\'([A-Z_]+)\',([ ]+)/', $line, $match ) ) {
-				continue;
+				break;
 			}
 
 			$constant = $match[1];

@@ -198,15 +198,15 @@ if ( class_exists( 'WP_Importer' ) ) {
 							'post' => $post,
 						);
 						do_action( 'vc_import_post_exists', $post );
-						continue;
+						break;
 					}
 
 					if ( isset( $this->processed_posts[ $post['post_id'] ] ) && ! empty( $post['post_id'] ) ) {
-						continue;
+						break;
 					}
 
 					if ( 'auto-draft' == $post['status'] ) {
-						continue;
+						break;
 					}
 
 					$post_parent = (int) $post['post_parent'];
@@ -279,7 +279,7 @@ if ( class_exists( 'WP_Importer' ) ) {
 							'code' => 'wp_error',
 							'post' => $post_id,
 						);
-						continue;
+						break;
 					}
 
 					if ( 1 == $post['is_sticky'] ) {

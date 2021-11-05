@@ -568,7 +568,7 @@ function populate_options( array $options = array() ) {
 	$insert = '';
 	foreach ( $options as $option => $value ) {
 		if ( in_array( $option, $existing_options ) ) {
-			continue;
+			break;
 		}
 		if ( in_array( $option, $fat_options ) ) {
 			$autoload = 'no';
@@ -815,7 +815,7 @@ function populate_roles_210() {
 	foreach ( $roles as $role ) {
 		$role = get_role( $role );
 		if ( empty( $role ) ) {
-			continue;
+			break;
 		}
 
 		$role->add_cap( 'edit_others_pages' );

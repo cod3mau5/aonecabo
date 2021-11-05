@@ -269,7 +269,7 @@ abstract class WP_Widget_Media extends WP_Widget {
 		$schema = $this->get_instance_schema();
 		foreach ( $schema as $field => $field_schema ) {
 			if ( ! array_key_exists( $field, $new_instance ) ) {
-				continue;
+				break;
 			}
 			$value = $new_instance[ $field ];
 
@@ -279,14 +279,14 @@ abstract class WP_Widget_Media extends WP_Widget {
 			}
 
 			if ( true !== rest_validate_value_from_schema( $value, $field_schema, $field ) ) {
-				continue;
+				break;
 			}
 
 			$value = rest_sanitize_value_from_schema( $value, $field_schema );
 
 			// @codeCoverageIgnoreStart
 			if ( is_wp_error( $value ) ) {
-				continue; // Handle case when rest_sanitize_value_from_schema() ever returns WP_Error as its phpdoc @return tag indicates.
+				break; // Handle case when rest_sanitize_value_from_schema() ever returns WP_Error as its phpdoc @return tag indicates.
 			}
 
 			// @codeCoverageIgnoreEnd
@@ -294,7 +294,7 @@ abstract class WP_Widget_Media extends WP_Widget {
 				$value = call_user_func( $field_schema['sanitize_callback'], $value );
 			}
 			if ( is_wp_error( $value ) ) {
-				continue;
+				break;
 			}
 			$instance[ $field ] = $value;
 		}

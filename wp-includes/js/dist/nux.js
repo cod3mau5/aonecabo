@@ -886,7 +886,7 @@ function isShallowEqual( a, b, fromIndex ) {
 			// Check whether node arguments match arguments
 			if ( ! isShallowEqual( node.args, args, 1 ) ) {
 				node = node.next;
-				continue;
+				break;
 			}
 
 			// At this point we can assume we've found a match

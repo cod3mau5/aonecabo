@@ -278,7 +278,7 @@ class WP_Text_Diff_Renderer_Table extends Text_Diff_Renderer {
 					$stripped_diff = strlen( strip_tags( $diff ) ) * 2 - $stripped_matches;
 					$diff_ratio    = $stripped_matches / $stripped_diff;
 					if ( $diff_ratio > $this->_diff_threshold ) {
-						continue; // Too different. Don't save diffs.
+						break; // Too different. Don't save diffs.
 					}
 				}
 
@@ -291,7 +291,7 @@ class WP_Text_Diff_Renderer_Table extends Text_Diff_Renderer {
 		foreach ( array_keys( $orig_rows ) as $row ) {
 			// Both columns have blanks. Ignore them.
 			if ( $orig_rows[ $row ] < 0 && $final_rows[ $row ] < 0 ) {
-				continue;
+				break;
 			}
 
 			// If we have a word based diff, use it. Otherwise, use the normal line.
@@ -376,14 +376,14 @@ class WP_Text_Diff_Renderer_Table extends Text_Diff_Renderer {
 
 			// Already have better matches for these guys
 			if ( isset( $orig_matches[ $o ] ) && isset( $final_matches[ $f ] ) ) {
-				continue;
+				break;
 			}
 
 			// First match for these guys. Must be best match
 			if ( ! isset( $orig_matches[ $o ] ) && ! isset( $final_matches[ $f ] ) ) {
 				$orig_matches[ $o ]  = $f;
 				$final_matches[ $f ] = $o;
-				continue;
+				break;
 			}
 
 			// Best match of this final is already taken?  Must mean this final is a new row.

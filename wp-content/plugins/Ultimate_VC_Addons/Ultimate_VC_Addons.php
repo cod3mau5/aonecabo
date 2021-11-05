@@ -286,11 +286,11 @@ if ( ! class_exists( 'Ultimate_VC_Addons' ) ) {
 				include_once( $filename );
 				$base = ( isset( $array['base'] ) ) ? $array['base'] : '';
 				if ( $base === '' ) {
-					continue;
+					break;
 				}
 				$presets = ( isset( $array['presets'] ) ) ? $array['presets'] : array();
 				if ( empty( $presets ) ) {
-					continue;
+					break;
 				}
 				foreach ( $presets as $key => $preset ) {
 					$title    = ( isset( $preset['title'] ) ) ? $preset['title'] : '';

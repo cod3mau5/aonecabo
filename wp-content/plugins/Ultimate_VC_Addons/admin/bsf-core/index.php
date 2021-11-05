@@ -466,7 +466,7 @@ if ( ! function_exists( 'init_bsf_core' ) ) {
 		if ( ! empty( $bsf_products ) ) {
 			foreach ( $bsf_products as $key => $product ) {
 				if ( ! ( isset( $product['id'] ) ) || $product['id'] === '' ) {
-					continue;
+					break;
 				}
 				if ( isset( $brainstrom_products[ $product['type'] . 's' ][ $product['id'] ] ) ) {
 					$bsf_product_info = $brainstrom_products[ $product['type'] . 's' ][ $product['id'] ];
@@ -801,7 +801,7 @@ if ( ! function_exists( 'bsf_extension_nag' ) ) {
 		foreach ( $bsf_bundled_products as $key => $plugin ) {
 
 			if ( ! isset( $plugin->id ) || $plugin->id == '' || ! isset( $plugin->must_have_extension ) || $plugin->must_have_extension == 'false' ) {
-				continue;
+				break;
 			}
 
 			$plugin_abs_path = WP_PLUGIN_DIR . '/' . $plugin->init;
@@ -1269,7 +1269,7 @@ function bsf_systeminfo() {
 				$constant = 'BSF_' . $constant . '_CHECK_UPDATES';
 				if ( defined( $constant ) && ( constant( $constant ) === 'false' || constant( $constant ) === false ) ) {
 					$temp_constant .= $constant . '<br/>';
-					continue;
+					break;
 				}
 			endforeach;
 		endif;

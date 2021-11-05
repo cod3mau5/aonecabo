@@ -340,16 +340,16 @@ function edit_post( $post_data = null ) {
 	if ( isset( $post_data['meta'] ) && $post_data['meta'] ) {
 		foreach ( $post_data['meta'] as $key => $value ) {
 			if ( ! $meta = get_post_meta_by_id( $key ) ) {
-				continue;
+				break;
 			}
 			if ( $meta->post_id != $post_ID ) {
-				continue;
+				break;
 			}
 			if ( is_protected_meta( $meta->meta_key, 'post' ) || ! current_user_can( 'edit_post_meta', $post_ID, $meta->meta_key ) ) {
-				continue;
+				break;
 			}
 			if ( is_protected_meta( $value['key'], 'post' ) || ! current_user_can( 'edit_post_meta', $post_ID, $value['key'] ) ) {
-				continue;
+				break;
 			}
 			update_meta( $key, $value['key'], $value['value'] );
 		}
@@ -358,13 +358,13 @@ function edit_post( $post_data = null ) {
 	if ( isset( $post_data['deletemeta'] ) && $post_data['deletemeta'] ) {
 		foreach ( $post_data['deletemeta'] as $key => $value ) {
 			if ( ! $meta = get_post_meta_by_id( $key ) ) {
-				continue;
+				break;
 			}
 			if ( $meta->post_id != $post_ID ) {
-				continue;
+				break;
 			}
 			if ( is_protected_meta( $meta->meta_key, 'post' ) || ! current_user_can( 'delete_post_meta', $post_ID, $meta->meta_key ) ) {
-				continue;
+				break;
 			}
 			delete_meta( $key );
 		}
@@ -517,7 +517,7 @@ function bulk_edit_posts( $post_data = null ) {
 	if ( isset( $post_data['tax_input'] ) ) {
 		foreach ( $post_data['tax_input'] as $tax_name => $terms ) {
 			if ( empty( $terms ) ) {
-				continue;
+				break;
 			}
 			if ( is_taxonomy_hierarchical( $tax_name ) ) {
 				$tax_input[ $tax_name ] = array_map( 'absint', $terms );
@@ -558,12 +558,12 @@ function bulk_edit_posts( $post_data = null ) {
 
 		if ( ! isset( $post_type_object ) || ( isset( $children ) && in_array( $post_ID, $children ) ) || ! current_user_can( 'edit_post', $post_ID ) ) {
 			$skipped[] = $post_ID;
-			continue;
+			break;
 		}
 
 		if ( wp_check_post_lock( $post_ID ) ) {
 			$locked[] = $post_ID;
-			continue;
+			break;
 		}
 
 		$post      = get_post( $post_ID );
@@ -604,7 +604,7 @@ function bulk_edit_posts( $post_data = null ) {
 		$post_data = _wp_translate_postdata( true, $post_data );
 		if ( is_wp_error( $post_data ) ) {
 			$skipped[] = $post_ID;
-			continue;
+			break;
 		}
 		$post_data = _wp_get_allowed_postdata( $post_data );
 
@@ -1038,7 +1038,7 @@ function _fix_attachment_links( $post ) {
 		if ( ! strpos( $value, '?attachment_id=' ) || ! strpos( $value, 'wp-att-' )
 			|| ! preg_match( '/href=(["\'])[^"\']*\?attachment_id=(\d+)[^"\']*\\1/', $value, $url_match )
 			|| ! preg_match( '/rel=["\'][^"\']*wp-att-(\d+)/', $value, $rel_match ) ) {
-				continue;
+				break;
 		}
 
 		$quote  = $url_match[1]; // the quote (single or double)
@@ -1046,7 +1046,7 @@ function _fix_attachment_links( $post ) {
 		$rel_id = (int) $rel_match[1];
 
 		if ( ! $url_id || ! $rel_id || $url_id != $rel_id || strpos( $url_match[0], $site_url ) === false ) {
-			continue;
+			break;
 		}
 
 		$link    = $link_matches[0][ $key ];
@@ -2031,7 +2031,7 @@ function taxonomy_meta_box_sanitize_cb_input( $taxonomy, $terms ) {
 	foreach ( $terms as $term ) {
 		// Empty terms are invalid input.
 		if ( empty( $term ) ) {
-			continue;
+			break;
 		}
 
 		$_term = get_terms(
@@ -2200,7 +2200,7 @@ function get_block_editor_server_block_settings() {
 	foreach ( $block_registry->get_all_registered() as $block_name => $block_type ) {
 		foreach ( $keys_to_pick as $key ) {
 			if ( ! isset( $block_type->{ $key } ) ) {
-				continue;
+				break;
 			}
 
 			if ( ! isset( $blocks[ $block_name ] ) ) {
@@ -2270,23 +2270,23 @@ function the_block_editor_meta_boxes() {
 		$meta_boxes_per_location[ $location ] = array();
 
 		if ( ! isset( $wp_meta_boxes[ $current_screen->id ][ $location ] ) ) {
-			continue;
+			break;
 		}
 
 		foreach ( $priorities as $priority ) {
 			if ( ! isset( $wp_meta_boxes[ $current_screen->id ][ $location ][ $priority ] ) ) {
-				continue;
+				break;
 			}
 
 			$meta_boxes = (array) $wp_meta_boxes[ $current_screen->id ][ $location ][ $priority ];
 			foreach ( $meta_boxes as $meta_box ) {
 				if ( false == $meta_box || ! $meta_box['title'] ) {
-					continue;
+					break;
 				}
 
 				// If a meta box is just here for back compat, don't show it in the block editor.
 				if ( isset( $meta_box['args']['__back_compat_meta_box'] ) && $meta_box['args']['__back_compat_meta_box'] ) {
-					continue;
+					break;
 				}
 
 				$meta_boxes_per_location[ $location ][] = array(
@@ -2380,7 +2380,7 @@ function the_block_editor_meta_box_post_form_hidden_fields( $post ) {
 	$hidden_inputs    = '';
 	foreach ( $classic_elements as $element ) {
 		if ( 0 !== strpos( $element, '<input ' ) ) {
-			continue;
+			break;
 		}
 
 		if ( preg_match( '/\stype=[\'"]hidden[\'"]\s/', $element ) ) {

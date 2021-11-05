@@ -551,7 +551,7 @@ class WP_Customize_Nav_Menu_Setting extends WP_Customize_Setting {
 			// Make sure that new menus assigned to nav menu locations use their new IDs.
 			foreach ( $this->manager->settings() as $setting ) {
 				if ( ! preg_match( '/^nav_menu_locations\[/', $setting->id ) ) {
-					continue;
+					break;
 				}
 
 				$post_value = $setting->post_value( null );
@@ -565,12 +565,12 @@ class WP_Customize_Nav_Menu_Setting extends WP_Customize_Setting {
 			foreach ( array_keys( $this->manager->unsanitized_post_values() ) as $setting_id ) {
 				$nav_menu_widget_setting = $this->manager->get_setting( $setting_id );
 				if ( ! $nav_menu_widget_setting || ! preg_match( '/^widget_nav_menu\[/', $nav_menu_widget_setting->id ) ) {
-					continue;
+					break;
 				}
 
 				$widget_instance = $nav_menu_widget_setting->post_value(); // Note that this calls WP_Customize_Widgets::sanitize_widget_instance().
 				if ( empty( $widget_instance['nav_menu'] ) || intval( $widget_instance['nav_menu'] ) !== $this->previous_term_id ) {
-					continue;
+					break;
 				}
 
 				$widget_instance['nav_menu'] = $this->term_id;

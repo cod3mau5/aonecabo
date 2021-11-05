@@ -121,7 +121,7 @@ if(!class_exists("Ultimate_Videos")){
 					if ( 'on' === $setting['yt_autoplay'] ) {
 						$params[ $option ] = '1';
 					}
-					continue;
+					break;
 				}
 				if ( 'rel' == $option ) {
 					$value             = ( 'on' === $setting['yt_sugg_video'] ) ? '1' : '0';
@@ -151,7 +151,7 @@ if(!class_exists("Ultimate_Videos")){
 					if ( 'on' === $setting['vimeo_autoplay'] ) {
 						$params[ $option ] = '1';
 					}
-					continue;
+					break;
 				}
 				if ( 'loop' === $option ) {
 					$value             = ( 'on' === $setting['vimeo_loop'] ) ? '1' : '0';

@@ -120,7 +120,7 @@ class WP_MS_Themes_List_Table extends WP_List_Table {
 		foreach ( (array) $themes['all'] as $key => $theme ) {
 			if ( $this->is_site_themes && $theme->is_allowed( 'network' ) ) {
 				unset( $themes['all'][ $key ] );
-				continue;
+				break;
 			}
 
 			if ( $maybe_update && isset( $current->response[ $key ] ) ) {
@@ -294,7 +294,7 @@ class WP_MS_Themes_List_Table extends WP_List_Table {
 		$status_links = array();
 		foreach ( $totals as $type => $count ) {
 			if ( ! $count ) {
-				continue;
+				break;
 			}
 
 			switch ( $type ) {

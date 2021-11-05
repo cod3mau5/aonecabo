@@ -554,7 +554,7 @@ function wp_normalize_site_data( $data ) {
 	$date_fields = array( 'registered', 'last_updated' );
 	foreach ( $date_fields as $date_field ) {
 		if ( ! array_key_exists( $date_field, $data ) ) {
-			continue;
+			break;
 		}
 
 		if ( empty( $data[ $date_field ] ) || '0000-00-00 00:00:00' === $data[ $date_field ] ) {
@@ -865,7 +865,7 @@ function wp_uninitialize_site( $site_id ) {
 			while ( false !== $file ) {
 				if ( '.' === $file || '..' === $file ) {
 					$file = @readdir( $dh );
-					continue;
+					break;
 				}
 
 				if ( @is_dir( $dir . DIRECTORY_SEPARATOR . $file ) ) {

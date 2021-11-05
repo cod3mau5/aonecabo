@@ -1735,7 +1735,7 @@ function _add_post_type_submenus() {
 		$ptype_obj = get_post_type_object( $ptype );
 		// Sub-menus only.
 		if ( ! $ptype_obj->show_in_menu || $ptype_obj->show_in_menu === true ) {
-			continue;
+			break;
 		}
 		add_submenu_page( $ptype_obj->show_in_menu, $ptype_obj->labels->name, $ptype_obj->labels->all_items, $ptype_obj->cap->edit_posts, "edit.php?post_type=$ptype" );
 	}
@@ -3783,7 +3783,7 @@ function wp_insert_post( $postarr, $wp_error = false ) {
 			if ( ! $taxonomy_obj ) {
 				/* translators: %s: taxonomy name */
 				_doing_it_wrong( __FUNCTION__, sprintf( __( 'Invalid taxonomy: %s.' ), $taxonomy ), '4.4.0' );
-				continue;
+				break;
 			}
 
 			// array = hierarchical, string = non-hierarchical.
@@ -4554,7 +4554,7 @@ function get_enclosed( $post_id ) {
 
 	foreach ( $custom_fields as $key => $val ) {
 		if ( 'enclosure' != $key || ! is_array( $val ) ) {
-			continue;
+			break;
 		}
 		foreach ( $val as $enc ) {
 			$enclosure = explode( "\n", $enc );
@@ -5116,10 +5116,10 @@ function get_pages( $args = array() ) {
 				if ( 0 == intval( $post_author ) ) {
 					$post_author = get_user_by( 'login', $post_author );
 					if ( empty( $post_author ) ) {
-						continue;
+						break;
 					}
 					if ( empty( $post_author->ID ) ) {
-						continue;
+						break;
 					}
 					$post_author = $post_author->ID;
 				}
@@ -5193,7 +5193,7 @@ function get_pages( $args = array() ) {
 	foreach ( explode( ',', $r['sort_column'] ) as $orderby ) {
 		$orderby = trim( $orderby );
 		if ( ! in_array( $orderby, $allowed_keys ) ) {
-			continue;
+			break;
 		}
 
 		switch ( $orderby ) {
@@ -5907,13 +5907,13 @@ function wp_mime_type_icon( $mime = 0 ) {
 					while ( false !== $file = readdir( $dh ) ) {
 						$file = basename( $file );
 						if ( substr( $file, 0, 1 ) == '.' ) {
-							continue;
+							break;
 						}
 						if ( ! in_array( strtolower( substr( $file, -4 ) ), array( '.png', '.gif', '.jpg' ) ) ) {
 							if ( is_dir( "$dir/$file" ) ) {
 								$dirs[ "$dir/$file" ] = "$uri/$file";
 							}
-							continue;
+							break;
 						}
 						$icon_files[ "$dir/$file" ] = "$uri/$file";
 					}
@@ -5941,7 +5941,7 @@ function wp_mime_type_icon( $mime = 0 ) {
 		foreach ( $matches as $match => $wilds ) {
 			foreach ( $wilds as $wild ) {
 				if ( ! isset( $types[ $wild ] ) ) {
-					continue;
+					break;
 				}
 
 				$icon = $types[ $wild ];
@@ -6098,7 +6098,7 @@ function get_posts_by_author_sql( $post_type, $full = true, $post_author = null,
 	foreach ( $post_types as $post_type ) {
 		$post_type_obj = get_post_type_object( $post_type );
 		if ( ! $post_type_obj ) {
-			continue;
+			break;
 		}
 
 		/**
@@ -6729,7 +6729,7 @@ function wp_queue_posts_for_term_meta_lazyload( $posts ) {
 	$post_type_taxonomies = $term_ids = array();
 	foreach ( $posts as $post ) {
 		if ( ! ( $post instanceof WP_Post ) ) {
-			continue;
+			break;
 		}
 
 		if ( ! isset( $post_type_taxonomies[ $post->post_type ] ) ) {

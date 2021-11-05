@@ -2028,11 +2028,11 @@
         }
         else if (@is_link($v_descr['filename'])) {
           // skip
-          continue;
+          break;
         }
         else {
           // skip
-          continue;
+          break;
         }
       }
 
@@ -2066,7 +2066,7 @@
 
             // ----- Skip '.' and '..'
             if (($v_item_handler == '.') || ($v_item_handler == '..')) {
-                continue;
+                break;
             }
 
             // ----- Compose the full filename
@@ -2483,7 +2483,7 @@
       // ----- Skip empty file names
       // TBC : Can this be possible ? not checked in DescrParseAtt ?
       if ($p_filedescr_list[$j]['filename'] == "") {
-        continue;
+        break;
       }
 
       // ----- Check the filename
@@ -5500,11 +5500,11 @@
       // ----- Look for empty dir (path reduction)
       if ($v_list_dir[$i] == '') {
         $i++;
-        continue;
+        break;
       }
       if ($v_list_path[$j] == '') {
         $j++;
-        continue;
+        break;
       }
 
       // ----- Compare the items

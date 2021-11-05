@@ -730,7 +730,7 @@ class SimplePie_Parse_Date
 					if ($string[$position - 1] === '\\')
 					{
 						$position++;
-						continue;
+						break;
 					}
 					elseif (isset($string[$position]))
 					{

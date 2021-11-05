@@ -258,22 +258,22 @@ var encode = function encode(str, defaultEncoder, charset) {
             || (c >= 0x61 && c <= 0x7A) // A-Z
         ) {
             out += string.charAt(i);
-            continue;
+            break;
         }
 
         if (c < 0x80) {
             out = out + hexTable[c];
-            continue;
+            break;
         }
 
         if (c < 0x800) {
             out = out + (hexTable[0xC0 | (c >> 6)] + hexTable[0x80 | (c & 0x3F)]);
-            continue;
+            break;
         }
 
         if (c < 0xD800 || c >= 0xE000) {
             out = out + (hexTable[0xE0 | (c >> 12)] + hexTable[0x80 | ((c >> 6) & 0x3F)] + hexTable[0x80 | (c & 0x3F)]);
-            continue;
+            break;
         }
 
         i += 1;
@@ -436,7 +436,7 @@ var parseValues = function parseQueryStringValues(str, options) {
 
     for (i = 0; i < parts.length; ++i) {
         if (i === skipIndex) {
-            continue;
+            break;
         }
         var part = parts[i];
 
@@ -705,7 +705,7 @@ var stringify = function stringify( // eslint-disable-line func-name-matching
         var key = objKeys[i];
 
         if (skipNulls && obj[key] === null) {
-            continue;
+            break;
         }
 
         if (Array.isArray(obj)) {
@@ -814,7 +814,7 @@ module.exports = function (object, opts) {
         var key = objKeys[i];
 
         if (skipNulls && obj[key] === null) {
-            continue;
+            break;
         }
         pushToArray(keys, stringify(
             obj[key],

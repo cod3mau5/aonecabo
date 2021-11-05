@@ -3553,7 +3553,7 @@ function matchers_html(selector, multilineTag) {
         var child = match.children[index];
 
         if (child.nodeName.toLowerCase() !== multilineTag) {
-          continue;
+          break;
         }
 
         value += child.outerHTML;
@@ -3896,7 +3896,7 @@ function getMigratedBlock(block) {
         isEligible = _deprecatedDefinition === void 0 ? external_lodash_["stubFalse"] : _deprecatedDefinition;
 
     if (block.isValid && !isEligible(attributes, innerBlocks)) {
-      continue;
+      break;
     } // Block type properties which could impact either serialization or
     // parsing are not considered in the deprecated block type by default,
     // and must be explicitly provided.
@@ -3908,7 +3908,7 @@ function getMigratedBlock(block) {
     var isValid = isValidBlockContent(deprecatedBlockType, migratedAttributes, originalContent);
 
     if (!isValid) {
-      continue;
+      break;
     }
 
     block = Object(objectSpread["a" /* default */])({}, block, {
@@ -10298,7 +10298,7 @@ showdown.subParser('tables', function (text, options, globals) {
 
     for (i = 0; i < tableLines.length; ++i) {
       if (tableLines[i].trim() === '') {
-        continue;
+        break;
       }
       rawCells.push(
         tableLines[i]
@@ -10415,7 +10415,7 @@ showdown.subParser('makeMarkdown.blockquote', function (node, globals) {
       var innerTxt = showdown.subParser('makeMarkdown.node')(children[i], globals);
 
       if (innerTxt === '') {
-        continue;
+        break;
       }
       txt += innerTxt;
     }
@@ -10533,7 +10533,7 @@ showdown.subParser('makeMarkdown.list', function (node, globals, type) {
 
   for (var i = 0; i < listItemsLenght; ++i) {
     if (typeof listItems[i].tagName === 'undefined' || listItems[i].tagName.toLowerCase() !== 'li') {
-      continue;
+      break;
     }
 
     // define the bullet to use in list
@@ -12436,7 +12436,7 @@ function isShallowEqual( a, b, fromIndex ) {
 			// Check whether node arguments match arguments
 			if ( ! isShallowEqual( node.args, args, 1 ) ) {
 				node = node.next;
-				continue;
+				break;
 			}
 
 			// At this point we can assume we've found a match

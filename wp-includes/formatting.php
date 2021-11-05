@@ -257,7 +257,7 @@ function wptexturize( $text, $reset = false ) {
 		if ( '<' === $first ) {
 			if ( '<!--' === substr( $curl, 0, 4 ) ) {
 				// This is an HTML comment delimiter.
-				continue;
+				break;
 			} else {
 				// This is an HTML element delimiter.
 
@@ -268,7 +268,7 @@ function wptexturize( $text, $reset = false ) {
 			}
 		} elseif ( '' === trim( $curl ) ) {
 			// This is a newline between delimiters.  Performance improves when we check this.
-			continue;
+			break;
 
 		} elseif ( '[' === $first && $found_shortcodes && 1 === preg_match( '/^' . $shortcode_regex . '$/', $curl ) ) {
 			// This is a shortcode delimiter.
@@ -278,7 +278,7 @@ function wptexturize( $text, $reset = false ) {
 				_wptexturize_pushpop_element( $curl, $no_texturize_shortcodes_stack, $no_texturize_shortcodes );
 			} else {
 				// Looks like an escaped shortcode.
-				continue;
+				break;
 			}
 		} elseif ( empty( $no_texturize_shortcodes_stack ) && empty( $no_texturize_tags_stack ) ) {
 			// This is neither a delimiter, nor is this content inside of no_texturize pairs.  Do texturize.
@@ -340,7 +340,7 @@ function wptexturize_primes( $haystack, $needle, $prime, $open_quote, $close_quo
 
 	foreach ( $sentences as $key => &$sentence ) {
 		if ( false === strpos( $sentence, $needle ) ) {
-			continue;
+			break;
 		} elseif ( 0 !== $key && 0 === substr_count( $sentence, $close_quote ) ) {
 			$sentence = preg_replace( $quote_pattern, $flag, $sentence, -1, $count );
 			if ( $count > 1 ) {
@@ -477,7 +477,7 @@ function wpautop( $pee, $br = true ) {
 			// Malformed html?
 			if ( $start === false ) {
 				$pee .= $pee_part;
-				continue;
+				break;
 			}
 
 			$name              = "<pre wp-pre-tag-$i></pre>";
@@ -2889,7 +2889,7 @@ function make_clickable( $text ) {
 
 		if ( $nested_code_pre || empty( $piece ) || ( $piece[0] === '<' && ! preg_match( '|^<\s*[\w]{1,20}+://|', $piece ) ) ) {
 			$r .= $piece;
-			continue;
+			break;
 		}
 
 		// Long strings might contain expensive edge cases ...
@@ -4882,7 +4882,7 @@ function wp_sprintf( $pattern ) {
 		if ( substr( $pattern, $start, 2 ) == '%%' ) {
 			$start  += 2;
 			$result .= '%';
-			continue;
+			break;
 		}
 
 		// Get fragment before next %
@@ -5689,7 +5689,7 @@ function wp_staticize_emoji( $text ) {
 		if ( '' == $ignore_block_element && strlen( $content ) > 0 && '<' != $content[0] && false !== strpos( $content, '&#x' ) ) {
 			foreach ( $possible_emoji as $emojum => $emoji_char ) {
 				if ( false === strpos( $content, $emojum ) ) {
-					continue;
+					break;
 				}
 
 				$file = str_replace( ';&#x', '-', $emojum );
@@ -5746,7 +5746,7 @@ function wp_staticize_emoji_for_email( $mail ) {
 
 	foreach ( $headers as $header ) {
 		if ( strpos( $header, ':' ) === false ) {
-			continue;
+			break;
 		}
 
 		// Explode them out.

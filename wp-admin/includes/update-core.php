@@ -974,16 +974,16 @@ function update_core( $from, $to ) {
 		if ( is_array( $checksums ) ) {
 			foreach ( $checksums as $file => $checksum ) {
 				if ( 'wp-content' == substr( $file, 0, 10 ) ) {
-					continue;
+					break;
 				}
 				if ( ! file_exists( ABSPATH . $file ) ) {
-					continue;
+					break;
 				}
 				if ( ! file_exists( $working_dir_local . $file ) ) {
-					continue;
+					break;
 				}
 				if ( '.' === dirname( $file ) && in_array( pathinfo( $file, PATHINFO_EXTENSION ), array( 'html', 'txt' ) ) ) {
-					continue;
+					break;
 				}
 				if ( md5_file( ABSPATH . $file ) === $checksum ) {
 					$skip[] = $file;
@@ -1047,14 +1047,14 @@ function update_core( $from, $to ) {
 	if ( isset( $checksums ) && is_array( $checksums ) ) {
 		foreach ( $checksums as $file => $checksum ) {
 			if ( 'wp-content' == substr( $file, 0, 10 ) ) {
-				continue;
+				break;
 			}
 			if ( ! file_exists( $working_dir_local . $file ) ) {
-				continue;
+				break;
 			}
 			if ( '.' === dirname( $file ) && in_array( pathinfo( $file, PATHINFO_EXTENSION ), array( 'html', 'txt' ) ) ) {
 				$skip[] = $file;
-				continue;
+				break;
 			}
 			if ( file_exists( ABSPATH . $file ) && md5_file( ABSPATH . $file ) == $checksum ) {
 				$skip[] = $file;
@@ -1135,7 +1135,7 @@ function update_core( $from, $to ) {
 
 				// Check to see if the bundled items exist before attempting to copy them
 				if ( ! $wp_filesystem->exists( $from . $distro . 'wp-content/' . $file ) ) {
-					continue;
+					break;
 				}
 
 				if ( 'plugins' == $type ) {
@@ -1143,12 +1143,12 @@ function update_core( $from, $to ) {
 				} elseif ( 'themes' == $type ) {
 					$dest = trailingslashit( $wp_filesystem->wp_themes_dir() ); // Back-compat, ::wp_themes_dir() did not return trailingslash'd pre-3.2
 				} else {
-					continue;
+					break;
 				}
 
 				if ( ! $directory ) {
 					if ( ! $development_build && $wp_filesystem->exists( $dest . $filename ) ) {
-						continue;
+						break;
 					}
 
 					if ( ! $wp_filesystem->copy( $from . $distro . 'wp-content/' . $file, $dest . $filename, FS_CHMOD_FILE ) ) {
@@ -1156,7 +1156,7 @@ function update_core( $from, $to ) {
 					}
 				} else {
 					if ( ! $development_build && $wp_filesystem->is_dir( $dest . $filename ) ) {
-						continue;
+						break;
 					}
 
 					$wp_filesystem->mkdir( $dest . $filename, FS_CHMOD_DIR );
@@ -1184,7 +1184,7 @@ function update_core( $from, $to ) {
 	foreach ( $_old_files as $old_file ) {
 		$old_file = $to . $old_file;
 		if ( ! $wp_filesystem->exists( $old_file ) ) {
-			continue;
+			break;
 		}
 
 		// If the file isn't deleted, try writing an empty string to the file instead.
@@ -1266,7 +1266,7 @@ function _copy_dir( $from, $to, $skip_list = array() ) {
 
 	foreach ( (array) $dirlist as $filename => $fileinfo ) {
 		if ( in_array( $filename, $skip_list ) ) {
-			continue;
+			break;
 		}
 
 		if ( 'f' == $fileinfo['type'] ) {
@@ -1381,14 +1381,14 @@ function _upgrade_422_remove_genericons() {
 	foreach ( $affected_files as $file ) {
 		$gen_dir = $wp_filesystem->find_folder( trailingslashit( dirname( $file ) ) );
 		if ( empty( $gen_dir ) ) {
-			continue;
+			break;
 		}
 
 		// The path when the file is accessed via WP_Filesystem may differ in the case of FTP
 		$remote_file = $gen_dir . basename( $file );
 
 		if ( ! $wp_filesystem->exists( $remote_file ) ) {
-			continue;
+			break;
 		}
 
 		if ( ! $wp_filesystem->delete( $remote_file, false, 'f' ) ) {

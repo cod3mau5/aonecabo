@@ -299,13 +299,13 @@ $is_product_theme = false;
 			if ( strlen( $bkeys ) > 1 ) {
 				foreach ( $bps as $key => $bp ) {
 					if ( ! isset( $bp->id ) || $bp->id == '' ) {
-						continue;
+						break;
 					}
 					array_push( $brainstrom_bundled_products_keys, $bp->id );
 				}
 			} else {
 				if ( ! isset( $bps->id ) || $bps->id == '' ) {
-					continue;
+					break;
 				}
 				array_push( $brainstrom_bundled_products_keys, $bps->id );
 			}
@@ -344,10 +344,10 @@ $is_product_theme = false;
 					foreach ( $bsf_product_plugins as $key => $bsf_product_plugin ) {
 						$temp = array();
 						if ( ! isset( $bsf_product_plugin['template'] ) ) {
-							continue;
+							break;
 						}
 						if ( isset( $bsf_product_plugin['is_product_free'] ) && $bsf_product_plugin['is_product_free'] === 'true' ) {
-							continue;
+							break;
 						}
 						$bsf_template = $bsf_product_plugin['template'];
 						if ( $plugin == $bsf_template ) {
@@ -368,10 +368,10 @@ $is_product_theme = false;
 					foreach ( $bsf_product_themes as $key => $bsf_product_theme ) {
 						$temp = array();
 						if ( ! isset( $bsf_product_theme['template'] ) ) {
-							continue;
+							break;
 						}
 						if ( isset( $bsf_product_theme['is_product_free'] ) && $bsf_product_theme['is_product_free'] === 'true' ) {
-							continue;
+							break;
 						}
 						$bsf_template = $bsf_product_theme['template'];
 						if ( $theme == $bsf_template ) {
@@ -420,7 +420,7 @@ $is_product_theme = false;
 							$readonly = '';
 
 							if ( ! isset( $plugin_data['product_info'] ) ) {
-								continue;
+								break;
 							}
 
 							$info = $plugin_data['product_info'];
@@ -445,25 +445,25 @@ $is_product_theme = false;
 							}
 
 							if ( $id === '' ) {
-								continue;
+								break;
 							}
 
 							if ( in_array( $id, $brainstrom_bundled_products_keys ) ) {
-								continue;
+								break;
 							}
 
 							if ( $init_single_product_show && $request_product_id !== $id ) {
-								continue;
+								break;
 							}
 
 							$constant = 'BSF_REMOVE_' . $id . '_FROM_REGISTRATION_LISTING';
 							if ( defined( $constant ) && ( $constant == 'true' || $constant == true ) ) {
-								continue;
+								break;
 							}
 
 							$remove_frm_registration = apply_filters( 'bsf_remove_' . $id . '_from_registration_listing', false, $id );
 							if ( $remove_frm_registration ) {
-								continue;
+								break;
 							}
 
 							$step = ( isset( $plugin_data['step'] ) && $plugin_data['step'] != '' ) ? $plugin_data['step'] : 'step-product-registration';
@@ -528,7 +528,7 @@ $is_product_theme = false;
 							if ( isset( $theme_data['product_info'] ) ) {
 								$info = $theme_data['product_info'];
 							} else {
-								continue;
+								break;
 							}
 							$status = ( isset( $info['status'] ) ) ? $info['status'] : '';
 
@@ -547,12 +547,12 @@ $is_product_theme = false;
 							}
 
 							if ( $init_single_product_show && $request_product_id !== $id ) {
-								continue;
+								break;
 							}
 
 							$constant = 'BSF_REMOVE_' . $id . '_FROM_REGISTRATION';
 							if ( defined( $constant ) && ( $constant == 'true' || $constant == true ) ) {
-								continue;
+								break;
 							}
 
 							$version = bsf_get_current_version( $template, $type );

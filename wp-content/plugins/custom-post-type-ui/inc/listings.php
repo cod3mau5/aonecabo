@@ -108,7 +108,7 @@ function cptui_listings() {
 					$archive = '';
 					foreach ( $post_type_settings as $settings_key => $settings_value ) {
 						if ( 'labels' === $settings_key ) {
-							continue;
+							break;
 						}
 
 						if ( is_string( $settings_value ) ) {
@@ -192,7 +192,7 @@ function cptui_listings() {
 								if ( ! empty( $maybe_empty ) ) {
 									foreach ( $post_type_settings['labels'] as $key => $value ) {
 										if ( 'parent' === $key && array_key_exists( 'parent_item_colon', $post_type_settings['labels'] ) ) {
-											continue;
+											break;
 										}
 										printf(
 											'%s: %s<br/>',
@@ -318,7 +318,7 @@ function cptui_listings() {
 						$object_types = array();
 						foreach ( $taxonomy_settings as $settings_key => $settings_value ) {
 							if ( 'labels' === $settings_key ) {
-								continue;
+								break;
 							}
 
 							if ( is_string( $settings_value ) ) {

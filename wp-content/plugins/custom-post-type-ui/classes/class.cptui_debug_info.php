@@ -101,7 +101,7 @@ class CPTUI_Debug_Info {
 		foreach ( $plugins as $plugin_path => $plugin ) {
 			// If the plugin isn't active, don't show it.
 			if ( ! in_array( $plugin_path, $active ) ) {
-				continue;
+				break;
 			}
 
 			echo "\t\t" . $plugin['Name'] . ': ' . $plugin['Version'] . "\n";
@@ -113,7 +113,7 @@ class CPTUI_Debug_Info {
 		foreach ( $plugins as $plugin_path => $plugin ) {
 			// If the plugin isn't active, show it here.
 			if ( in_array( $plugin_path, $active ) ) {
-				continue;
+				break;
 			}
 
 			echo "\t\t" . $plugin['Name'] . ': ' . $plugin['Version'] . "\n";
@@ -133,7 +133,7 @@ class CPTUI_Debug_Info {
 
 				// If the plugin isn't active, don't show it.
 				if ( ! array_key_exists( $plugin_base, $net_active ) ) {
-					continue;
+					break;
 				}
 
 				$plugin = get_plugin_data( $plugin_path );

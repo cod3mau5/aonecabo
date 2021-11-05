@@ -514,7 +514,7 @@ class WP_REST_Server {
 			foreach ( $curies as $curie ) {
 				$href_prefix = substr( $curie['href'], 0, strpos( $curie['href'], '{rel}' ) );
 				if ( strpos( $rel, $href_prefix ) !== 0 ) {
-					continue;
+					break;
 				}
 
 				// Relation now changes from '$uri' to '$curie:$relation'.
@@ -561,7 +561,7 @@ class WP_REST_Server {
 		foreach ( $data['_links'] as $rel => $links ) {
 			// Ignore links to self, for obvious reasons.
 			if ( 'self' === $rel ) {
-				continue;
+				break;
 			}
 
 			$embeds = array();
@@ -571,14 +571,14 @@ class WP_REST_Server {
 				if ( empty( $item['embeddable'] ) ) {
 					// Ensure we keep the same order.
 					$embeds[] = array();
-					continue;
+					break;
 				}
 
 				// Run through our internal routing and serve.
 				$request = WP_REST_Request::from_url( $item['href'] );
 				if ( ! $request ) {
 					$embeds[] = array();
-					continue;
+					break;
 				}
 
 				// Embedded resources get passed context=embed.
@@ -749,7 +749,7 @@ class WP_REST_Server {
 					// Route option, move it to the options.
 					$this->route_options[ $route ][ $key ] = $handler;
 					unset( $handlers[ $key ] );
-					continue;
+					break;
 				}
 
 				$handler = wp_parse_args( $handler, $defaults );
@@ -837,7 +837,7 @@ class WP_REST_Server {
 			$match = preg_match( '@^' . $route . '$@i', $path, $matches );
 
 			if ( ! $match ) {
-				continue;
+				break;
 			}
 
 			$args = array();
@@ -857,7 +857,7 @@ class WP_REST_Server {
 					$checked_method = 'GET';
 				}
 				if ( empty( $handler['methods'][ $checked_method ] ) ) {
-					continue;
+					break;
 				}
 
 				if ( ! is_callable( $callback ) ) {
@@ -1114,7 +1114,7 @@ class WP_REST_Server {
 		foreach ( $routes as $route => $callbacks ) {
 			$data = $this->get_data_for_route( $route, $callbacks, $context );
 			if ( empty( $data ) ) {
-				continue;
+				break;
 			}
 
 			/**
@@ -1176,7 +1176,7 @@ class WP_REST_Server {
 		foreach ( $callbacks as $callback ) {
 			// Skip to the next route if any callback is hidden.
 			if ( empty( $callback['show_in_index'] ) ) {
-				continue;
+				break;
 			}
 
 			$data['methods'] = array_merge( $data['methods'], array_keys( $callback['methods'] ) );

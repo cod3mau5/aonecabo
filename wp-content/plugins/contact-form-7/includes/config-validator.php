@@ -58,16 +58,16 @@ class WPCF7_ConfigValidator {
 			if ( $args['section']
 			and $key != $args['section']
 			and preg_replace( '/\..*$/', '', $key, 1 ) != $args['section'] ) {
-				continue;
+				break;
 			}
 
 			foreach ( $errors as $error ) {
 				if ( empty( $error ) ) {
-					continue;
+					break;
 				}
 
 				if ( $args['code'] and $error['code'] != $args['code'] ) {
-					continue;
+					break;
 				}
 
 				$count += 1;
@@ -115,7 +115,7 @@ class WPCF7_ConfigValidator {
 
 		foreach ( $params as $key => $val ) {
 			if ( ! preg_match( '/^[0-9A-Za-z_]+$/', $key ) ) { // invalid key
-				continue;
+				break;
 			}
 
 			$placeholder = '%' . $key . '%';
@@ -210,7 +210,7 @@ class WPCF7_ConfigValidator {
 
 		foreach ( (array) $config_errors as $section => $errors ) {
 			if ( empty( $errors ) ) {
-				continue;
+				break;
 			}
 
 			if ( ! is_array( $errors ) ) { // for back-compat
@@ -467,7 +467,7 @@ class WPCF7_ConfigValidator {
 			$header = trim( $header );
 
 			if ( '' === $header ) {
-				continue;
+				break;
 			}
 
 			if ( ! preg_match( '/^([0-9A-Za-z-]+):(.*)$/', $header, $matches ) ) {
@@ -512,7 +512,7 @@ class WPCF7_ConfigValidator {
 
 				if ( '' === $line
 				or '[' == substr( $line, 0, 1 ) ) {
-					continue;
+					break;
 				}
 
 				$has_file_not_found = $this->detect_file_not_found(

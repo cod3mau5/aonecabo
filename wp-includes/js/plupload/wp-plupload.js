@@ -73,14 +73,14 @@ window.wp = window.wp || {};
 		// then set the proper plupload arguments to the ids.
 		for ( key in elements ) {
 			if ( ! this[ key ] ) {
-				continue;
+				break;
 			}
 
 			this[ key ] = $( this[ key ] ).first();
 
 			if ( ! this[ key ].length ) {
 				delete this[ key ];
-				continue;
+				break;
 			}
 
 			if ( ! this[ key ].prop('id') ) {

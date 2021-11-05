@@ -1108,7 +1108,7 @@ function network_edit_site_nav( $args = array() ) {
 
 		// Skip link if user can't access
 		if ( ! current_user_can( $link['cap'], $r['blog_id'] ) ) {
-			continue;
+			break;
 		}
 
 		// Link classes

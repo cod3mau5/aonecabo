@@ -291,14 +291,14 @@ function get_plugins( $plugin_folder = '' ) {
 	if ( $plugins_dir ) {
 		while ( ( $file = readdir( $plugins_dir ) ) !== false ) {
 			if ( substr( $file, 0, 1 ) == '.' ) {
-				continue;
+				break;
 			}
 			if ( is_dir( $plugin_root . '/' . $file ) ) {
 				$plugins_subdir = @ opendir( $plugin_root . '/' . $file );
 				if ( $plugins_subdir ) {
 					while ( ( $subfile = readdir( $plugins_subdir ) ) !== false ) {
 						if ( substr( $subfile, 0, 1 ) == '.' ) {
-							continue;
+							break;
 						}
 						if ( substr( $subfile, -4 ) == '.php' ) {
 							$plugin_files[] = "$file/$subfile";
@@ -321,13 +321,13 @@ function get_plugins( $plugin_folder = '' ) {
 
 	foreach ( $plugin_files as $plugin_file ) {
 		if ( ! is_readable( "$plugin_root/$plugin_file" ) ) {
-			continue;
+			break;
 		}
 
 		$plugin_data = get_plugin_data( "$plugin_root/$plugin_file", false, false ); //Do not apply markup/translate as it'll be cached.
 
 		if ( empty( $plugin_data['Name'] ) ) {
-			continue;
+			break;
 		}
 
 		$wp_plugins[ plugin_basename( $plugin_file ) ] = $plugin_data;
@@ -375,7 +375,7 @@ function get_mu_plugins() {
 
 	foreach ( $plugin_files as $plugin_file ) {
 		if ( ! is_readable( WPMU_PLUGIN_DIR . "/$plugin_file" ) ) {
-			continue;
+			break;
 		}
 
 		$plugin_data = get_plugin_data( WPMU_PLUGIN_DIR . "/$plugin_file", false, false ); //Do not apply markup/translate as it'll be cached.
@@ -442,7 +442,7 @@ function get_dropins() {
 
 	foreach ( $plugin_files as $plugin_file ) {
 		if ( ! is_readable( WP_CONTENT_DIR . "/$plugin_file" ) ) {
-			continue;
+			break;
 		}
 		$plugin_data = get_plugin_data( WP_CONTENT_DIR . "/$plugin_file", false, false ); //Do not apply markup/translate as it'll be cached.
 		if ( empty( $plugin_data['Name'] ) ) {
@@ -720,7 +720,7 @@ function deactivate_plugins( $plugins, $silent = false, $network_wide = null ) {
 	foreach ( (array) $plugins as $plugin ) {
 		$plugin = plugin_basename( trim( $plugin ) );
 		if ( ! is_plugin_active( $plugin ) ) {
-			continue;
+			break;
 		}
 
 		$network_deactivating = false !== $network_wide && is_plugin_active_for_network( $plugin );
@@ -746,7 +746,7 @@ function deactivate_plugins( $plugins, $silent = false, $network_wide = null ) {
 				$do_network = true;
 				unset( $network_current[ $plugin ] );
 			} elseif ( $network_wide ) {
-				continue;
+				break;
 			}
 		}
 
@@ -947,7 +947,7 @@ function delete_plugins( $plugins, $deprecated = '' ) {
 
 		if ( ! $deleted ) {
 			$errors[] = $plugin_file;
-			continue;
+			break;
 		}
 
 		// Remove language files, silently.
@@ -1759,7 +1759,7 @@ function get_admin_page_title() {
 				}
 
 				if ( $submenu_array[2] != $pagenow || isset( $_GET['page'] ) ) { // not the current page
-					continue;
+					break;
 				}
 
 				if ( isset( $submenu_array[3] ) ) {

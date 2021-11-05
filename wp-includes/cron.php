@@ -731,7 +731,7 @@ function wp_cron() {
 		}
 		foreach ( (array) $cronhooks as $hook => $args ) {
 			if ( isset( $schedules[ $hook ]['callback'] ) && ! call_user_func( $schedules[ $hook ]['callback'] ) ) {
-				continue;
+				break;
 			}
 			$results[] = spawn_cron( $gmt_time );
 			break 2;

@@ -1141,7 +1141,7 @@ function wp_calculate_image_srcset( $size_array, $image_src, $image_meta, $attac
 
 		// Check if image meta isn't corrupted.
 		if ( ! is_array( $image ) ) {
-			continue;
+			break;
 		}
 
 		// If the file name is part of the `src`, we've confirmed a match.
@@ -1151,7 +1151,7 @@ function wp_calculate_image_srcset( $size_array, $image_src, $image_meta, $attac
 
 		// Filter out images that are from previous edits.
 		if ( $image_edited && ! strpos( $image['file'], $image_edit_hash[0] ) ) {
-			continue;
+			break;
 		}
 
 		/*
@@ -1159,7 +1159,7 @@ function wp_calculate_image_srcset( $size_array, $image_src, $image_meta, $attac
 		 * that file is in the 'src' attribute.
 		 */
 		if ( $max_srcset_image_width && $image['width'] > $max_srcset_image_width && ! $is_src ) {
-			continue;
+			break;
 		}
 
 		// If the image dimensions are within 1px of the expected size, use it.
@@ -3077,7 +3077,7 @@ function _wp_image_editor_choose( $args = array() ) {
 
 	foreach ( $implementations as $implementation ) {
 		if ( ! call_user_func( array( $implementation, 'test' ), $args ) ) {
-			continue;
+			break;
 		}
 
 		if ( isset( $args['mime_type'] ) &&
@@ -3085,13 +3085,13 @@ function _wp_image_editor_choose( $args = array() ) {
 				array( $implementation, 'supports_mime_type' ),
 				$args['mime_type']
 			) ) {
-			continue;
+			break;
 		}
 
 		if ( isset( $args['methods'] ) &&
 			array_diff( $args['methods'], get_class_methods( $implementation ) ) ) {
 
-			continue;
+			break;
 		}
 
 		return $implementation;
@@ -3318,7 +3318,7 @@ function wp_prepare_attachment_for_js( $attachment ) {
 			/** This filter is documented in wp-includes/media.php */
 			if ( $downsize = apply_filters( 'image_downsize', false, $attachment->ID, $size ) ) {
 				if ( empty( $downsize[3] ) ) {
-					continue;
+					break;
 				}
 
 				$sizes[ $size ] = array(

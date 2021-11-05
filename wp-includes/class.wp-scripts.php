@@ -448,7 +448,7 @@ class WP_Scripts extends WP_Dependencies {
 
 		foreach ( (array) $l10n as $key => $value ) {
 			if ( ! is_scalar( $value ) ) {
-				continue;
+				break;
 			}
 
 			$l10n[ $key ] = html_entity_decode( (string) $value, ENT_QUOTES, 'UTF-8' );

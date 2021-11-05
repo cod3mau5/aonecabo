@@ -2167,7 +2167,7 @@ function safecss_filter_attr( $css, $deprecated = '' ) {
 	$css = '';
 	foreach ( $css_array as $css_item ) {
 		if ( $css_item == '' ) {
-			continue;
+			break;
 		}
 
 		$css_item        = trim( $css_item );

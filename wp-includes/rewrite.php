@@ -571,13 +571,13 @@ function url_to_postid( $url ) {
 				// This is a verbose page match, let's check to be sure about it.
 				$page = get_page_by_path( $matches[ $varmatch[1] ] );
 				if ( ! $page ) {
-					continue;
+					break;
 				}
 
 				$post_status_obj = get_post_status_object( $page->post_status );
 				if ( ! $post_status_obj->public && ! $post_status_obj->protected
 					&& ! $post_status_obj->private && $post_status_obj->exclude_from_search ) {
-					continue;
+					break;
 				}
 			}
 
