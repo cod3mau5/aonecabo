@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @var $el_class
  * @var $css_animation
  * Shortcode class
- * @var $this WPBakeryShortCode_VC_Cta_button
+ * @var WPBakeryShortCode_Vc_Cta_button $this
  */
 $color = $icon = $size = $target = $href = $target = $call_text = $position = $el_class = $css_animation = '';
 $output = '';
@@ -40,19 +40,10 @@ $color = ( '' !== $color ) ? ' wpb_' . $color : '';
 $size = ( '' !== $size && 'wpb_regularsize' !== $size ) ? ' wpb_' . $size : ' ' . $size;
 
 $a_class = '';
-if ( '' !== $el_class ) {
-	$tmp_class = explode( ' ', $el_class );
-	if ( in_array( 'prettyphoto', $tmp_class ) ) {
-		wp_enqueue_script( 'prettyphoto' );
-		wp_enqueue_style( 'prettyphoto' );
-		$a_class .= ' prettyphoto';
-		$el_class = str_ireplace( 'prettyphoto', '', $el_class );
-	}
-}
 
 if ( '' !== $href ) {
 	$button = '<span class="wpb_button ' . esc_attr( $color . $size . $icon ) . '">' . $title . $i_icon . '</span>';
-	$button = '<a class="wpb_button_a' . esc_attr( $a_class ) . '" href="' . $href . '"' . $target . '>' . $button . '</a>';
+	$button = '<a class="wpb_button_a' . esc_attr( $a_class ) . '" href="' . esc_url( $href ) . '"' . $target . '>' . $button . '</a>';
 } else {
 	$button = '';
 	$el_class .= ' cta_no_button';
@@ -70,4 +61,4 @@ if ( 'cta_align_bottom' === $position ) {
 }
 $output .= '</div>';
 
-echo $output;
+return $output;

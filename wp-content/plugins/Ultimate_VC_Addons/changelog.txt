@@ -1,3 +1,111 @@
+3.19.11 - 22 July 2021
+- Improvement: Compatibility with the WordPress 5.8
+- Fix: Advanced Carousel element not working properly.
+- Fix: The Price Box element is not showing horizontally.
+- Fix: Hotspot module styling options are not applying properly.
+- Fix: Functional code is showing when the interactive banner is used with the Advanced carousel.
+
+3.19.10 - 04 June 2021
+- Improvement: Compatibility with the latest JavaScript and CSS standard rule.
+- Improvement: Added the prefix to all the PHP function and class name to avoid future conflicts.
+- Improvement: Added the prefix to the global variable, script and style handlers.
+- Fix: Fixed the PHP error foreach() argument must be of type array|object.
+- Fix: Fixed the PHP notice undefined index into the google font manager.
+
+3.19.9 - 18 Feb 2021
+- Improvement : Updated the Smooth-scroll library.
+﻿- Fix : Ultimate Icon conflict issue with Yoast SEO.
+﻿- Fix : Console error unable to preventDefault inside passive event listener due to the target being treated as passive.
+﻿- Fix : Console error cannot read property 'msie' of undefined.
+﻿﻿﻿﻿- Fix : Youtube video background is not working on MacOSX BigSur.﻿﻿﻿﻿
+﻿- Fix : Console error cannot read property '1' of null.
+
+3.19.8 - 12 Dec 2020
+- Improvement: Shortcode compatibility with PHP 8.0 – Deprecated: Function ultimate_wrap_shortcode_in_div().
+﻿- Fix: Deprecated jquery issue into Interactive Mouse Parallax row background after WordPress - 5.6
+﻿- Fix: Console warning jQuery.browser is deprecated after WordPress - 5.6
+﻿- Fix: Console warning indexOf is not a function after WordPress - 5.6
+﻿- Fix: Console warning jquery-fn-load is deprecated for below elements after WordPress - 5.6
+﻿	- Heading
+﻿	- Countdown
+﻿	- Creative-link
+﻿	- Dual-Button
+﻿	- Filp-Box
+﻿	- iHover
+﻿	- Info-banner
+﻿	- Info-Box
+﻿	- Info-circle
+﻿	- Modal popup
+﻿	- Team Module
+﻿	- Content Box
+﻿	- Image separator
+﻿	- Google Map
+﻿	- Advanced carousel
+﻿
+﻿- Fix: Console warning pseudo-event is deprecated for below modules after WordPress - 5.6
+﻿	- Advanced Button
+﻿	- Flip-Box
+﻿	- Interactive Banner
+
+3.19.7 - 09 Nov 2020
+- Improvement: Updated the jparallax.js library for the parallax effect.
+﻿- Improvement: Updated the strings into the backend.
+﻿- Fix - Console warning jquery-fn-load-is-deprecated.
+﻿- Fix - Interactive Mouse Parallax row background not working.
+﻿- Fix - Typography is not applied to prefix into the Fancy text element.
+
+3.19.6 - 12 Aug 2020
+- Improvement: Compatibility to WordPress 5.5.
+- Fix: Google Fonts are not loading into the Google Font Manager tab for WordPress 5.5.
+- Fix: Upload the custom icon support is not working for WordPress 5.5.
+- Fix: Save button functionality is not working for the elements with the WordPress 5.5.
+- Fix: Switch buttons of the Element Tab and Debug Tab are not working with the WordPress 5.5.
+
+3.19.5 - 16 June 2020
+- New: Users can now share non-personal usage data to help us test and develop better products. ( <a href="https://store.brainstormforce.com/usage-tracking/?utm_source=changelog&utm_medium=changelog&utm_campaign=usage_tracking" target="_blank" rel="noopener">Know More</a> )
+﻿- Fix: Fixed the flip-box background overlapping issue into firefox.
+﻿- Fix: Fixed the duplicate ID issue into the Counter element.
+﻿﻿﻿﻿- Fix: Fixed the PHP notice issue with the PHP 7.4﻿﻿﻿﻿
+﻿- Fix: Breaking the UI for the video element while using the Vimeo link.
+﻿- Fix: Fixed the PHP notice ﻿trying to access array offset on the value of type bool﻿﻿﻿﻿.﻿
+
+3.19.4 - 12 March 2020
+- Improvement: Updated Dual Color Heading element code for WPML compatibility.
+- Fix: PHP Notice of $icon_img variable is not defined.
+- Fix: Interactive Banner Captions come over the sticky header while scrolling.
+- Fix: PHP Notice of $img_width variable is not defined.
+- Fix: The hover text color of button2 stopped working for Dual button.
+- Fix: PHP Notice of $icon_size variable is not defined.
+- Fix: Rendering issue when background is not set for flip-box.
+- Fix: PHP Notice of $icon_border_radius variable is not defined.
+- Fix: Update the strings inside the modules.
+- Fix: PHP Notice of $icon_border_spacing variable is not defined.
+
+3.19.3 - 20 Feb 2020
+- Improvement: Compatibility with latest WordPress PHP_CodeSniffer rules.
+
+3.19.2 - 03 Feb 2020
+- Improvement: Hardened the security of the plugin.
+
+3.19.1 - 22 Jan 2020
+- Security Fix: Cross-site scripting (XSS) vulnerability.
+
+3.19.0 - 30 July 2019
+- New: Introducing Dual Color Heading Element.
+- Improvement: Added the Extra class option for the Hotspot item.
+- Improvement: Update WPML XML file for Compatibility.
+- Improvement: Update the string as an Element instead of Modules in backend settings.
+- Fix: PHP Notice of $ub variable is not initialized.
+- Fix: Hotspot glow animation color is not working.
+- Fix: PHP Warning in Team element appearing on the front end.
+- Removed purchase key License activation method as the API for this is now being deprecated by Envato.
+
+3.18.0 - 18 Feb 2019
+- New: Introduce Ribbon element.
+- Improvement: Added the animation option for a marker in Google Map.
+- Fix: Advanced Carousel rendering issue when page refresh.
+- Fix: PHP Notice Undefined license-form-method variable.
+
 3.17.1 - 6 Dec 2018
 - Improvement: Added Text transform option for Fancy text.
 - Improvement: Update WPML xml file for Compatibility.
